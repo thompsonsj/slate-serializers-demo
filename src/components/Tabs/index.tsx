@@ -1,3 +1,8 @@
+import { useContext, useEffect } from "react"
+import stringifyObject from 'stringify-object'
+
+import { SlateValueContext } from "../../contexts/SlateValueContext"
+
 /*
   This example requires some changes to your config:
   
@@ -23,7 +28,10 @@ function classNames(...classes) {
 }
 
 export default function Example() {
+  const { slateValue } = useContext(SlateValueContext)
+
   return (
+    <>
     <div>
       <div className="sm:hidden">
         <label htmlFor="tabs" className="sr-only">
@@ -59,5 +67,7 @@ export default function Example() {
         </nav>
       </div>
     </div>
+    <pre><code>{slateValue && JSON.parse(slateValue).map(node => stringifyObject(node)).join('\n')}</code></pre>
+    </>
   )
 }
