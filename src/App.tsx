@@ -12,6 +12,7 @@ import { ReactEditor } from 'slate-react'
 import RichTextEditor from './components/RichTextEditor'
 
 import Header from './components/Header'
+import Tabs from './components/Tabs'
 
 type CustomElement = { type: 'paragraph' | 'block-quote'; align?: string; children: CustomText[] }
 type CustomText = { text: string; bold?: boolean; italic?: boolean; code?: boolean }
@@ -40,6 +41,9 @@ function App() {
         <div className="grid grid-cols-12 gap-6 py-12">
           <div className="col-span-6">
             <RichTextEditor />
+          </div>
+          <div className="col-span-6">
+            <Tabs />
           </div>
         </div>
       </div>
