@@ -30,10 +30,6 @@ function classNames(...classes) {
 export default function Example() {
   const { slateValue } = useContext(SlateValueContext)
 
-  useEffect(() => {
-    console.log(slateValue)
-  }, [slateValue])
-
   return (
     <>
     <div>
