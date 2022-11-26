@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useContext, useMemo } from 'react'
 import isHotkey from 'is-hotkey'
 import { Editable, withReact, Slate } from 'slate-react'
 import {
@@ -25,6 +25,8 @@ import {
   RiAlignJustify
 } from 'react-icons/ri'
 
+import { SlateValueContext } from '../../contexts/SlateValueContext'
+
 const HOTKEYS = {
   'mod+b': 'bold',
   'mod+i': 'italic',
@@ -36,9 +38,24 @@ const RichTextEditor = () => {
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
+  const { setSlateValue } = useContext(SlateValueContext)
 
   return (
-    <Slate editor={editor} value={initialValue}>
+    <Slate
+      editor={editor}
+      value={initialValue}
+      onChange={value => {
+        const isAstChange = editor.operations.some(
+          op => 'set_selection' !== op.type
+        )
+        if (isAstChange) {
+          // Save the value to Local Storage.
+          const content = JSON.stringify(value)
+          localStorage.setItem('content', content)
+          setSlateValue(content)
+        }
+      }}
+    >
       <Toolbar>
         <MarkButton format="bold" icon={<RiBold />} />
         <MarkButton format="italic" icon={<RiItalic />} />
