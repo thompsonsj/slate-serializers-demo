@@ -1,7 +1,8 @@
-import { useContext, useEffect } from "react"
+import { useContext } from "react"
 import stringifyObject from 'stringify-object'
 
 import { SlateValueContext } from "../../contexts/SlateValueContext"
+import { slateToHtml } from "slate-serializers"
 
 /*
   This example requires some changes to your config:
@@ -68,6 +69,7 @@ export default function Example() {
       </div>
     </div>
     <pre><code>{slateValue && JSON.parse(slateValue).map(node => stringifyObject(node)).join('\n')}</code></pre>
+    <pre><code>{slateValue && slateToHtml(JSON.parse(slateValue))}</code></pre>
     </>
   )
 }
