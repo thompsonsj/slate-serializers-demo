@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo } from 'react'
+import React, { useCallback, useContext, useEffect, useMemo } from 'react'
 import isHotkey from 'is-hotkey'
 import { Editable, withReact, Slate } from 'slate-react'
 import {
@@ -39,6 +39,9 @@ const RichTextEditor = () => {
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
   const { setSlateValue } = useContext(SlateValueContext)
+  useEffect(() => {
+    setSlateValue(JSON.stringify(initialValue))
+  }, [])
 
   return (
     <Slate

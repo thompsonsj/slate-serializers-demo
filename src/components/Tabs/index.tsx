@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import stringifyObject from 'stringify-object'
 
 import { SlateValueContext } from "../../contexts/SlateValueContext"
-import { htmlToSlate, slateToHtml } from "slate-serializers"
+import { htmlToSlate, slateToHtml, slateDemoHtmlToSlateConfig, slateDemoSlateToDomConfig } from "slate-serializers"
 
 import { Tab } from '@headlessui/react'
 import cx from 'classnames'
@@ -25,11 +25,11 @@ function Tabs() {
   const [ reserializedSlate, setReserializedSlate ] = useState([])
 
   useEffect(() => {
-    setHtml(slateValue ? slateToHtml(JSON.parse(slateValue)): '')
+    setHtml(slateValue ? slateToHtml(JSON.parse(slateValue), slateDemoSlateToDomConfig): '')
   }, [slateValue])
 
   useEffect(() => {
-    setReserializedSlate(html ? htmlToSlate(html): [])
+    setReserializedSlate(html ? htmlToSlate(html, slateDemoHtmlToSlateConfig): [])
   }, [html])
 
   return (
