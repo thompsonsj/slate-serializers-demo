@@ -1,62 +1,81 @@
-import React, { createContext, useState } from 'react'
-// Import the Slate editor factory.
-import { createEditor } from 'slate'
-
-// Import the Slate components and React plugin.
-import { withReact } from 'slate-react'
-
-// TypeScript users only add this code
-import { BaseEditor, Descendant } from 'slate'
-import { ReactEditor } from 'slate-react'
-
-import RichTextEditor from './components/RichTextEditor'
-
+import * as React from "react";
+import { Routes, Route, Outlet, Link } from "react-router-dom";
 import Header from './components/Header'
-import Tabs from './components/Tabs'
 
-import { SlateValueContext } from './contexts/SlateValueContext'
+// 'payload/src/admin/components/forms/field-types/RichText/RichText'
 
-type CustomElement = { type: 'paragraph' | 'block-quote'; align?: string; children: CustomText[] }
-type CustomText = { text: string; bold?: boolean; italic?: boolean; code?: boolean }
+import Demo from './pages/SlateSerializerDemo'
 
-declare module 'slate' {
-  interface CustomTypes {
-    Editor: BaseEditor & ReactEditor
-    Element: CustomElement
-    Text: CustomText
-  }
-}
-
-const initialValue: Descendant[] = [
-  {
-    type: 'paragraph',
-    children: [{ text: 'A line of text in a paragraph.' }],
-  },
-]
-
-function App() {
-  const [editor] = useState(() => withReact(createEditor()))
-  const [slateValue, setSlateValue] = useState(null);
-
+export default function App() {
   return (
-    <>
-      <Header />
-      <div className="container mx-auto">
-        <SlateValueContext.Provider value={{
-          slateValue, setSlateValue
-        }}>
-          <div className="grid grid-cols-12 gap-6 py-12">
-            <div className="col-span-6">
-              <RichTextEditor />
-            </div>
-            <div className="col-span-6">
-              <Tabs />
-            </div>
-          </div>
-        </SlateValueContext.Provider>
-      </div>
-    </>
-  )
+    <div>
+      {/* Routes nest inside one another. Nested route paths build upon
+            parent route paths, and nested route elements render inside
+            parent route elements. See the note about <Outlet> below. */}
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Demo />} />
+          <Route path="about" element={<About />} />
+          <Route path="dashboard" element={<Dashboard />} />
+
+          {/* Using path="*"" means "match anything", so this route
+                acts like a catch-all for URLs that we don't have explicit
+                routes for. */}
+          <Route path="*" element={<NoMatch />} />
+        </Route>
+      </Routes>
+    </div>
+  );
 }
 
-export default App;
+function Layout() {
+  return (
+    <div className="container mx-auto">
+      {/* A "layout route" is a good place to put markup you want to
+          share across all the pages on your site, like navigation. */}
+      <Header />
+
+      <hr />
+
+      {/* An <Outlet> renders whatever child route is currently active,
+          so you can think about this <Outlet> as a placeholder for
+          the child routes we defined above. */}
+      <Outlet />
+    </div>
+  );
+}
+
+function Home() {
+  return (
+    <div>
+      <h2>Home</h2>
+    </div>
+  );
+}
+
+function About() {
+  return (
+    <div>
+      <h2>About</h2>
+    </div>
+  );
+}
+
+function Dashboard() {
+  return (
+    <div>
+      <h2>Dashboard</h2>
+    </div>
+  );
+}
+
+function NoMatch() {
+  return (
+    <div>
+      <h2>Nothing to see here!</h2>
+      <p>
+        <Link to="/">Go to the home page</Link>
+      </p>
+    </div>
+  );
+}
