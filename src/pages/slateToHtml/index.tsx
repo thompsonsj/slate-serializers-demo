@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Descendant } from 'slate'
 
-import RichTextEditor from '../components/RichTextEditor'
-import Tabs from '../components/Tabs'
-import { SlateValueContext } from '../contexts/SlateValueContext'
+import RichTextEditor from '../../components/RichTextEditor'
+import Tabs from './Tabs'
+import { SlateValueContext } from '../../contexts/SlateValueContext'
 
 const initialValue: Descendant[] = [
   {

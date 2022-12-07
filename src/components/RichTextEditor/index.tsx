@@ -23,6 +23,7 @@ import {
 } from 'react-icons/ri'
 
 import { SlateValueContext } from '../../contexts/SlateValueContext'
+import { cx } from '@emotion/css'
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -54,6 +55,8 @@ const RichTextEditor = ({value}: IRichTextEditor) => {
   useEffect(() => {
     setSlateValue(JSON.stringify(value))
   }, [])
+
+  editor.children = value
 
   return (
     <Slate
@@ -87,6 +90,12 @@ const RichTextEditor = ({value}: IRichTextEditor) => {
         <BlockButton format="justify" icon={<RiAlignJustify />} />
       </Toolbar>
       <Editable
+        className={cx(
+          'p-6',
+          'rounded-lg border border-gray-300',
+          'shadow-sm',
+          'focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500'
+        )}
         renderElement={renderElement}
         renderLeaf={renderLeaf}
         placeholder="Enter some rich text…"
