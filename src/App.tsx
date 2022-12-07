@@ -4,7 +4,8 @@ import Header from './components/Header'
 
 // 'payload/src/admin/components/forms/field-types/RichText/RichText'
 
-import Demo from './pages/SlateSerializerDemo'
+import SlateToHtmlDemo from './pages/slateToHtml'
+import HtmlToSlateDemo from './pages/htmlToSlate'
 
 export default function App() {
   return (
@@ -14,8 +15,8 @@ export default function App() {
             parent route elements. See the note about <Outlet> below. */}
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Demo />} />
-          <Route path="about" element={<About />} />
+          <Route index element={<SlateToHtmlDemo />} />
+          <Route path="about" element={<HtmlToSlateDemo />} />
           <Route path="dashboard" element={<Dashboard />} />
 
           {/* Using path="*"" means "match anything", so this route
