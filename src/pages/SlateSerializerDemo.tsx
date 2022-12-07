@@ -1,30 +1,45 @@
 import React, { useState } from 'react'
-
-// TypeScript users only add this code
-import { BaseEditor, Descendant } from 'slate'
-import { ReactEditor } from 'slate-react'
+import { Descendant } from 'slate'
 
 import RichTextEditor from '../components/RichTextEditor'
-
 import Tabs from '../components/Tabs'
-
 import { SlateValueContext } from '../contexts/SlateValueContext'
-
-type CustomElement = { type: 'paragraph' | 'block-quote'; align?: string; children: CustomText[] }
-type CustomText = { text: string; bold?: boolean; italic?: boolean; code?: boolean }
-
-declare module 'slate' {
-  interface CustomTypes {
-    Editor: BaseEditor & ReactEditor
-    Element: CustomElement
-    Text: CustomText
-  }
-}
 
 const initialValue: Descendant[] = [
   {
     type: 'paragraph',
-    children: [{ text: 'A line of text in a paragraph.' }],
+    children: [
+      { text: 'This is editable ' },
+      { text: 'rich', bold: true },
+      { text: ' text, ' },
+      { text: 'much', italic: true },
+      { text: ' better than a ' },
+      { text: '<textarea>', code: true },
+      { text: '!' },
+    ],
+  },
+  {
+    type: 'paragraph',
+    children: [
+      {
+        text:
+          "Since it's rich text, you can do things like turn a selection of text ",
+      },
+      { text: 'bold', bold: true },
+      {
+        text:
+          ', or add a semantically rendered block quote in the middle of the page, like this:',
+      },
+    ],
+  },
+  {
+    type: 'block-quote',
+    children: [{ text: 'A wise quote.' }],
+  },
+  {
+    type: 'paragraph',
+    align: 'center',
+    children: [{ text: 'Try it out for yourself!' }],
   },
 ]
 
@@ -38,7 +53,7 @@ function App() {
       }}>
         <div className="grid grid-cols-12 gap-6 py-12">
           <div className="col-span-6">
-            <RichTextEditor />
+            <RichTextEditor value={initialValue} />
           </div>
           <div className="col-span-6">
             <Tabs />
