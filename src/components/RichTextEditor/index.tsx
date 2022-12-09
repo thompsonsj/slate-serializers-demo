@@ -1,12 +1,9 @@
 import React, { useCallback, useContext, useEffect, useMemo } from 'react'
 import isHotkey from 'is-hotkey'
-import { Editable, withReact, Slate } from 'slate-react'
-import {
-  createEditor,
-  Descendant,
-} from 'slate'
+import { Editable, withReact, Slate, ReactEditor } from 'slate-react'
 import { withHistory } from 'slate-history'
 import { BlockButton, MarkButton, toggleMark } from './elements/buttons'
+import { createEditor, BaseEditor, Descendant } from 'slate'
 
 import { Toolbar } from './components'
 import {
@@ -26,6 +23,7 @@ import {
 } from 'react-icons/ri'
 
 import { SlateValueContext } from '../../contexts/SlateValueContext'
+import { cx } from '@emotion/css'
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -34,19 +32,48 @@ const HOTKEYS = {
   'mod+`': 'code',
 }
 
-const RichTextEditor = () => {
+type CustomElement = { type: 'paragraph' | 'block-quote'; align?: string; children: CustomText[] }
+type CustomText = { text: string; bold?: boolean; italic?: boolean; code?: boolean }
+
+declare module 'slate' {
+  interface CustomTypes {
+    Editor: BaseEditor & ReactEditor
+    Element: CustomElement
+    Text: CustomText
+  }
+}
+
+interface IRichTextEditor {
+  value: Descendant[]
+  dynamicValue?: Descendant[]
+}
+
+const RichTextEditor = ({
+  value = [],
+  dynamicValue = []
+}: IRichTextEditor) => {
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
   const { setSlateValue } = useContext(SlateValueContext)
   useEffect(() => {
-    setSlateValue(JSON.stringify(initialValue))
+    setSlateValue(JSON.stringify(value))
   }, [])
+
+  if (dynamicValue.length > 0) {
+    editor.children = dynamicValue
+  }
+
+  useEffect(() => {
+    const content = JSON.stringify(editor.children)
+    localStorage.setItem('content', content)
+    setSlateValue(content)
+  }, [dynamicValue])
 
   return (
     <Slate
       editor={editor}
-      value={initialValue}
+      value={value}
       onChange={value => {
         const isAstChange = editor.operations.some(
           op => 'set_selection' !== op.type
@@ -75,6 +102,12 @@ const RichTextEditor = () => {
         <BlockButton format="justify" icon={<RiAlignJustify />} />
       </Toolbar>
       <Editable
+        className={cx(
+          'p-6',
+          'rounded-lg border border-gray-300',
+          'shadow-sm',
+          'focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500'
+        )}
         renderElement={renderElement}
         renderLeaf={renderLeaf}
         placeholder="Enter some rich text…"
@@ -161,43 +194,5 @@ const Leaf = ({ attributes, children, leaf }) => {
 
   return <span {...attributes}>{children}</span>
 }
-
-const initialValue: Descendant[] = [
-  {
-    type: 'paragraph',
-    children: [
-      { text: 'This is editable ' },
-      { text: 'rich', bold: true },
-      { text: ' text, ' },
-      { text: 'much', italic: true },
-      { text: ' better than a ' },
-      { text: '<textarea>', code: true },
-      { text: '!' },
-    ],
-  },
-  {
-    type: 'paragraph',
-    children: [
-      {
-        text:
-          "Since it's rich text, you can do things like turn a selection of text ",
-      },
-      { text: 'bold', bold: true },
-      {
-        text:
-          ', or add a semantically rendered block quote in the middle of the page, like this:',
-      },
-    ],
-  },
-  {
-    type: 'block-quote',
-    children: [{ text: 'A wise quote.' }],
-  },
-  {
-    type: 'paragraph',
-    align: 'center',
-    children: [{ text: 'Try it out for yourself!' }],
-  },
-]
 
 export default RichTextEditor
