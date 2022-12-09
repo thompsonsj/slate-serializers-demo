@@ -45,9 +45,13 @@ declare module 'slate' {
 
 interface IRichTextEditor {
   value: Descendant[]
+  dynamicValue?: Descendant[]
 }
 
-const RichTextEditor = ({value}: IRichTextEditor) => {
+const RichTextEditor = ({
+  value = [],
+  dynamicValue = []
+}: IRichTextEditor) => {
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
@@ -56,7 +60,15 @@ const RichTextEditor = ({value}: IRichTextEditor) => {
     setSlateValue(JSON.stringify(value))
   }, [])
 
-  editor.children = value
+  if (dynamicValue.length > 0) {
+    editor.children = dynamicValue
+  }
+
+  useEffect(() => {
+    const content = JSON.stringify(editor.children)
+    localStorage.setItem('content', content)
+    setSlateValue(content)
+  }, [dynamicValue])
 
   return (
     <Slate

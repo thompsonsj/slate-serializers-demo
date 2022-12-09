@@ -39,18 +39,12 @@ function Tabs() {
           Slate JSON
         </Tab>
         <Tab className={tabClassnames}>
-          HTML
-        </Tab>
-        <Tab className={tabClassnames}>
           Reserialized Slate JSON
         </Tab>
       </Tab.List>
       <Tab.Panels>
         <Tab.Panel>
         <pre><code>{slateValue && JSON.parse(slateValue).map(node => stringifyObject(node)).join('\n')}</code></pre>
-        </Tab.Panel>
-        <Tab.Panel>
-        <pre><code>{html}</code></pre>
         </Tab.Panel>
         <Tab.Panel>
         <pre><code>{reserializedSlate && reserializedSlate.map(node => stringifyObject(node)).join('\n')}</code></pre>
