@@ -66,17 +66,29 @@ function App() {
       }}>
         <div className="grid grid-cols-12 gap-6 py-12">
           <div className="col-span-6">
+            <label className="block font-bold text-gray-700 mb-6">
+              Edit Slate content
+            </label>
             <RichTextEditor value={initialValue} />
           </div>
           <div className="col-span-6">
+            <label className="block font-bold text-gray-700 mb-6">
+              slateToHtml output
+            </label>
             <pre><code>{html}</code></pre>
           </div>
         </div>
         <div className="grid grid-cols-12 gap-6 py-12">
           <div className="col-span-6">
+            <label className="block font-bold text-gray-700 mb-6">
+              Slate value
+            </label>
             <pre><code>{slateValue && JSON.parse(slateValue).map(node => stringifyObject(node)).join('\n')}</code></pre>
           </div>
           <div className="col-span-6">
+            <label className="block font-bold text-gray-700 mb-6">
+              Reserialized with htmlToSlate
+            </label>
             <pre><code>{reserializedSlate && reserializedSlate.map(node => stringifyObject(node)).join('\n')}</code></pre>
           </div>
         </div>

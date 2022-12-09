@@ -16,8 +16,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<SlateToHtmlDemo />} />
-          <Route path="about" element={<HtmlToSlateDemo />} />
-          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="htmltoslate" element={<HtmlToSlateDemo />} />
 
           {/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit
