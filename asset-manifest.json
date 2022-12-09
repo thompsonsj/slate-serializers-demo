@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/slate-serializers-demo/static/css/main.74f9be51.css",
-    "main.js": "/slate-serializers-demo/static/js/main.193614cd.js",
+    "main.js": "/slate-serializers-demo/static/js/main.ff3d85a5.js",
     "index.html": "/slate-serializers-demo/index.html",
     "main.74f9be51.css.map": "/slate-serializers-demo/static/css/main.74f9be51.css.map",
-    "main.193614cd.js.map": "/slate-serializers-demo/static/js/main.193614cd.js.map"
+    "main.ff3d85a5.js.map": "/slate-serializers-demo/static/js/main.ff3d85a5.js.map"
   },
   "entrypoints": [
     "static/css/main.74f9be51.css",
-    "static/js/main.193614cd.js"
+    "static/js/main.ff3d85a5.js"
   ]
 }
