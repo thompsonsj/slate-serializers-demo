@@ -7,7 +7,7 @@ import App from "./App"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="slate-serializers-demo">
       <App />
     </BrowserRouter>
   </React.StrictMode>
