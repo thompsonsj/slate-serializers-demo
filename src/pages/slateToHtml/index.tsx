@@ -1,6 +1,7 @@
 import React from 'react'
 import { Descendant } from 'slate'
 import { SlateToHtmlDemo } from '../../components/SlateToHtmlDemo';
+import { slateDemoSlateToDomConfig, slateDemoHtmlToSlateConfig } from "slate-serializers"
 
 const initialValue: Descendant[] = [
   {
@@ -40,6 +41,10 @@ const initialValue: Descendant[] = [
   },
 ]
 
-const App = () => <SlateToHtmlDemo initialValue={initialValue} /> 
+const App = () => <SlateToHtmlDemo
+  initialValue={initialValue}
+  slateToDomConfig={slateDemoSlateToDomConfig}
+  htmlToSlateConfig={slateDemoHtmlToSlateConfig}
+/> 
 
 export default App;

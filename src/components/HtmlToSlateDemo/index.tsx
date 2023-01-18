@@ -4,13 +4,18 @@ import stringifyObject from 'stringify-object'
 import RichTextEditor from '../../components/RichTextEditor'
 import { SlateValueContext } from '../../contexts/SlateValueContext'
 
-import { htmlToSlate, slateToHtml, slateDemoHtmlToSlateConfig, slateDemoSlateToDomConfig } from "slate-serializers"
+import { htmlToSlate, slateToHtml } from "slate-serializers"
+import type { SlateToDomConfig, HtmlToSlateConfig } from "slate-serializers"
 
 interface IHtmlToSlateDemo {
+  slateToDomConfig: SlateToDomConfig
+  htmlToSlateConfig: HtmlToSlateConfig
   initialValue: string
 }
 
 export const HtmlToSlateDemo: FC<IHtmlToSlateDemo> = ({
+  slateToDomConfig,
+  htmlToSlateConfig,
   initialValue
 }) => {
   const [ html, setHtml ] = useState('')
@@ -20,11 +25,11 @@ export const HtmlToSlateDemo: FC<IHtmlToSlateDemo> = ({
   const [ reserializedHtml, setReserializedHtml ] = useState('')
 
   useEffect(() => {
-    setSerializedSlateValue(htmlValue ? htmlToSlate(htmlValue, slateDemoHtmlToSlateConfig): [])
+    setSerializedSlateValue(htmlValue ? htmlToSlate(htmlValue, htmlToSlateConfig): [])
   }, [htmlValue])
 
   useEffect(() => {
-    setReserializedHtml(slateValue ? slateToHtml(JSON.parse(slateValue), slateDemoSlateToDomConfig): '')
+    setReserializedHtml(slateValue ? slateToHtml(JSON.parse(slateValue), slateToDomConfig): '')
   }, [slateValue])
 
   return (
@@ -45,7 +50,7 @@ export const HtmlToSlateDemo: FC<IHtmlToSlateDemo> = ({
           <label className="block font-bold text-gray-700 mb-6">
             htmlToSlate output
           </label>
-          <RichTextEditor value={htmlToSlate(initialValue, slateDemoHtmlToSlateConfig)} dynamicValue={serializedSlateValue} />
+          <RichTextEditor value={htmlToSlate(initialValue, htmlToSlateConfig)} dynamicValue={serializedSlateValue} />
         </div>
       </div>
       <div className="grid grid-cols-12 gap-6 py-12">

@@ -5,13 +5,18 @@ import stringifyObject from 'stringify-object'
 import RichTextEditor from '../../components/RichTextEditor'
 import { SlateValueContext } from '../../contexts/SlateValueContext'
 
-import { htmlToSlate, slateToHtml, slateDemoHtmlToSlateConfig, slateDemoSlateToDomConfig } from "slate-serializers"
+import { htmlToSlate, slateToHtml } from "slate-serializers"
+import type { SlateToDomConfig, HtmlToSlateConfig } from "slate-serializers"
 
 interface ISlateToHtmlDemo {
+  slateToDomConfig: SlateToDomConfig
+  htmlToSlateConfig: HtmlToSlateConfig
   initialValue: Descendant[]
 }
 
 export const SlateToHtmlDemo: FC<ISlateToHtmlDemo> = ({
+  slateToDomConfig,
+  htmlToSlateConfig,
   initialValue
 }) => {
   const [slateValue, setSlateValue] = useState(null)
@@ -19,11 +24,11 @@ export const SlateToHtmlDemo: FC<ISlateToHtmlDemo> = ({
   const [ reserializedSlate, setReserializedSlate ] = useState([])
 
   useEffect(() => {
-    setHtml(slateValue ? slateToHtml(JSON.parse(slateValue), slateDemoSlateToDomConfig): '')
+    setHtml(slateValue ? slateToHtml(JSON.parse(slateValue), slateToDomConfig): '')
   }, [slateValue])
 
   useEffect(() => {
-    setReserializedSlate(html ? htmlToSlate(html, slateDemoHtmlToSlateConfig): [])
+    setReserializedSlate(html ? htmlToSlate(html, htmlToSlateConfig): [])
   }, [html])
 
   return (
