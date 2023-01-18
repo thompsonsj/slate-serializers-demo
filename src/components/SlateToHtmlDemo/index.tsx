@@ -3,7 +3,6 @@ import { Descendant } from 'slate'
 import stringifyObject from 'stringify-object'
 
 import RichTextEditor from '../../components/RichTextEditor'
-import Tabs from './Tabs'
 import { SlateValueContext } from '../../contexts/SlateValueContext'
 
 import { htmlToSlate, slateToHtml, slateDemoHtmlToSlateConfig, slateDemoSlateToDomConfig } from "slate-serializers"
