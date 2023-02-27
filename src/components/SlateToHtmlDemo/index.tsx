@@ -3,6 +3,7 @@ import { Descendant } from 'slate'
 import stringifyObject from 'stringify-object'
 
 import RichTextEditor from '../../components/RichTextEditor'
+import PayloadRichTextEditor from '../../components/RichTextEditor/payload'
 import { SlateValueContext } from '../../contexts/SlateValueContext'
 
 import { htmlToSlate, slateToHtml } from "slate-serializers"
@@ -12,12 +13,14 @@ interface ISlateToHtmlDemo {
   slateToDomConfig: SlateToDomConfig
   htmlToSlateConfig: HtmlToSlateConfig
   initialValue: Descendant[]
+  editorConfig?: "slate" | "payload"
 }
 
 export const SlateToHtmlDemo: FC<ISlateToHtmlDemo> = ({
   slateToDomConfig,
   htmlToSlateConfig,
-  initialValue
+  initialValue,
+  editorConfig = "slate"
 }) => {
   const [slateValue, setSlateValue] = useState(null)
   const [ html, setHtml ] = useState('')
@@ -41,7 +44,12 @@ export const SlateToHtmlDemo: FC<ISlateToHtmlDemo> = ({
             <label className="block font-bold text-gray-700 mb-6">
               Edit Slate content
             </label>
+            {editorConfig === "slate" && (
             <RichTextEditor value={initialValue} />
+            )}
+            {editorConfig === "payload" && (
+            <PayloadRichTextEditor value={initialValue} />
+            )}
           </div>
           <div className="col-span-6">
             <label className="block font-bold text-gray-700 mb-6">

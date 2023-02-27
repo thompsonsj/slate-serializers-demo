@@ -6,6 +6,8 @@ import Header from './components/Header'
 
 import SlateToHtmlDemo from './pages/slateToHtml'
 import HtmlToSlateDemo from './pages/htmlToSlate'
+import PayloadSlateToHtmlDemo from './pages/payload/slateToHtml'
+import PayloadHtmlToSlateDemo from './pages/payload/htmlToSlate'
 
 export default function App() {
   return (
@@ -17,6 +19,8 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<SlateToHtmlDemo />} />
           <Route path="htmltoslate" element={<HtmlToSlateDemo />} />
+          <Route path="payload" element={<PayloadSlateToHtmlDemo />} />
+          <Route path="payload-htmltoslate" element={<PayloadHtmlToSlateDemo />} />
 
           {/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit

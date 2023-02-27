@@ -1,7 +1,6 @@
 import React from 'react'
-import { HtmlToSlateDemo } from '../../components/HtmlToSlateDemo'
-import { slateDemoSlateToDomConfig, slateDemoHtmlToSlateConfig } from "slate-serializers"
-import RichTextEditor from '../../components/RichTextEditor'
+import { HtmlToSlateDemo } from '../../../components/HtmlToSlateDemo'
+import { payloadSlateToDomConfig, payloadHtmlToSlateConfig } from "slate-serializers"
 
 const initialValue: string = `<p>This is editable <strong>rich</strong> text, <i>much</i> better than a <pre><code>&lt;textarea&gt;</code></pre>!</p>
 
@@ -13,8 +12,9 @@ const initialValue: string = `<p>This is editable <strong>rich</strong> text, <i
 
 const App = () => <HtmlToSlateDemo
   initialValue={initialValue}
-  slateToDomConfig={slateDemoSlateToDomConfig}
-  htmlToSlateConfig={slateDemoHtmlToSlateConfig}
+  slateToDomConfig={payloadSlateToDomConfig}
+  htmlToSlateConfig={payloadHtmlToSlateConfig}
+  editorConfig="payload"
 />
 
 export default App

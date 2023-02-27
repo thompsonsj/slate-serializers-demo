@@ -7,17 +7,21 @@ import { NavLink, Link } from "react-router-dom"
 
 const navigation = [
   {
-    slateDemo: {
-      name: 'Slate Demo',
-      href: '/'
-    }
+    name: 'slateToHtml',
+    to: '/'
   },
   {
-    github: { name: 'Slate serializers | GitHub', href: 'https://github.com/thompsonsj/slate-serializers' },
+    name: 'htmlToSlate',
+    to: '/htmltoslate'
   },
   {
-    npm: { name: 'Slate serializers | npm', href: 'https://www.npmjs.com/package/slate-serializers' },
+    name: 'slateToHtml (Payload CMS)',
+    to: '/payload'
   },
+  {
+    name: 'htmlToSlate (Payload CMS)',
+    to: '/payload-htmltoslate'
+  }
 ]
 
 function classNames(...classes) {
@@ -48,8 +52,9 @@ export default function Example() {
                 </div>
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                   {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
+                  {navigation.map(item => (
                   <NavLink
-                    to="/"
+                    to={item.to}
                     className={({ isActive}) => cx(
                       "inline-flex items-center",
                       "border-b-2",
@@ -59,21 +64,9 @@ export default function Example() {
                       isActive ? "text-gray-900" : "text-gray-500 hover:border-gray-300 hover:text-gray-700"
                     )}
                   >
-                    slateToHtml
+                    {item.name}
                   </NavLink>
-                  <NavLink
-                    to="/htmltoslate"
-                    className={({ isActive}) => cx(
-                      "inline-flex items-center",
-                      "border-b-2",
-                      "px-1 pt-1",
-                      "text-sm font-medium",
-                      isActive ? "border-indigo-500" : "border-transparent",
-                      isActive ? "text-gray-900" : "text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                    )}
-                  >
-                    htmlToSlate
-                  </NavLink>
+                  ))}
                 </div>
               </div>
               <div className="flex items-center">
@@ -104,8 +97,9 @@ export default function Example() {
             <>
             <div className="space-y-1 pt-2 pb-3">
               {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
+              {navigation.map(item => (
               <NavLink
-                to="/"
+                to={item.to}
                 className={({ isActive}) => cx(
                   "block border-l-4",
                   "py-2 pl-3 pr-4",
@@ -115,21 +109,9 @@ export default function Example() {
                 )}
                 onClick={() => close()}
               >
-                slateToHtml
+                {item.name}
               </NavLink>
-              <NavLink
-                to="/htmltoslate"
-                className={({ isActive}) => cx(
-                  "block border-l-4",
-                  "py-2 pl-3 pr-4",
-                  "sm:pl-5 sm:pr-6",
-                  "text-base font-medium",
-                  isActive ? "bg-indigo-50 border-indigo-500 text-indigo-700" : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700",
-                )}
-                onClick={() => close()}
-              >
-                htmlToSlate
-              </NavLink>
+              ))}
             </div>
             </>
           )}
