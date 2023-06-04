@@ -45,10 +45,7 @@ const App = () => {
   
 
   return (
-  <SlateToHtmlDemo
-    slateToDomConfig={slateDemoSlateToDomConfig}
-    htmlToSlateConfig={slateDemoHtmlToSlateConfig}
-  />
+  <SlateToHtmlDemo />
   )}
 
 export default App;

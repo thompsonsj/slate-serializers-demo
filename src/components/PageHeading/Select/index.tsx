@@ -1,11 +1,81 @@
 import { Fragment, useContext, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
-import { slateToDomConfig, payloadSlateToDomConfig, htmlToSlateConfig, payloadHtmlToSlateConfig } from 'slate-serializers'
+import {
+  slateToDomConfig,
+  payloadSlateToDomConfig,
+  slateDemoSlateToDomConfig,
+  htmlToSlateConfig,
+  payloadHtmlToSlateConfig,
+  slateDemoHtmlToSlateConfig,
+} from 'slate-serializers'
 import { Descendant } from 'slate'
 import { SlateValueContext } from '../../../contexts/SlateValueContext'
 
-export const initialValue: Descendant[] = [
+export const initialValue: any[] = [
+  {
+      "children": [
+          {
+              "text": "slateToHtml"
+          }
+      ],
+      "type": "h2"
+  },
+  {
+      "children": [
+          {
+              "text": "Demo"
+          }
+      ],
+      "type": "h3"
+  },
+  {
+      "type": "p",
+      "children": [
+          {
+              "text": "Try changing the contents of this editor. The rest of the page updates as you make changes to demonstrate:"
+          }
+      ]
+  },
+  {
+      "type": "ul",
+      "children": [
+          {
+              "children": [
+                  {
+                      "text": "the Slate JSON value;"
+                  }
+              ],
+              "type": "li"
+          },
+          {
+              "type": "li",
+              "children": [
+                  {
+                      "text": "serialized HTML; and"
+                  }
+              ]
+          },
+          {
+              "type": "li",
+              "children": [
+                  {
+                      "text": "re-serialized Slate JSON from the serialized HTML using "
+                  },
+                  {
+                      "text": "htmlToSlate",
+                      "code": true
+                  },
+                  {
+                      "text": "."
+                  }
+              ]
+          }
+      ]
+  },
+]
+
+export const slateValue: Descendant[] = [
   {
     type: 'paragraph',
     children: [
@@ -140,6 +210,19 @@ const publishingOptions = [
       slateToDomConfig: slateToDomConfig,
       htmlToSlateConfig: htmlToSlateConfig, 
       initialValue,
+    }
+  },
+  {
+    title: 'Slate demo',
+    description: 'Uses a similar configuration to the examples provided on the Slate JS website.',
+    current: false,
+    config: {
+      configName: "Slate demo",
+      configSlug: "slate",
+      configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/slateDemo.ts",
+      slateToDomConfig: slateDemoSlateToDomConfig,
+      htmlToSlateConfig: slateDemoHtmlToSlateConfig, 
+      initialValue: slateValue,
     }
   },
   {

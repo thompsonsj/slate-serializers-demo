@@ -6,8 +6,6 @@ import Header from './components/Header'
 
 import SlateToHtmlDemo from './pages/slateToHtml'
 import HtmlToSlateDemo from './pages/htmlToSlate'
-import PayloadSlateToHtmlDemo from './pages/payload/slateToHtml'
-import PayloadHtmlToSlateDemo from './pages/payload/htmlToSlate'
 
 export default function App() {
   return (

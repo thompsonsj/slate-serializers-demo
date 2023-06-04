@@ -10,8 +10,6 @@ const initialValue: string = `<p>This is editable <strong>rich</strong> text, <i
 
 <p style="text-align:center;">Try it out for yourself!</p>`
 
-console.log(initialValue)
-
 const App = () => <HtmlToSlateDemo
   initialValue={initialValue}
   slateToDomConfig={slateDemoSlateToDomConfig}

@@ -87,7 +87,7 @@ const RichTextEditor = ({
       }}
     >
       <Toolbar>
-      <MarkButton format="bold" icon={<RiBold />} />
+        <MarkButton format="bold" icon={<RiBold />} />
         <MarkButton format="italic" icon={<RiItalic />} />
         <MarkButton format="underline" icon={<RiUnderline />} />
         <MarkButton format="code" icon={<RiCodeSSlashFill />} />
@@ -160,30 +160,6 @@ const Element = ({ attributes, children, element }) => {
         <h2 style={style} {...attributes}>
           {children}
         </h2>
-      )
-    case 'h3':
-      return (
-        <h3 style={style} {...attributes}>
-          {children}
-        </h3>
-      )
-    case 'h4':
-      return (
-        <h4 style={style} {...attributes}>
-          {children}
-        </h4>
-      )
-    case 'h5':
-      return (
-        <h5 style={style} {...attributes}>
-          {children}
-        </h5>
-      )
-    case 'h6':
-      return (
-        <h6 style={style} {...attributes}>
-          {children}
-        </h6>
       )
     case 'li':
       return (
