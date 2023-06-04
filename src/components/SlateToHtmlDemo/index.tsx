@@ -1,47 +1,69 @@
 import React, { FC, useEffect, useState } from 'react'
-import { Descendant } from 'slate'
 import stringifyObject from 'stringify-object'
 
+import { PageHeading } from '../PageHeading'
 import RichTextEditor from '../../components/RichTextEditor'
+import PayloadRichTextEditor from '../../components/RichTextEditor/payload'
+import SlateDemoRichTextEditor from '../../components/RichTextEditor/slate-demo'
+
 import { SlateValueContext } from '../../contexts/SlateValueContext'
+import { IConfigContext, SlateConfigContext } from '../../contexts/SlateConfigContext'
+import { Select } from '../../components/PageHeading/Select';
+import { initialValue as startValue } from '../../components/PageHeading/Select'
+
 
 import { htmlToSlate, slateToHtml } from "slate-serializers"
-import type { SlateToDomConfig, HtmlToSlateConfig } from "slate-serializers"
+import { slateToDomConfig, htmlToSlateConfig } from "slate-serializers"
 
-interface ISlateToHtmlDemo {
-  slateToDomConfig: SlateToDomConfig
-  htmlToSlateConfig: HtmlToSlateConfig
-  initialValue: Descendant[]
-}
-
-export const SlateToHtmlDemo: FC<ISlateToHtmlDemo> = ({
-  slateToDomConfig,
-  htmlToSlateConfig,
-  initialValue
-}) => {
-  const [slateValue, setSlateValue] = useState(null)
-  const [ html, setHtml ] = useState('')
-  const [ reserializedSlate, setReserializedSlate ] = useState([])
+export const SlateToHtmlDemo: FC = () => {
+  const [slateConfig, setSlateConfig] = useState<IConfigContext>({
+    configName: "Default",
+    configSlug: "default",
+    configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/default.ts",
+    slateToDomConfig: slateToDomConfig,
+    htmlToSlateConfig: htmlToSlateConfig,
+    initialValue: startValue,
+  });
+  const [slateValue, setSlateValue] = useState(JSON.stringify(startValue))
+  const [ html, setHtml ] = useState(slateValue ? slateToHtml(JSON.parse(slateValue), slateToDomConfig): '')
+  const [ reserializedSlate, setReserializedSlate ] = useState(html ? htmlToSlate(html, htmlToSlateConfig): [])
 
   useEffect(() => {
-    setHtml(slateValue ? slateToHtml(JSON.parse(slateValue), slateToDomConfig): '')
-  }, [slateValue])
+    setHtml(slateValue ? slateToHtml(JSON.parse(slateValue), slateConfig.slateToDomConfig): '')
+  }, [slateValue, slateConfig])
 
   useEffect(() => {
-    setReserializedSlate(html ? htmlToSlate(html, htmlToSlateConfig): [])
-  }, [html])
+    setReserializedSlate(html ? htmlToSlate(html, slateConfig.htmlToSlateConfig): [])
+  }, [html, slateConfig])
 
   return (
     <>
+    <SlateConfigContext.Provider value={slateConfig}>
       <SlateValueContext.Provider value={{
         slateValue, setSlateValue
       }}>
+        <PageHeading
+          title="Convert Slate JSON to HTML"
+          config="slateToDom"
+          menu={<Select
+            setSlateConfig={setSlateConfig}
+          />}
+          className="p-6 mt-8 bg-slate-200 rounded"
+        />
         <div className="grid grid-cols-12 gap-6 py-12">
           <div className="col-span-6">
             <label className="block font-bold text-gray-700 mb-6">
               Edit Slate content
             </label>
-            <RichTextEditor value={initialValue} />
+            {slateConfig.configSlug === "default" && (
+            <RichTextEditor value={slateConfig.initialValue} />
+            )}
+            {slateConfig.configSlug === "payload" && (
+            <PayloadRichTextEditor value={slateConfig.initialValue} />
+            )}
+            {slateConfig.configSlug === "slate" && (
+            <SlateDemoRichTextEditor value={slateConfig.initialValue} />
+            )}
           </div>
           <div className="col-span-6">
             <label className="block font-bold text-gray-700 mb-6">
@@ -65,6 +87,7 @@ export const SlateToHtmlDemo: FC<ISlateToHtmlDemo> = ({
           </div>
         </div>
       </SlateValueContext.Provider>
+      </SlateConfigContext.Provider>
     </>
   )
 }

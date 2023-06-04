@@ -1,24 +1,28 @@
 import React, { FC, useEffect, useState } from 'react'
 import stringifyObject from 'stringify-object'
 
+import { PageHeading } from '../PageHeading'
 import RichTextEditor from '../../components/RichTextEditor'
+import PayloadRichTextEditor from '../../components/RichTextEditor/payload'
 import { SlateValueContext } from '../../contexts/SlateValueContext'
 
 import { htmlToSlate, slateToHtml } from "slate-serializers"
 import type { SlateToDomConfig, HtmlToSlateConfig } from "slate-serializers"
 
+
 interface IHtmlToSlateDemo {
   slateToDomConfig: SlateToDomConfig
   htmlToSlateConfig: HtmlToSlateConfig
   initialValue: string
+  editorConfig?: "slate" | "payload"
 }
 
 export const HtmlToSlateDemo: FC<IHtmlToSlateDemo> = ({
   slateToDomConfig,
   htmlToSlateConfig,
-  initialValue
+  initialValue,
+  editorConfig = "slate"
 }) => {
-  const [ html, setHtml ] = useState('')
   const [ htmlValue, setHtmlValue ] = useState(initialValue)
   const [ slateValue, setSlateValue ] = useState(null)
   const [ serializedSlateValue, setSerializedSlateValue ] = useState([])
@@ -50,7 +54,12 @@ export const HtmlToSlateDemo: FC<IHtmlToSlateDemo> = ({
           <label className="block font-bold text-gray-700 mb-6">
             htmlToSlate output
           </label>
+          {editorConfig === "slate" && (
           <RichTextEditor value={htmlToSlate(initialValue, htmlToSlateConfig)} dynamicValue={serializedSlateValue} />
+          )}
+          {editorConfig === "payload" && (
+          <PayloadRichTextEditor value={htmlToSlate(initialValue, htmlToSlateConfig)} dynamicValue={serializedSlateValue} />
+          )}
         </div>
       </div>
       <div className="grid grid-cols-12 gap-6 py-12">
