@@ -39,10 +39,6 @@ export const HtmlToSlateDemo: FC<IHtmlToSlateDemo> = ({
 
   return (
     <>
-    <PageHeading
-      title="Convert HTML to Slate JSON"
-      className="p-6 mt-8 bg-slate-200 rounded"
-    />
     <SlateValueContext.Provider value={{slateValue, setSlateValue}}>
       <div className="grid grid-cols-12 gap-6 py-12">
         <div className="col-span-6">

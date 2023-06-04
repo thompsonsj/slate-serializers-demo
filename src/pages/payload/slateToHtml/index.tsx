@@ -42,7 +42,6 @@ const initialValue: Descendant[] = [
 ]
 
 const App = () => <SlateToHtmlDemo
-  initialValue={initialValue}
   slateToDomConfig={payloadSlateToDomConfig}
   htmlToSlateConfig={payloadHtmlToSlateConfig}
   editorConfig="payload"
