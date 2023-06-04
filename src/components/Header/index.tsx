@@ -14,14 +14,6 @@ const navigation = [
     name: 'htmlToSlate',
     to: '/htmltoslate'
   },
-  {
-    name: 'slateToHtml (Payload CMS)',
-    to: '/payload'
-  },
-  {
-    name: 'htmlToSlate (Payload CMS)',
-    to: '/payload-htmltoslate'
-  }
 ]
 
 function classNames(...classes) {
