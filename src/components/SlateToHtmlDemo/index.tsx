@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react'
 import { Descendant } from 'slate'
 import stringifyObject from 'stringify-object'
 
+import { PageHeading } from '../PageHeading'
 import RichTextEditor from '../../components/RichTextEditor'
 import PayloadRichTextEditor from '../../components/RichTextEditor/payload'
 import { SlateValueContext } from '../../contexts/SlateValueContext'
@@ -36,6 +37,11 @@ export const SlateToHtmlDemo: FC<ISlateToHtmlDemo> = ({
 
   return (
     <>
+      <PageHeading
+        title="Convert Slate JSON to HTML"
+        config="slateToDom"
+        className="p-6 mt-8 bg-slate-200 rounded"
+      />
       <SlateValueContext.Provider value={{
         slateValue, setSlateValue
       }}>

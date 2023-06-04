@@ -52,6 +52,7 @@ const RichTextEditor = ({
   value = [],
   dynamicValue = []
 }: IRichTextEditor) => {
+  console.log(value)
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
@@ -73,7 +74,7 @@ const RichTextEditor = ({
   return (
     <Slate
       editor={editor}
-      value={value}
+      initialValue={value}
       onChange={value => {
         const isAstChange = editor.operations.some(
           op => 'set_selection' !== op.type

@@ -1,12 +1,14 @@
 import React, { FC, useEffect, useState } from 'react'
 import stringifyObject from 'stringify-object'
 
+import { PageHeading } from '../PageHeading'
 import RichTextEditor from '../../components/RichTextEditor'
 import PayloadRichTextEditor from '../../components/RichTextEditor/payload'
 import { SlateValueContext } from '../../contexts/SlateValueContext'
 
 import { htmlToSlate, slateToHtml } from "slate-serializers"
 import type { SlateToDomConfig, HtmlToSlateConfig } from "slate-serializers"
+
 
 interface IHtmlToSlateDemo {
   slateToDomConfig: SlateToDomConfig
@@ -37,6 +39,10 @@ export const HtmlToSlateDemo: FC<IHtmlToSlateDemo> = ({
 
   return (
     <>
+    <PageHeading
+      title="Convert HTML to Slate JSON"
+      className="p-6 mt-8 bg-slate-200 rounded"
+    />
     <SlateValueContext.Provider value={{slateValue, setSlateValue}}>
       <div className="grid grid-cols-12 gap-6 py-12">
         <div className="col-span-6">
