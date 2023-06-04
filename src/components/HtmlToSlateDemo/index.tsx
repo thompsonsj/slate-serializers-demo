@@ -23,7 +23,6 @@ export const HtmlToSlateDemo: FC<IHtmlToSlateDemo> = ({
   initialValue,
   editorConfig = "slate"
 }) => {
-  const [ html, setHtml ] = useState('')
   const [ htmlValue, setHtmlValue ] = useState(initialValue)
   const [ slateValue, setSlateValue ] = useState(null)
   const [ serializedSlateValue, setSerializedSlateValue ] = useState([])

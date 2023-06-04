@@ -7,7 +7,7 @@ import PayloadRichTextEditor from '../../components/RichTextEditor/payload'
 import { SlateValueContext } from '../../contexts/SlateValueContext'
 import { IConfigContext, SlateConfigContext } from '../../contexts/SlateConfigContext'
 import { Select } from '../../components/PageHeading/Select';
-import { initialValue as startValue } from '../../components/PageHeading/Select'
+import { initialValue as startValue, payloadValue } from '../../components/PageHeading/Select'
 
 
 import { htmlToSlate, slateToHtml } from "slate-serializers"
@@ -28,7 +28,8 @@ export const SlateToHtmlDemo: FC<ISlateToHtmlDemo> = ({
     configName: "Default",
     configSlug: "default",
     configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/default.ts",
-    config: slateToDomConfig,
+    slateToDomConfig: slateToDomConfig,
+    htmlToSlateConfig: htmlToSlateConfig,
     initialValue: startValue,
   });
   const [slateValue, setSlateValue] = useState(JSON.stringify(startValue))
@@ -36,12 +37,12 @@ export const SlateToHtmlDemo: FC<ISlateToHtmlDemo> = ({
   const [ reserializedSlate, setReserializedSlate ] = useState([])
 
   useEffect(() => {
-    setHtml(slateValue ? slateToHtml(JSON.parse(slateValue), slateConfig.config): '')
-  }, [slateValue])
+    setHtml(slateValue ? slateToHtml(JSON.parse(slateValue), slateConfig.slateToDomConfig): '')
+  }, [slateValue, slateConfig.slateToDomConfig])
 
   useEffect(() => {
-    setReserializedSlate(html ? htmlToSlate(html, htmlToSlateConfig): [])
-  }, [html])
+    setReserializedSlate(html ? htmlToSlate(html, slateConfig.htmlToSlateConfig): [])
+  }, [html, slateConfig.htmlToSlateConfig])
 
   return (
     <>
@@ -62,10 +63,10 @@ export const SlateToHtmlDemo: FC<ISlateToHtmlDemo> = ({
             <label className="block font-bold text-gray-700 mb-6">
               Edit Slate content
             </label>
-            {editorConfig === "slate" && (
-            <RichTextEditor value={slateConfig.initialValue} dynamicValue={slateConfig.initialValue} />
+            {slateConfig.configSlug === "default" && (
+            <RichTextEditor value={slateConfig.initialValue} />
             )}
-            {editorConfig === "payload" && (
+            {slateConfig.configSlug === "payload" && (
             <PayloadRichTextEditor value={slateConfig.initialValue} />
             )}
           </div>
