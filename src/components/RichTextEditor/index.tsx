@@ -52,7 +52,6 @@ const RichTextEditor = ({
   value = [],
   dynamicValue = []
 }: IRichTextEditor) => {
-  console.log(value)
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
@@ -104,6 +103,7 @@ const RichTextEditor = ({
       </Toolbar>
       <Editable
         className={cx(
+          'prose',
           'p-6',
           'rounded-lg border border-gray-300',
           'shadow-sm',

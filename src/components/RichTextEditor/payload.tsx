@@ -103,6 +103,7 @@ const RichTextEditor = ({
       </Toolbar>
       <Editable
         className={cx(
+          'prose',
           'p-6',
           'rounded-lg border border-gray-300',
           'shadow-sm',

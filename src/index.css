@@ -48,3 +48,7 @@ blockquote[dir='rtl'] {
   padding-right: 10px;
   border-right: 2px solid #ddd;
 }
+
+.editor-styles h2 {
+  @apply text-lg;
+}
