@@ -19,8 +19,8 @@ type CustomElement = {
     | 'ul'
     | 'ol'
     | 'li'
-    | 'ordered-list'
-    | 'unordered-list'
+    | 'numbered-list'
+    | 'bulleted-list'
     | 'list-item'
     | 'link';
   align?: string;

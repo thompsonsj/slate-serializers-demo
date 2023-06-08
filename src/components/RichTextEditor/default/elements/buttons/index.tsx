@@ -4,7 +4,7 @@ import {
   Transforms,
   Element as SlateElement,
 } from 'slate'
-import { Button } from '../../components'
+import { Button } from '../../../components'
 
 const LIST_TYPES = ['ol', 'ul']
 const TEXT_ALIGN_TYPES = ['left', 'center', 'right', 'justify']

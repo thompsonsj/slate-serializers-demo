@@ -1,11 +1,11 @@
 import React, { useCallback, useContext, useEffect, useMemo } from 'react'
 import isHotkey from 'is-hotkey'
-import { Editable, withReact, Slate, ReactEditor } from 'slate-react'
+import { Editable, withReact, Slate } from 'slate-react'
 import { withHistory } from 'slate-history'
 import { BlockButton, MarkButton, toggleMark } from './elements/buttons'
-import { createEditor, BaseEditor, Descendant } from 'slate'
+import { createEditor, Descendant } from 'slate'
 
-import { Toolbar } from './components'
+import { Toolbar } from '../components'
 import {
   RiBold,
   RiItalic,
@@ -16,10 +16,6 @@ import {
   RiDoubleQuotesL,
   RiListOrdered,
   RiListUnordered,
-  RiAlignLeft,
-  RiAlignCenter,
-  RiAlignRight,
-  RiAlignJustify
 } from 'react-icons/ri'
 
 import { SlateValueContext } from '../../../contexts/SlateValueContext'
@@ -85,10 +81,6 @@ const RichTextEditor = ({
         <BlockButton format="blockquote" icon={<RiDoubleQuotesL />} />
         <BlockButton format="ol" icon={<RiListOrdered />} />
         <BlockButton format="ul" icon={<RiListUnordered />} />
-        <BlockButton format="left" icon={<RiAlignLeft />} />
-        <BlockButton format="center" icon={<RiAlignCenter />} />
-        <BlockButton format="right" icon={<RiAlignRight />} />
-        <BlockButton format="justify" icon={<RiAlignJustify />} />
       </Toolbar>
       <Editable
         className={cx(

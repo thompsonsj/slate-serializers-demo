@@ -1,11 +1,11 @@
 import React, { useCallback, useContext, useEffect, useMemo } from 'react'
 import isHotkey from 'is-hotkey'
-import { Editable, withReact, Slate, ReactEditor } from 'slate-react'
+import { Editable, withReact, Slate } from 'slate-react'
 import { withHistory } from 'slate-history'
 import { BlockButton, MarkButton, toggleMark } from './elements/buttons'
-import { createEditor, BaseEditor, Descendant } from 'slate'
+import { createEditor, Descendant } from 'slate'
 
-import { Toolbar } from './components'
+import { Toolbar } from '../components'
 import {
   RiBold,
   RiItalic,
@@ -82,9 +82,9 @@ const RichTextEditor = ({
         <MarkButton format="code" icon={<RiCodeSSlashFill />} />
         <BlockButton format="h1" icon={<RiH1 />} />
         <BlockButton format="h2" icon={<RiH2 />} />
-        <BlockButton format="blockquote" icon={<RiDoubleQuotesL />} />
-        <BlockButton format="ol" icon={<RiListOrdered />} />
-        <BlockButton format="ul" icon={<RiListUnordered />} />
+        <BlockButton format="block-quote" icon={<RiDoubleQuotesL />} />
+        <BlockButton format="numbered-list" icon={<RiListOrdered />} />
+        <BlockButton format="bulleted-list" icon={<RiListUnordered />} />
         <BlockButton format="left" icon={<RiAlignLeft />} />
         <BlockButton format="center" icon={<RiAlignCenter />} />
         <BlockButton format="right" icon={<RiAlignRight />} />
@@ -120,19 +120,19 @@ const RichTextEditor = ({
 const Element = ({ attributes, children, element }) => {
   const style = { textAlign: element.align }
   switch (element.type) {
-    case 'p':
+    case 'paragraph':
       return (
         <p style={style} {...attributes}>
           {children}
         </p>
       )
-    case 'blockquote':
+    case 'block-quote':
       return (
         <blockquote style={style} {...attributes}>
           {children}
         </blockquote>
       )
-    case 'ul':
+    case 'bulleted-list':
       return (
         <ul style={style} {...attributes}>
           {children}
@@ -150,13 +150,13 @@ const Element = ({ attributes, children, element }) => {
           {children}
         </h2>
       )
-    case 'li':
+    case 'list-item':
       return (
         <li style={style} {...attributes}>
           {children}
         </li>
       )
-    case 'ol':
+    case 'numbered-list':
       return (
         <ol style={style} {...attributes}>
           {children}
