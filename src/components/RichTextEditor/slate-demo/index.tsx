@@ -22,7 +22,7 @@ import {
   RiAlignJustify
 } from 'react-icons/ri'
 
-import { SlateValueContext } from '../../contexts/SlateValueContext'
+import { SlateValueContext } from '../../../contexts/SlateValueContext'
 import { cx } from '@emotion/css'
 
 const HOTKEYS = {
@@ -30,17 +30,6 @@ const HOTKEYS = {
   'mod+i': 'italic',
   'mod+u': 'underline',
   'mod+`': 'code',
-}
-
-type CustomElement = { type: 'paragraph' | 'block-quote'; align?: string; children: CustomText[] }
-type CustomText = { text: string; bold?: boolean; italic?: boolean; code?: boolean }
-
-declare module 'slate' {
-  interface CustomTypes {
-    Editor: BaseEditor & ReactEditor
-    Element: CustomElement
-    Text: CustomText
-  }
 }
 
 interface IRichTextEditor {
@@ -87,7 +76,7 @@ const RichTextEditor = ({
       }}
     >
       <Toolbar>
-      <MarkButton format="bold" icon={<RiBold />} />
+        <MarkButton format="bold" icon={<RiBold />} />
         <MarkButton format="italic" icon={<RiItalic />} />
         <MarkButton format="underline" icon={<RiUnderline />} />
         <MarkButton format="code" icon={<RiCodeSSlashFill />} />
@@ -160,30 +149,6 @@ const Element = ({ attributes, children, element }) => {
         <h2 style={style} {...attributes}>
           {children}
         </h2>
-      )
-    case 'h3':
-      return (
-        <h3 style={style} {...attributes}>
-          {children}
-        </h3>
-      )
-    case 'h4':
-      return (
-        <h4 style={style} {...attributes}>
-          {children}
-        </h4>
-      )
-    case 'h5':
-      return (
-        <h5 style={style} {...attributes}>
-          {children}
-        </h5>
-      )
-    case 'h6':
-      return (
-        <h6 style={style} {...attributes}>
-          {children}
-        </h6>
       )
     case 'li':
       return (

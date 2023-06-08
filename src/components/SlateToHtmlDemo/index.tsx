@@ -2,9 +2,9 @@ import React, { FC, useEffect, useState } from 'react'
 import stringifyObject from 'stringify-object'
 
 import { PageHeading } from '../PageHeading'
-import RichTextEditor from '../../components/RichTextEditor'
-import PayloadRichTextEditor from '../../components/RichTextEditor/payload'
-import SlateDemoRichTextEditor from '../../components/RichTextEditor/slate-demo'
+import RichTextEditor from '../RichTextEditor/default'
+import PayloadRichTextEditor from '../RichTextEditor/payload'
+import SlateDemoRichTextEditor from '../RichTextEditor/slate-demo'
 
 import { SlateValueContext } from '../../contexts/SlateValueContext'
 import { IConfigContext, SlateConfigContext } from '../../contexts/SlateConfigContext'

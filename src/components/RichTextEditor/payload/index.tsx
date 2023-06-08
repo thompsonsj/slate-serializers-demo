@@ -22,7 +22,7 @@ import {
   RiAlignJustify
 } from 'react-icons/ri'
 
-import { SlateValueContext } from '../../contexts/SlateValueContext'
+import { SlateValueContext } from '../../../contexts/SlateValueContext'
 import { cx } from '@emotion/css'
 
 const HOTKEYS = {
@@ -30,17 +30,6 @@ const HOTKEYS = {
   'mod+i': 'italic',
   'mod+u': 'underline',
   'mod+`': 'code',
-}
-
-type CustomElement = { type: 'paragraph' | 'block-quote'; align?: string; children: CustomText[] }
-type CustomText = { text: string; bold?: boolean; italic?: boolean; code?: boolean }
-
-declare module 'slate' {
-  interface CustomTypes {
-    Editor: BaseEditor & ReactEditor
-    Element: CustomElement
-    Text: CustomText
-  }
 }
 
 interface IRichTextEditor {

@@ -2,8 +2,8 @@ import React, { FC, useEffect, useState } from 'react'
 import stringifyObject from 'stringify-object'
 
 import { PageHeading } from '../PageHeading'
-import RichTextEditor from '../../components/RichTextEditor'
-import PayloadRichTextEditor from '../../components/RichTextEditor/payload'
+import RichTextEditor from '../RichTextEditor/default'
+import PayloadRichTextEditor from '../RichTextEditor/payload'
 import { SlateValueContext } from '../../contexts/SlateValueContext'
 
 import { htmlToSlate, slateToHtml } from "slate-serializers"
