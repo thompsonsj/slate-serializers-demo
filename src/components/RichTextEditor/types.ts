@@ -1,5 +1,5 @@
 import { ReactEditor } from 'slate-react'
-import { BaseEditor } from 'slate'
+import { BaseEditor, Descendant } from 'slate'
 
 /**
  * Define Slate JS types for all editor
@@ -7,6 +7,8 @@ import { BaseEditor } from 'slate'
  * 
  * @see https://docs.slatejs.org/concepts/12-typescript#defining-editor-element-and-text-types
  */
+
+export type LinkElement = { type: 'link'; url: string; children: Descendant[] }
 
 type CustomElement = {
   type:
@@ -24,8 +26,8 @@ type CustomElement = {
     | 'list-item'
     | 'link';
   align?: string;
-  children: CustomText[]
-}
+  children: CustomText[] | Descendant[]
+} | LinkElement
 type CustomText = { text: string; bold?: boolean; italic?: boolean; code?: boolean }
 
 declare module 'slate' {
