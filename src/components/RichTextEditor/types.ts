@@ -8,7 +8,13 @@ import { BaseEditor, Descendant } from 'slate'
  * @see https://docs.slatejs.org/concepts/12-typescript#defining-editor-element-and-text-types
  */
 
-export type LinkElement = { type: 'link'; url: string; children: Descendant[] }
+export type LinkElement = {
+  type: 'link';
+  linkType: 'custom' | 'internal';
+  newTab: boolean,
+  url: string;
+  children: Descendant[]
+}
 
 type CustomElement = {
   type:
