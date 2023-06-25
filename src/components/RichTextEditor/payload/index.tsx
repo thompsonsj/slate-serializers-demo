@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect, useMemo } from 'react'
 import isHotkey from 'is-hotkey'
 import { Editable, withReact, Slate } from 'slate-react'
 import { withHistory } from 'slate-history'
-import { BlockButton, MarkButton, toggleMark } from './elements/buttons'
+import { BlockButton, MarkButton, toggleMark, AddLinkButton, RemoveLinkButton, withInlines } from './elements/buttons'
 import { createEditor, Descendant } from 'slate'
 
 import { Toolbar } from '../components'
@@ -16,6 +16,8 @@ import {
   RiDoubleQuotesL,
   RiListOrdered,
   RiListUnordered,
+  RiLink,
+  RiLinkUnlink
 } from 'react-icons/ri'
 
 import { SlateValueContext } from '../../../contexts/SlateValueContext'
@@ -39,7 +41,10 @@ const RichTextEditor = ({
 }: IRichTextEditor) => {
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
-  const editor = useMemo(() => withHistory(withReact(createEditor())), [])
+  const editor = useMemo(
+    () => withInlines(withHistory(withReact(createEditor()))),
+    []
+  )
   const { setSlateValue } = useContext(SlateValueContext)
   useEffect(() => {
     setSlateValue(JSON.stringify(value))
@@ -81,6 +86,8 @@ const RichTextEditor = ({
         <BlockButton format="blockquote" icon={<RiDoubleQuotesL />} />
         <BlockButton format="ol" icon={<RiListOrdered />} />
         <BlockButton format="ul" icon={<RiListUnordered />} />
+        <AddLinkButton icon={<RiLink />} />
+        <RemoveLinkButton icon={<RiLinkUnlink />} />
       </Toolbar>
       <Editable
         className={cx(
@@ -153,6 +160,12 @@ const Element = ({ attributes, children, element }) => {
         <ol style={style} {...attributes}>
           {children}
         </ol>
+      )
+    case 'link':
+      return (
+        <a style={style} {...attributes}>
+          {children}
+        </a>
       )
     default:
       return (
