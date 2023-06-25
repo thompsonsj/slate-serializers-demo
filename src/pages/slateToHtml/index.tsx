@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Descendant } from 'slate'
 import { SlateToHtmlDemo } from '../../components/SlateToHtmlDemo';
 import { slateDemoSlateToDomConfig, slateDemoHtmlToSlateConfig, slateToDomConfig } from "slate-serializers"
+import { ModalProvider, ModalContainer } from '@faceless-ui/modal';
 
 const initialValue: Descendant[] = [
   {
@@ -45,7 +46,10 @@ const App = () => {
   
 
   return (
-  <SlateToHtmlDemo />
+    <ModalProvider>
+      <SlateToHtmlDemo />
+      <ModalContainer />
+    </ModalProvider>
   )}
 
 export default App;
