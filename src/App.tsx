@@ -6,6 +6,7 @@ import Header from './components/Header'
 
 import SlateToHtmlDemo from './pages/slateToHtml'
 import HtmlToSlateDemo from './pages/htmlToSlate'
+import SlateToReactDemo from './pages/slateToReact'
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<SlateToHtmlDemo />} />
           <Route path="htmltoslate" element={<HtmlToSlateDemo />} />
+          <Route path="slatetoreact" element={<SlateToReactDemo />} />
 
           {/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit

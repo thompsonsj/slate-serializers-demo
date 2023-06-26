@@ -14,6 +14,10 @@ const navigation = [
     name: 'htmlToSlate',
     to: '/htmltoslate'
   },
+  /**{
+    name: 'slateToReact',
+    to: '/slatetoreact'
+  },*/
 ]
 
 function classNames(...classes) {
