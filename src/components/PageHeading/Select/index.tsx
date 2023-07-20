@@ -2,13 +2,13 @@ import { Fragment, useContext, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
 import {
-  slateToDomConfig,
-  payloadSlateToDomConfig,
-  slateDemoSlateToDomConfig,
   htmlToSlateConfig,
   payloadHtmlToSlateConfig,
   slateDemoHtmlToSlateConfig,
-} from 'slate-serializers'
+  slateToHtmlConfig,
+  payloadSlateToHtmlConfig,
+  slateDemoSlateToHtmlConfig,
+} from '@slate-serializers/html'
 import { Descendant } from 'slate'
 import { SlateValueContext } from '../../../contexts/SlateValueContext'
 
@@ -207,7 +207,7 @@ const publishingOptions = [
       configName: "Default",
       configSlug: "default",
       configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/default.ts",
-      slateToDomConfig: slateToDomConfig,
+      slateToHtmlConfig: slateToHtmlConfig,
       htmlToSlateConfig: htmlToSlateConfig, 
       initialValue,
     }
@@ -220,7 +220,7 @@ const publishingOptions = [
       configName: "Slate demo",
       configSlug: "slate",
       configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/slateDemo.ts",
-      slateToDomConfig: slateDemoSlateToDomConfig,
+      slateToHtmlConfig: slateDemoSlateToHtmlConfig,
       htmlToSlateConfig: slateDemoHtmlToSlateConfig, 
       initialValue: slateValue,
     }
@@ -233,7 +233,7 @@ const publishingOptions = [
       configName: "Payload CMS",
       configSlug: "payload",
       configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/payload.ts",
-      slateToDomConfig: payloadSlateToDomConfig,
+      slateToHtmlConfig: payloadSlateToHtmlConfig,
       htmlToSlateConfig: payloadHtmlToSlateConfig, 
       initialValue: payloadValue,
     }

@@ -11,25 +11,24 @@ import { IConfigContext, SlateConfigContext } from '../../contexts/SlateConfigCo
 import { Select } from '../../components/PageHeading/Select';
 import { initialValue as startValue } from '../../components/PageHeading/Select'
 
-
-import { htmlToSlate, slateToHtml } from "slate-serializers"
-import { slateToDomConfig, htmlToSlateConfig } from "slate-serializers"
+import { htmlToSlate, slateToHtml } from "@slate-serializers/html"
+import { htmlToSlateConfig, slateToHtmlConfig } from "@slate-serializers/html"
 
 export const SlateToHtmlDemo: FC = () => {
   const [slateConfig, setSlateConfig] = useState<IConfigContext>({
     configName: "Default",
     configSlug: "default",
     configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/default.ts",
-    slateToDomConfig: slateToDomConfig,
+    slateToHtmlConfig: slateToHtmlConfig,
     htmlToSlateConfig: htmlToSlateConfig,
     initialValue: startValue,
   });
   const [slateValue, setSlateValue] = useState(JSON.stringify(startValue))
-  const [ html, setHtml ] = useState(slateValue ? slateToHtml(JSON.parse(slateValue), slateToDomConfig): '')
+  const [ html, setHtml ] = useState(slateValue ? slateToHtml(JSON.parse(slateValue), slateToHtmlConfig): '')
   const [ reserializedSlate, setReserializedSlate ] = useState(html ? htmlToSlate(html, htmlToSlateConfig): [])
 
   useEffect(() => {
-    setHtml(slateValue ? slateToHtml(JSON.parse(slateValue), slateConfig.slateToDomConfig): '')
+    setHtml(slateValue ? slateToHtml(JSON.parse(slateValue), slateConfig.slateToHtmlConfig): '')
   }, [slateValue, slateConfig])
 
   useEffect(() => {

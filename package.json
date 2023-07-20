@@ -28,7 +28,8 @@
     "slate": "^0.94.1",
     "slate-history": "^0.93.0",
     "slate-react": "^0.97.1",
-    "slate-serializers": "^0.4.0",
+    "@slate-serializers/html": "^0.5.3",
+    "@slate-serializers/react": "^0.5.2",
     "stringify-object": "^5.0.0",
     "typescript": "^4.9.5",
     "web-vitals": "^3.3.2"

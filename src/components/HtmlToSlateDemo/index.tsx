@@ -6,12 +6,12 @@ import RichTextEditor from '../RichTextEditor/default'
 import PayloadRichTextEditor from '../RichTextEditor/payload'
 import { SlateValueContext } from '../../contexts/SlateValueContext'
 
-import { htmlToSlate, slateToHtml } from "slate-serializers"
-import type { SlateToDomConfig, HtmlToSlateConfig } from "slate-serializers"
+import { htmlToSlate, slateToHtml } from "@slate-serializers/html"
+import type { HtmlToSlateConfig, SlateToHtmlConfig } from "@slate-serializers/html"
 
 
 interface IHtmlToSlateDemo {
-  slateToDomConfig: SlateToDomConfig
+  slateToDomConfig: SlateToHtmlConfig
   htmlToSlateConfig: HtmlToSlateConfig
   initialValue: string
   editorConfig?: "slate" | "payload"

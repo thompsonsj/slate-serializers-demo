@@ -12,8 +12,8 @@ import { Select } from '../PageHeading/react/Select';
 import { initialValue as startValue } from '../PageHeading/react/Select'
 
 
-import { SlateToReact, slateToReactConfig } from "slate-serializers/lib/react"
-import { slateToDomConfig } from 'slate-serializers'
+import { SlateToReact, slateToReactConfig } from "@slate-serializers/react"
+import { slateToHtmlConfig } from '@slate-serializers/html'
 
 export const SlateToReactDemo: FC = () => {
   const [slateConfig, setSlateConfig] = useState<IConfigContext>({
@@ -21,16 +21,16 @@ export const SlateToReactDemo: FC = () => {
     configSlug: "default",
     configUrlDom: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/default.ts",
     configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToReact/default.tsx",
-    slateToDomConfig: slateToDomConfig,
+    slateToHtmlConfig: slateToHtmlConfig,
     slateToReactConfig: slateToReactConfig,
     initialValue: startValue,
   });
   const [slateValue, setSlateValue] = useState(JSON.stringify(startValue))
-  const [ jsx, setJsx ] = useState(slateValue ? <SlateToReact node={JSON.parse(slateValue)} config={slateConfig.slateToDomConfig} reactConfig={slateConfig.slateToReactConfig} />: <></>)
+  const [ jsx, setJsx ] = useState(slateValue ? <SlateToReact node={JSON.parse(slateValue)} config={slateConfig.slateToHtmlConfig} reactConfig={slateConfig.slateToReactConfig} />: <></>)
 
   useEffect(() => {
-    setJsx(slateValue ? <SlateToReact node={JSON.parse(slateValue)} config={slateConfig.slateToDomConfig} reactConfig={slateConfig.slateToReactConfig} />: <></>)
-  }, [slateValue, slateToDomConfig, slateToReactConfig])
+    setJsx(slateValue ? <SlateToReact node={JSON.parse(slateValue)} config={slateConfig.slateToHtmlConfig} reactConfig={slateConfig.slateToReactConfig} />: <></>)
+  }, [slateValue, slateToHtmlConfig, slateToReactConfig])
 
   return (
     <>
