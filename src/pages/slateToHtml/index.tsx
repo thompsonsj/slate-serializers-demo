@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Descendant } from 'slate'
 import { SlateToHtmlDemo } from '../../components/SlateToHtmlDemo';
 import { ModalProvider, ModalContainer } from '@faceless-ui/modal';
@@ -42,7 +43,16 @@ const initialValue: Descendant[] = [
 ]
 
 const App = () => {
-  
+
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => { 
+    const redirect = searchParams.get('redirect');
+    if (redirect) {
+      navigate(`/${redirect ?? ""}`, { replace: true });
+    }
+  })
 
   return (
     <ModalProvider>
