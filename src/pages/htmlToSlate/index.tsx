@@ -1,6 +1,6 @@
 import React from 'react'
 import { HtmlToSlateDemo } from '../../components/HtmlToSlateDemo'
-import { slateDemoSlateToDomConfig, slateDemoHtmlToSlateConfig } from "slate-serializers"
+import { slateDemoHtmlToSlateConfig, slateDemoSlateToHtmlConfig } from "@slate-serializers/html"
 
 const initialValue: string = `<p>This is editable <strong>rich</strong> text, <i>much</i> better than a <pre><code>&lt;textarea&gt;</code></pre>!</p>
 
@@ -12,7 +12,7 @@ const initialValue: string = `<p>This is editable <strong>rich</strong> text, <i
 
 const App = () => <HtmlToSlateDemo
   initialValue={initialValue}
-  slateToDomConfig={slateDemoSlateToDomConfig}
+  slateToDomConfig={slateDemoSlateToHtmlConfig}
   htmlToSlateConfig={slateDemoHtmlToSlateConfig}
 />
 

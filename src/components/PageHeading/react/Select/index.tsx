@@ -2,13 +2,13 @@ import { Fragment, useContext, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
 import {
-  slateToDomConfig,
-  payloadSlateToDomConfig,
-  slateDemoSlateToDomConfig,
-} from 'slate-serializers'
+  slateToHtmlConfig,
+  payloadSlateToHtmlConfig,
+  slateDemoSlateToHtmlConfig,
+} from '@slate-serializers/html'
 import {
   slateToReactConfig
-} from 'slate-serializers/lib/react'
+} from '@slate-serializers/react'
 import { Descendant } from 'slate'
 import { SlateValueContext } from '../../../../contexts/SlateValueContext'
 
@@ -200,7 +200,7 @@ const publishingOptions = [
       configSlug: "default",
       configUrlDom: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/default.ts",
       configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToReact/default.tsx",
-      slateToDomConfig: slateToDomConfig,
+      slateToHtmlConfig: slateToHtmlConfig,
       slateToReactConfig: slateToReactConfig, 
       initialValue,
     }
@@ -214,7 +214,7 @@ const publishingOptions = [
       configSlug: "slate",
       configUrlDom: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/slateDemo.ts",
       configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToReact/slateDemo.tsx",
-      slateToDomConfig: slateDemoSlateToDomConfig,
+      slateToHtmlConfig: slateDemoSlateToHtmlConfig,
       slateToReactConfig: slateToReactConfig, 
       initialValue: slateValue,
     }
@@ -228,7 +228,7 @@ const publishingOptions = [
       configSlug: "payload",
       configUrlDom: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/payload.ts",
       configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToReact/payload.tsx",
-      slateToDomConfig: payloadSlateToDomConfig,
+      slateToHtmlConfig: payloadSlateToHtmlConfig,
       slateToReactConfig: slateToReactConfig,  
       initialValue: payloadValue,
     }

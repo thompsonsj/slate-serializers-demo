@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Descendant } from 'slate'
 import { SlateToHtmlDemo } from '../../components/SlateToHtmlDemo';
-import { slateDemoSlateToDomConfig, slateDemoHtmlToSlateConfig, slateToDomConfig } from "slate-serializers"
 import { ModalProvider, ModalContainer } from '@faceless-ui/modal';
 
 const initialValue: Descendant[] = [

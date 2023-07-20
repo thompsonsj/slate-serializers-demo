@@ -1,12 +1,12 @@
 import { createContext } from "react";
-import { HtmlToSlateConfig, SlateToDomConfig } from "slate-serializers";
+import { HtmlToSlateConfig, SlateToHtmlConfig } from "@slate-serializers/html";
 import { Descendant } from "slate";
 
 export interface IConfigContext {
   configName: string
   configSlug: string
   configUrl: string
-  slateToDomConfig: SlateToDomConfig
+  slateToHtmlConfig: SlateToHtmlConfig
   htmlToSlateConfig: HtmlToSlateConfig
   initialValue: Descendant[]
 }
@@ -15,7 +15,7 @@ const defaultValue = {
   configName: "",
   configSlug: "",
   configUrl: "",
-  slateToDomConfig: null,
+  slateToHtmlConfig: null,
   htmlToSlateConfig: null,
   initialValue: [],
 }
