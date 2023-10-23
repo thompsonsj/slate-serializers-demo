@@ -44,7 +44,7 @@ export const SlateToReactDemo: FC = () => {
           menu={<Select
             setSlateConfig={setSlateConfig}
           />}
-          className="p-6 mt-8 bg-slate-200 rounded"
+          className="p-6 bg-slate-200 rounded"
         />
         <div className="grid grid-cols-12 gap-6 py-12">
           <div className="col-span-6">

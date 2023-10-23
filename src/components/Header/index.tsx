@@ -1,23 +1,26 @@
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BsList, BsBell, BsX, BsFillPlusCircleFill, BsGithub } from 'react-icons/bs'
+import { Disclosure } from '@headlessui/react'
+import { BsGithub } from 'react-icons/bs'
 import { IoLogoNpm } from 'react-icons/io5'
-import cx from 'classnames'
-import { NavLink, Link } from "react-router-dom"
+import { ChevronRightIcon } from '@heroicons/react/20/solid'
 
 const navigation = [
+  { name: 'Dashboard', href: '#', current: true },
   {
     name: 'slateToHtml',
-    to: '/'
+    current: false,
+    children: [
+      { name: 'Docs', href: '#' },
+      { name: 'Demo', href: '/' },
+    ],
   },
   {
     name: 'htmlToSlate',
-    to: '/htmltoslate'
+    current: false,
+    children: [
+      { name: 'Docs', href: '#' },
+      { name: 'Demo', href: '/htmltoslate' },
+    ],
   },
-  /**{
-    name: 'slateToReact',
-    to: '/slatetoreact'
-  },*/
 ]
 
 function classNames(...classes) {
@@ -26,94 +29,93 @@ function classNames(...classes) {
 
 export default function Example() {
   return (
-    <Disclosure as="nav" className="bg-white shadow">
-      {({ open }) => (
-        <>
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex h-16 justify-between">
-              <div className="flex">
-                <div className="-ml-2 mr-2 flex items-center md:hidden">
-                  {/* Mobile menu button */}
-                  <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-                    <span className="sr-only">Open main menu</span>
-                    {open ? (
-                      <BsX className="block h-6 w-6" aria-hidden="true" />
-                    ) : (
-                      <BsList className="block h-6 w-6" aria-hidden="true" />
-                    )}
-                  </Disclosure.Button>
-                </div>
-                <div className="flex flex-shrink-0 items-center">
-                  <code className="p-2">slate-serializers</code>
-                </div>
-                <div className="hidden md:ml-6 md:flex md:space-x-8">
-                  {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
-                  {navigation.map(item => (
-                  <NavLink
-                    to={item.to}
-                    className={({ isActive}) => cx(
-                      "inline-flex items-center",
-                      "border-b-2",
-                      "px-1 pt-1",
-                      "text-sm font-medium",
-                      isActive ? "border-indigo-500" : "border-transparent",
-                      isActive ? "text-gray-900" : "text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                    )}
-                  >
-                    {item.name}
-                  </NavLink>
-                  ))}
-                </div>
-              </div>
-              <div className="flex items-center">
-                <div className="flex flex-shrink-0">
-                <a
-                    href="https://www.npmjs.com/package/slate-serializers"
-                    className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                  >
-                    <span className="sr-only">View project on npm</span>
-                    <IoLogoNpm className="h-6 w-6" aria-hidden="true" />
-                  </a>
-                </div>
-                <div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
-                  <a
-                    href="https://github.com/thompsonsj/slate-serializers"
-                    className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                  >
-                    <span className="sr-only">View project on GitHub</span>
-                    <BsGithub className="h-6 w-6" aria-hidden="true" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <Disclosure.Panel className="md:hidden">
-          {({ close }) => (
-            <>
-            <div className="space-y-1 pt-2 pb-3">
-              {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
-              {navigation.map(item => (
-              <NavLink
-                to={item.to}
-                className={({ isActive}) => cx(
-                  "block border-l-4",
-                  "py-2 pl-3 pr-4",
-                  "sm:pl-5 sm:pr-6",
-                  "text-base font-medium",
-                  isActive ? "bg-indigo-50 border-indigo-500 text-indigo-700" : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700",
-                )}
-                onClick={() => close()}
-              >
-                {item.name}
-              </NavLink>
+    <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
+      <div className="flex h-16 shrink-0 items-center">
+        <code className="p-2">slate-serializers</code>
+      </div>
+      <nav className="flex flex-1 flex-col">
+        <ul className="flex flex-1 flex-col gap-y-7">
+          <li>
+            <ul className="-mx-2 space-y-1">
+              {navigation.map((item) => (
+                <li key={item.name}>
+                  {!item.children ? (
+                    <a
+                      href={item.href}
+                      className={classNames(
+                        item.current ? 'bg-gray-50' : 'hover:bg-gray-50',
+                        'block rounded-md py-2 pr-2 pl-10 text-sm leading-6 font-semibold text-gray-700'
+                      )}
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    <Disclosure as="div">
+                      {({ open }) => (
+                        <>
+                          <Disclosure.Button
+                            className={classNames(
+                              item.current ? 'bg-gray-50' : 'hover:bg-gray-50',
+                              'flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold text-gray-700'
+                            )}
+                          >
+                            <ChevronRightIcon
+                              className={classNames(
+                                open ? 'rotate-90 text-gray-500' : 'text-gray-400',
+                                'h-5 w-5 shrink-0'
+                              )}
+                              aria-hidden="true"
+                            />
+                            {item.name}
+                          </Disclosure.Button>
+                          <Disclosure.Panel as="ul" className="mt-1 px-2">
+                            {item.children.map((subItem) => (
+                              <li key={subItem.name}>
+                                <Disclosure.Button
+                                  as="a"
+                                  href={subItem.href}
+                                  className={classNames(
+                                    subItem.current ? 'bg-gray-50' : 'hover:bg-gray-50',
+                                    'block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-gray-700'
+                                  )}
+                                >
+                                  {subItem.name}
+                                </Disclosure.Button>
+                              </li>
+                            ))}
+                          </Disclosure.Panel>
+                        </>
+                      )}
+                    </Disclosure>
+                  )}
+                </li>
               ))}
+            </ul>
+          </li>
+          <li className="-mx-6 mt-auto">
+          <div className="flex items-center p-4">
+            <div className="flex flex-shrink-0">
+              <a
+                  href="https://www.npmjs.com/package/slate-serializers"
+                  className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                >
+                  <span className="sr-only">View project on npm</span>
+                  <IoLogoNpm className="h-6 w-6" aria-hidden="true" />
+                </a>
+              </div>
+              <div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
+                <a
+                  href="https://github.com/thompsonsj/slate-serializers"
+                  className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                >
+                  <span className="sr-only">View project on GitHub</span>
+                  <BsGithub className="h-6 w-6" aria-hidden="true" />
+                </a>
+              </div>
             </div>
-            </>
-          )}
-          </Disclosure.Panel>
-        </>
-      )}
-    </Disclosure>
+          </li>
+        </ul>
+      </nav>
+    </div>
   )
 }

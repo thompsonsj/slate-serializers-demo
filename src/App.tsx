@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Routes, Route, Outlet, Link } from "react-router-dom";
-import Header from './components/Header'
+import Header from './layout'
 
 // 'payload/src/admin/components/forms/field-types/RichText/RichText'
 
@@ -36,17 +36,17 @@ export default function App() {
 
 function Layout() {
   return (
+    
     <div className="container mx-auto">
       {/* A "layout route" is a good place to put markup you want to
           share across all the pages on your site, like navigation. */}
-      <Header />
-
-      <hr />
 
       {/* An <Outlet> renders whatever child route is currently active,
           so you can think about this <Outlet> as a placeholder for
           the child routes we defined above. */}
-      <Outlet />
+      <Header>
+        <Outlet />
+      </Header>
     </div>
   );
 }
