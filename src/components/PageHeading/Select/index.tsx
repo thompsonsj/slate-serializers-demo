@@ -1,267 +1,43 @@
-import { Fragment, useContext, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
-import {
-  htmlToSlateConfig,
-  payloadHtmlToSlateConfig,
-  slateDemoHtmlToSlateConfig,
-  slateToHtmlConfig,
-  payloadSlateToHtmlConfig,
-  slateDemoSlateToHtmlConfig,
-} from '@slate-serializers/html'
-import { Descendant } from 'slate'
-import { SlateValueContext } from '../../../contexts/SlateValueContext'
 
-export const initialValue: any[] = [
-  {
-      "children": [
-          {
-              "text": "slateToHtml"
-          }
-      ],
-      "type": "h2"
-  },
-  {
-      "children": [
-          {
-              "text": "Demo"
-          }
-      ],
-      "type": "h3"
-  },
-  {
-      "type": "p",
-      "children": [
-          {
-              "text": "Try changing the contents of this editor. The rest of the page updates as you make changes to demonstrate:"
-          }
-      ]
-  },
-  {
-      "type": "ul",
-      "children": [
-          {
-              "children": [
-                  {
-                      "text": "the Slate JSON value;"
-                  }
-              ],
-              "type": "li"
-          },
-          {
-              "type": "li",
-              "children": [
-                  {
-                      "text": "serialized HTML; and"
-                  }
-              ]
-          },
-          {
-              "type": "li",
-              "children": [
-                  {
-                      "text": "re-serialized Slate JSON from the serialized HTML using "
-                  },
-                  {
-                      "text": "htmlToSlate",
-                      "code": true
-                  },
-                  {
-                      "text": "."
-                  }
-              ]
-          }
-      ]
-  },
-]
+import { initialValue } from '../../SlateToHtmlDemo/fixtures/default'
+import { slateValue } from '../../SlateToHtmlDemo/fixtures/slate-demo'
+import { payloadValue } from '../../SlateToHtmlDemo/fixtures/payload'
 
-export const slateValue: Descendant[] = [
-  {
-    type: 'paragraph',
-    children: [
-      { text: 'This is editable ' },
-      { text: 'rich', bold: true },
-      { text: ' text, ' },
-      { text: 'much', italic: true },
-      { text: ' better than a ' },
-      { text: '<textarea>', code: true },
-      { text: '!' },
-    ],
-  },
-  {
-    type: 'paragraph',
-    children: [
-      {
-        text:
-          "Since it's rich text, you can do things like turn a selection of text ",
-      },
-      { text: 'bold', bold: true },
-      {
-        text:
-          ', or add a semantically rendered block quote in the middle of the page, like this:',
-      },
-    ],
-  },
-  {
-    type: 'block-quote',
-    children: [{ text: 'A wise quote.' }],
-  },
-  {
-    type: 'paragraph',
-    align: 'center',
-    children: [{ text: 'Try it out for yourself!' }],
-  },
-]
-
-export const payloadValue: any[] = [
-  {
-    children: [
-      { text: 'The ' },
-      { text: 'Payload CMS', bold: true },
-      { text: ' configuration is ' },
-      { text: 'very similar to the default', italic: true },
-      { text: ' because it imports the default configuration as a base.' },
-    ],
-  },
-  {
-    children: [
-      {
-        text:
-          "For this configuration, Slate nodes without a type are serialized to ",
-      },
-      {
-        code: true,
-        text:
-          "p",
-      },
-      {
-        text:
-          " HTML element tags.",
-      },
-    ],
-  },
-  {
-    children: [
-      {
-        text:
-          "Note some custom element transforms:",
-      },
-    ],
-  },
-  {
-    type: 'h2',
-    children: [{ text: 'Links' }],
-  },
-  {
-    type: "ul",
-    children: [
-        {
-            type: "li",
-            children: [
-              {
-                type: 'link',
-                linkType: 'custom',
-                newTab: true,
-                url: "https://github.com/thompsonsj/slate-serializers",
-                children: [{ text: 'A data attribute is added to link HTML to keep track of Payload\'s link type.' }],
-              },
-            ]
-        },
-        {
-          type: "li",
-          children: [
-            {
-              text:
-                " The ",
-            },
-            {
-              code: true,
-              text:
-                "target",
-            },
-            {
-              text:
-                " and ",
-            },
-            {
-              code: true,
-              text:
-                "href",
-            },
-            {
-              text:
-                " attributes are also supported.",
-            },
-          ]
-        }
-    ]
-  },
-]
-
-const publishingOptions = [
-  {
-    title: 'Default',
-    description: 'Default configuration.',
-    current: true,
-    config: {
-      configName: "Default",
-      configSlug: "default",
-      configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/default.ts",
-      slateToHtmlConfig: slateToHtmlConfig,
-      htmlToSlateConfig: htmlToSlateConfig, 
-      initialValue,
-    }
-  },
-  {
-    title: 'Slate demo',
-    description: 'Uses a similar configuration to the examples provided on the Slate JS website.',
-    current: false,
-    config: {
-      configName: "Slate demo",
-      configSlug: "slate",
-      configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/slateDemo.ts",
-      slateToHtmlConfig: slateDemoSlateToHtmlConfig,
-      htmlToSlateConfig: slateDemoHtmlToSlateConfig, 
-      initialValue: slateValue,
-    }
-  },
-  {
-    title: 'Payload CMS',
-    description: 'Configuration designed to work with the Slate JS implementation in Payload CMS.',
-    current: false,
-    config: {
-      configName: "Payload CMS",
-      configSlug: "payload",
-      configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/payload.ts",
-      slateToHtmlConfig: payloadSlateToHtmlConfig,
-      htmlToSlateConfig: payloadHtmlToSlateConfig, 
-      initialValue: payloadValue,
-    }
-  },
-]
+export {
+  initialValue,
+  slateValue,
+  payloadValue
+}
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 interface ISelect {
-  setSlateConfig?: () => {}
+  options: {
+    title: string
+    description: string
+    config: { [key: string]: any }
+  }[]
+  onChange?: (event) => void
 }
 
 export const Select = ({
-  setSlateConfig
-}) => {
-  const [selected, setSelected] = useState(publishingOptions[0])
-  const { setSlateValue } = useContext(SlateValueContext)
+  options,
+  onChange
+}: ISelect) => {
+  const [selected, setSelected] = useState(options[0])
 
-  const onChange = (event) => {
-    setSlateConfig(event.config)
-    setSlateValue(JSON.stringify(event.config.initialValue))
+  const onSelectChange = (event) => {
+    onChange(event)
     setSelected(event)
   }
 
   return (
-    <Listbox value={selected} onChange={onChange}>
+    <Listbox value={selected} onChange={onSelectChange}>
       {({ open }) => (
         <>
           <Listbox.Label className="sr-only">Change configuration</Listbox.Label>
@@ -285,7 +61,7 @@ export const Select = ({
               leaveTo="opacity-0"
             >
               <Listbox.Options className="absolute right-0 z-10 mt-2 w-72 origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                {publishingOptions.map((option) => (
+                {options.map((option) => (
                   <Listbox.Option
                     key={option.title}
                     className={({ active }) =>
