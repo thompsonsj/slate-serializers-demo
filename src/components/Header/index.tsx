@@ -2,15 +2,16 @@ import { Disclosure } from '@headlessui/react'
 import { BsGithub } from 'react-icons/bs'
 import { IoLogoNpm } from 'react-icons/io5'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
+import { NavLink } from "react-router-dom"
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
+  { name: 'Overview', href: '/', current: true },
   {
     name: 'slateToHtml',
     current: false,
     children: [
       { name: 'Docs', href: '#' },
-      { name: 'Demo', href: '/' },
+      { name: 'Demo', href: '/slatetohtml' },
     ],
   },
   {
@@ -40,15 +41,15 @@ export default function Example() {
               {navigation.map((item) => (
                 <li key={item.name}>
                   {!item.children ? (
-                    <a
-                      href={item.href}
+                    <NavLink
+                      to={item.href}
                       className={classNames(
                         item.current ? 'bg-gray-50' : 'hover:bg-gray-50',
                         'block rounded-md py-2 pr-2 pl-10 text-sm leading-6 font-semibold text-gray-700'
                       )}
                     >
                       {item.name}
-                    </a>
+                    </NavLink>
                   ) : (
                     <Disclosure as="div">
                       {({ open }) => (
@@ -72,8 +73,8 @@ export default function Example() {
                             {item.children.map((subItem) => (
                               <li key={subItem.name}>
                                 <Disclosure.Button
-                                  as="a"
-                                  href={subItem.href}
+                                  as={NavLink}
+                                  to={subItem.href}
                                   className={classNames(
                                     subItem.current ? 'bg-gray-50' : 'hover:bg-gray-50',
                                     'block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-gray-700'
