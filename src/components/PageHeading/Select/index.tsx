@@ -1,90 +1,43 @@
-import { Fragment, useContext, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
-import {
-  htmlToSlateConfig,
-  payloadHtmlToSlateConfig,
-  slateDemoHtmlToSlateConfig,
-  slateToHtmlConfig,
-  payloadSlateToHtmlConfig,
-  slateDemoSlateToHtmlConfig,
-} from '@slate-serializers/html'
-
-import { SlateValueContext } from '../../../contexts/SlateValueContext'
 
 import { initialValue } from '../../SlateToHtmlDemo/fixtures/default'
 import { slateValue } from '../../SlateToHtmlDemo/fixtures/slate-demo'
 import { payloadValue } from '../../SlateToHtmlDemo/fixtures/payload'
+
 export {
   initialValue,
   slateValue,
   payloadValue
 }
 
-const publishingOptions = [
-  {
-    title: 'Default',
-    description: 'Default configuration.',
-    current: true,
-    config: {
-      configName: "Default",
-      configSlug: "default",
-      configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/default.ts",
-      slateToHtmlConfig: slateToHtmlConfig,
-      htmlToSlateConfig: htmlToSlateConfig, 
-      initialValue,
-    }
-  },
-  {
-    title: 'Slate demo',
-    description: 'Uses a similar configuration to the examples provided on the Slate JS website.',
-    current: false,
-    config: {
-      configName: "Slate demo",
-      configSlug: "slate",
-      configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/slateDemo.ts",
-      slateToHtmlConfig: slateDemoSlateToHtmlConfig,
-      htmlToSlateConfig: slateDemoHtmlToSlateConfig, 
-      initialValue: slateValue,
-    }
-  },
-  {
-    title: 'Payload CMS',
-    description: 'Configuration designed to work with the Slate JS implementation in Payload CMS.',
-    current: false,
-    config: {
-      configName: "Payload CMS",
-      configSlug: "payload",
-      configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/payload.ts",
-      slateToHtmlConfig: payloadSlateToHtmlConfig,
-      htmlToSlateConfig: payloadHtmlToSlateConfig, 
-      initialValue: payloadValue,
-    }
-  },
-]
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 interface ISelect {
-  setSlateConfig?: () => {}
+  options: {
+    title: string
+    description: string
+    config: { [key: string]: any }
+  }[]
+  onChange?: (event) => void
 }
 
 export const Select = ({
-  setSlateConfig
-}) => {
-  const [selected, setSelected] = useState(publishingOptions[0])
-  const { setSlateValue } = useContext(SlateValueContext)
+  options,
+  onChange
+}: ISelect) => {
+  const [selected, setSelected] = useState(options[0])
 
-  const onChange = (event) => {
-    setSlateConfig(event.config)
-    setSlateValue(JSON.stringify(event.config.initialValue))
+  const onSelectChange = (event) => {
+    onChange(event)
     setSelected(event)
   }
 
   return (
-    <Listbox value={selected} onChange={onChange}>
+    <Listbox value={selected} onChange={onSelectChange}>
       {({ open }) => (
         <>
           <Listbox.Label className="sr-only">Change configuration</Listbox.Label>
@@ -108,7 +61,7 @@ export const Select = ({
               leaveTo="opacity-0"
             >
               <Listbox.Options className="absolute right-0 z-10 mt-2 w-72 origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                {publishingOptions.map((option) => (
+                {options.map((option) => (
                   <Listbox.Option
                     key={option.title}
                     className={({ active }) =>

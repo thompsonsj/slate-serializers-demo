@@ -13,6 +13,7 @@ import { initialValue as startValue } from '../../components/PageHeading/Select'
 
 import { htmlToSlate, slateToHtml } from "@slate-serializers/html"
 import { htmlToSlateConfig, slateToHtmlConfig } from "@slate-serializers/html"
+import { publishingOptions } from './configs'
 
 export const SlateToHtmlDemo: FC = () => {
   const [slateConfig, setSlateConfig] = useState<IConfigContext>({
@@ -45,7 +46,11 @@ export const SlateToHtmlDemo: FC = () => {
           title="Convert Slate JSON to HTML"
           config="slateToDom"
           menu={<Select
-            setSlateConfig={setSlateConfig}
+            options={publishingOptions}
+            onChange={(event) => {
+              setSlateConfig(event.config)
+              setSlateValue(JSON.stringify(event.config.initialValue))
+            }}
           />}
           className="p-6 mt-8 bg-slate-200 rounded"
         />
