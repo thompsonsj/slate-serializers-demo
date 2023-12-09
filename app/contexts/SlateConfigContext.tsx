@@ -15,8 +15,8 @@ const defaultValue = {
   configName: "",
   configSlug: "",
   configUrl: "",
-  slateToHtmlConfig: null,
-  htmlToSlateConfig: null,
+  slateToHtmlConfig: {} as any,
+  htmlToSlateConfig: {} as any,
   initialValue: [],
 }
 

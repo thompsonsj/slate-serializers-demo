@@ -64,9 +64,9 @@ export const Demo = () => {
 
   const serializedArray = slateToTemplate(slate, config)
 
-  const jsx = serializedArray.map(value => {
+  const jsx = serializedArray?.map(( value: unknown, index: number) => {
     if (typeof value === "string") {
-      return <span dangerouslySetInnerHTML={{__html: value}} />
+      return <span key={index} dangerouslySetInnerHTML={{__html: value}} />
     } else {
       return value as ReactNode
     }

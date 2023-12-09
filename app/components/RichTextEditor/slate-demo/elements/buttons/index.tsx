@@ -5,11 +5,9 @@ import {
   Element as SlateElement,
 } from 'slate'
 import { Button } from '../../../components'
+import { LIST_TYPES, TEXT_ALIGN_TYPES } from '../../../constants'
 
-const LIST_TYPES = ['numbered-list', 'bulleted-list']
-const TEXT_ALIGN_TYPES = ['left', 'center', 'right', 'justify']
-
-const isBlockActive = (editor, format, blockType = 'type') => {
+const isBlockActive = (editor: Editor, format: any, blockType = 'type') => {
   const { selection } = editor
   if (!selection) return false
 
@@ -19,19 +17,19 @@ const isBlockActive = (editor, format, blockType = 'type') => {
       match: n =>
         !Editor.isEditor(n) &&
         SlateElement.isElement(n) &&
-        n[blockType] === format,
+        (n as any)[blockType] === format,
     })
   )
 
   return !!match
 }
 
-const isMarkActive = (editor, format) => {
+const isMarkActive = (editor: Editor, format: any) => {
   const marks = Editor.marks(editor)
-  return marks ? marks[format] === true : false
+  return marks ? (marks as any)[format] === true : false
 }
 
-const toggleBlock = (editor, format) => {
+const toggleBlock = (editor: Editor, format: any) => {
   const isActive = isBlockActive(
     editor,
     format,
@@ -65,7 +63,7 @@ const toggleBlock = (editor, format) => {
   }
 }
 
-export const toggleMark = (editor, format) => {
+export const toggleMark = (editor: Editor, format: any) => {
   const isActive = isMarkActive(editor, format)
 
   if (isActive) {
@@ -75,7 +73,10 @@ export const toggleMark = (editor, format) => {
   }
 }
 
-export const BlockButton = ({ format, icon }) => {
+export const BlockButton = ({ format, icon }: {
+  format: any
+  icon: any
+}) => {
   const editor = useSlate()
   return (
     <Button
@@ -84,7 +85,7 @@ export const BlockButton = ({ format, icon }) => {
         format,
         TEXT_ALIGN_TYPES.includes(format) ? 'align' : 'type'
       )}
-      onMouseDown={event => {
+      onMouseDown={(event: Event) => {
         event.preventDefault()
         toggleBlock(editor, format)
       }}
@@ -94,12 +95,15 @@ export const BlockButton = ({ format, icon }) => {
   )
 }
 
-export const MarkButton = ({ format, icon }) => {
+export const MarkButton = ({ format, icon }: {
+  format: any
+  icon: any
+}) => {
   const editor = useSlate()
   return (
     <Button
       active={isMarkActive(editor, format)}
-      onMouseDown={event => {
+      onMouseDown={(event: Event) => {
         event.preventDefault()
         toggleMark(editor, format)
       }}

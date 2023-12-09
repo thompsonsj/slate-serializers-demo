@@ -5,15 +5,12 @@ import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
 import { initialValue } from '../../SlateToHtmlDemo/fixtures/default'
 import { slateValue } from '../../SlateToHtmlDemo/fixtures/slate-demo'
 import { payloadValue } from '../../SlateToHtmlDemo/fixtures/payload'
+import cx from 'classnames'
 
 export {
   initialValue,
   slateValue,
   payloadValue
-}
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
 }
 
 interface ISelect {
@@ -22,7 +19,7 @@ interface ISelect {
     description: string
     config: { [key: string]: any }
   }[]
-  onChange?: (event) => void
+  onChange: (event: any) => void
 }
 
 export const Select = ({
@@ -31,7 +28,7 @@ export const Select = ({
 }: ISelect) => {
   const [selected, setSelected] = useState(options[0])
 
-  const onSelectChange = (event) => {
+  const onSelectChange = (event: any) => {
     onChange(event)
     setSelected(event)
   }
@@ -65,7 +62,7 @@ export const Select = ({
                   <Listbox.Option
                     key={option.title}
                     className={({ active }) =>
-                      classNames(
+                      cx(
                         active ? 'bg-indigo-600 text-white' : 'text-gray-900',
                         'cursor-default select-none p-4 text-sm'
                       )
@@ -82,7 +79,7 @@ export const Select = ({
                             </span>
                           ) : null}
                         </div>
-                        <p className={classNames(active ? 'text-indigo-200' : 'text-gray-500', 'mt-2')}>
+                        <p className={cx(active ? 'text-indigo-200' : 'text-gray-500', 'mt-2')}>
                           {option.description}
                         </p>
                       </div>

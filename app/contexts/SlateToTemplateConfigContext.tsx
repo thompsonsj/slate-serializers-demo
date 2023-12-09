@@ -16,7 +16,7 @@ const defaultValue = {
   configSlug: "",
   configUrlDom: "",
   configUrl: "",
-  slateToTemplateConfig: null,
+  slateToTemplateConfig: {} as any,
   initialValue: [],
 }
 

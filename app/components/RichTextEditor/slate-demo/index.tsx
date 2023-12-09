@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useMemo } from 'react'
+import React, { ReactNode, useCallback, useContext, useEffect, useMemo } from 'react'
 import isHotkey from 'is-hotkey'
 import { Editable, withReact, Slate } from 'slate-react'
 import { withHistory } from 'slate-history'
@@ -24,6 +24,7 @@ import {
 
 import { SlateValueContext } from '../../../contexts/SlateValueContext'
 import { cx } from '@emotion/css'
+import { GeneralElement } from '../types'
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -41,8 +42,8 @@ const RichTextEditor = ({
   value = [],
   dynamicValue = []
 }: IRichTextEditor) => {
-  const renderElement = useCallback(props => <Element {...props} />, [])
-  const renderLeaf = useCallback(props => <Leaf {...props} />, [])
+  const renderElement = useCallback((props: any) => <Element {...props} />, [])
+  const renderLeaf = useCallback((props: any) => <Leaf {...props} />, [])
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
   const { setSlateValue } = useContext(SlateValueContext)
   useEffect(() => {
@@ -107,7 +108,8 @@ const RichTextEditor = ({
           for (const hotkey in HOTKEYS) {
             if (isHotkey(hotkey, event as any)) {
               event.preventDefault()
-              const mark = HOTKEYS[hotkey]
+              const key = hotkey as 'mod+b' | 'mod+i' | 'mod+u' | 'mod+`'
+              const mark = HOTKEYS[key]
               toggleMark(editor, mark)
             }
           }
@@ -117,7 +119,11 @@ const RichTextEditor = ({
   )
 }
 
-const Element = ({ attributes, children, element }) => {
+const Element = ({ attributes, children, element }: {
+  attributes: any,
+  children: ReactNode,
+  element: GeneralElement
+}) => {
   const style = { textAlign: element.align }
   switch (element.type) {
     case 'paragraph':
@@ -171,7 +177,11 @@ const Element = ({ attributes, children, element }) => {
   }
 }
 
-const Leaf = ({ attributes, children, leaf }) => {
+const Leaf = ({ attributes, children, leaf }: {
+  attributes: any,
+  children: ReactNode,
+  leaf: any
+}) => {
   if (leaf.bold) {
     children = <strong>{children}</strong>
   }

@@ -8,6 +8,7 @@ import {
 } from '@slate-serializers/template'
 import { Descendant } from 'slate'
 import { SlateValueContext } from '../../../../contexts/SlateValueContext'
+import cx from 'classnames'
 
 export const initialValue: any[] = [
   {
@@ -229,21 +230,15 @@ const publishingOptions = [
   },
 ]
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
-interface ISelect {
-  setSlateConfig?: () => {}
-}
-
 export const Select = ({
   setSlateConfig
+}: {
+  setSlateConfig: (value: any) => void
 }) => {
   const [selected, setSelected] = useState(publishingOptions[0])
   const { setSlateValue } = useContext(SlateValueContext)
 
-  const onChange = (event) => {
+  const onChange = (event: any) => {
     setSlateConfig(event.config)
     setSlateValue(JSON.stringify(event.config.initialValue))
     setSelected(event)
@@ -278,7 +273,7 @@ export const Select = ({
                   <Listbox.Option
                     key={option.title}
                     className={({ active }) =>
-                      classNames(
+                      cx(
                         active ? 'bg-indigo-600 text-white' : 'text-gray-900',
                         'cursor-default select-none p-4 text-sm'
                       )
@@ -295,7 +290,7 @@ export const Select = ({
                             </span>
                           ) : null}
                         </div>
-                        <p className={classNames(active ? 'text-indigo-200' : 'text-gray-500', 'mt-2')}>
+                        <p className={cx(active ? 'text-indigo-200' : 'text-gray-500', 'mt-2')}>
                           {option.description}
                         </p>
                       </div>

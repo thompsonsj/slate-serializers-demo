@@ -82,7 +82,7 @@ export const SlateToHtmlDemo: FC = () => {
             <label className="block font-bold text-gray-700 mb-6">
               Slate value
             </label>
-            <pre><code>{slateValue && JSON.parse(slateValue).map(node => stringifyObject(node)).join('\n')}</code></pre>
+            <pre><code>{slateValue && JSON.parse(slateValue).map((node: any) => stringifyObject(node)).join('\n')}</code></pre>
           </div>
           <div className="col-span-6">
             <label className="block font-bold text-gray-700 mb-6">
