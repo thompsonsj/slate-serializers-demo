@@ -1,3 +1,6 @@
 import { createContext } from "react"
 
-export const SlateValueContext = createContext(null)
+export const SlateValueContext = createContext({
+  slateValue: {},
+  setSlateValue: (value: any) => {}
+})

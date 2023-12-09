@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FormEvent } from 'react'
 import { useSlate } from 'slate-react'
 import {
   Editor,
@@ -10,11 +10,9 @@ import { Button } from '../../../components'
 import { LinkElement } from '../../../types'
 import isUrl from 'is-url'
 import { Modal, useModal } from '@faceless-ui/modal';
+import { LIST_TYPES, TEXT_ALIGN_TYPES } from '../../../constants'
 
-const LIST_TYPES = ['ol', 'ul']
-const TEXT_ALIGN_TYPES = ['left', 'center', 'right', 'justify']
-
-const isBlockActive = (editor, format, blockType = 'type') => {
+const isBlockActive = (editor: Editor, format: any, blockType = 'type') => {
   const { selection } = editor
   if (!selection) return false
 
@@ -24,19 +22,19 @@ const isBlockActive = (editor, format, blockType = 'type') => {
       match: n =>
         !Editor.isEditor(n) &&
         SlateElement.isElement(n) &&
-        n[blockType] === format,
+        (n as any)[blockType] === format,
     })
   )
 
   return !!match
 }
 
-const isMarkActive = (editor, format) => {
+const isMarkActive = (editor: Editor, format: any) => {
   const marks = Editor.marks(editor)
-  return marks ? marks[format] === true : false
+  return marks ? (marks as any)[format] === true : false
 }
 
-const toggleBlock = (editor, format) => {
+const toggleBlock = (editor: Editor, format: any) => {
   const isActive = isBlockActive(
     editor,
     format,
@@ -70,7 +68,7 @@ const toggleBlock = (editor, format) => {
   }
 }
 
-export const toggleMark = (editor, format) => {
+export const toggleMark = (editor: Editor, format: any) => {
   const isActive = isMarkActive(editor, format)
 
   if (isActive) {
@@ -80,7 +78,10 @@ export const toggleMark = (editor, format) => {
   }
 }
 
-export const BlockButton = ({ format, icon }) => {
+export const BlockButton = ({ format, icon }: {
+  format: any
+  icon: any
+}) => {
   const editor = useSlate()
   return (
     <Button
@@ -89,7 +90,7 @@ export const BlockButton = ({ format, icon }) => {
         format,
         TEXT_ALIGN_TYPES.includes(format) ? 'align' : 'type'
       )}
-      onMouseDown={event => {
+      onMouseDown={(event: Event) => {
         event.preventDefault()
         toggleBlock(editor, format)
       }}
@@ -99,12 +100,15 @@ export const BlockButton = ({ format, icon }) => {
   )
 }
 
-export const MarkButton = ({ format, icon }) => {
+export const MarkButton = ({ format, icon }: {
+  format: any
+  icon: any
+}) => {
   const editor = useSlate()
   return (
     <Button
       active={isMarkActive(editor, format)}
-      onMouseDown={event => {
+      onMouseDown={(event: Event) => {
         event.preventDefault()
         toggleMark(editor, format)
       }}
@@ -114,7 +118,7 @@ export const MarkButton = ({ format, icon }) => {
   )
 }
 
-const isLinkActive = editor => {
+const isLinkActive = (editor: Editor) => {
   const [link] = Editor.nodes(editor, {
     match: n =>
       !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === 'link',
@@ -122,20 +126,20 @@ const isLinkActive = editor => {
   return !!link
 }
 
-const insertLink = (editor, url, linkType = 'custom', target = false) => {
+const insertLink = (editor: Editor, url: string, linkType = 'custom', target = false) => {
   if (editor.selection) {
     wrapLink(editor, url, linkType as 'custom' | 'internal', target)
   }
 }
 
-const unwrapLink = editor => {
+const unwrapLink = (editor: Editor) => {
   Transforms.unwrapNodes(editor, {
     match: n =>
       !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === 'link',
   })
 }
 
-const wrapLink = (editor, url: string, linkType?: 'custom' | 'internal', newTab?: boolean) => {
+const wrapLink = (editor: Editor, url: string, linkType?: 'custom' | 'internal', newTab?: boolean) => {
   if (isLinkActive(editor)) {
     unwrapLink(editor)
   }
@@ -144,8 +148,8 @@ const wrapLink = (editor, url: string, linkType?: 'custom' | 'internal', newTab?
   const isCollapsed = selection && Range.isCollapsed(selection)
   const link: LinkElement = {
     type: 'link',
-    linkType,
-    newTab,
+    linkType: linkType || "custom",
+    newTab: Boolean(newTab),
     url,
     children: isCollapsed ? [{ text: url }] : [],
   }
@@ -158,17 +162,17 @@ const wrapLink = (editor, url: string, linkType?: 'custom' | 'internal', newTab?
   }
 }
 
-export const AddLinkButton = ({ icon }) => {
+export const AddLinkButton = ({ icon }: { icon: any}) => {
   const editor = useSlate()
   const { closeModal, openModal } = useModal()
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     insertLink(
       editor,
-      event.target.elements.url.value,
-      event.target.elements.linkType.value,
-      event.target.elements.newTab.checked,
+      (event.target as any)?.elements.url.value,
+      (event.target as any)?.elements.linkType.value,
+      (event.target as any)?.elements.newTab.checked,
     )
     closeModal("link-modal")
   }
@@ -239,7 +243,7 @@ export const AddLinkButton = ({ icon }) => {
                       <label htmlFor="comments" className="font-medium text-gray-900">
                         Open in new tab
                       </label>
-                      <p className="text-gray-500">Set `target='_blank'` on the link.</p>
+                      <p className="text-gray-500">Set `target=&apos;_blank&apos;` on the link.</p>
                     </div>
                   </div>
                 </div>
@@ -255,7 +259,7 @@ export const AddLinkButton = ({ icon }) => {
       </Modal>
       <Button
         active={isLinkActive(editor)}
-        onMouseDown={event => {
+        onMouseDown={(event: Event) => {
           event.preventDefault()
           openModal("link-modal")
           const url = ""
@@ -269,13 +273,13 @@ export const AddLinkButton = ({ icon }) => {
   )
 }
 
-export const RemoveLinkButton = ({ icon }) => {
+export const RemoveLinkButton = ({ icon }: { icon: any }) => {
   const editor = useSlate()
 
   return (
     <Button
       active={isLinkActive(editor)}
-      onMouseDown={event => {
+      onMouseDown={() => {
         if (isLinkActive(editor)) {
           unwrapLink(editor)
         }
@@ -286,7 +290,7 @@ export const RemoveLinkButton = ({ icon }) => {
   )
 }
 
-export const withInlines = editor => {
+export const withInlines = (editor: Editor) => {
   const {
     insertData,
     insertText,

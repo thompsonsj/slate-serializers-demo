@@ -16,7 +16,7 @@ export type LinkElement = {
   children: Descendant[]
 }
 
-type CustomElement = {
+export type GeneralElement = {
   type:
     'paragraph'
     | 'blockquote'
@@ -24,16 +24,23 @@ type CustomElement = {
     | 'p'
     | 'h1'
     | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'h5'
+    | 'h6'
     | 'ul'
     | 'ol'
     | 'li'
     | 'numbered-list'
     | 'bulleted-list'
     | 'list-item'
-    | 'link';
+    | 'link'
+    | 'badge';
   align?: string;
   children: CustomText[] | Descendant[]
-} | LinkElement
+}
+
+export type CustomElement = GeneralElement | LinkElement
 type CustomText = { text: string; bold?: boolean; italic?: boolean; code?: boolean }
 
 declare module 'slate' {

@@ -12,7 +12,7 @@ const serializers = [
     content: <>
       <p>Convert Slate JSON to HTML.</p>
     </>,
-    // docsLink: '#',
+    docsLink: '',
     demoLink: '/slate-to-html',
   },
   {
@@ -23,7 +23,7 @@ const serializers = [
     content: <>
       <p>Convert HTML to Slate JSON.</p>
     </>,
-    // docsLink: '#',
+    docsLink: '',
     demoLink: '/html-to-slate',
   },
   // More serializers...

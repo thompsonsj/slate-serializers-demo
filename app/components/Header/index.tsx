@@ -12,7 +12,7 @@ const navigation = [
     current: false,
     children: [
       /* { name: 'Docs', href: '/slate-to-html/docs' }, */
-      { name: 'Demo', href: '/slate-to-html' },
+      { name: 'Demo', href: '/slate-to-html', current: false },
     ],
   },
   {
@@ -20,7 +20,7 @@ const navigation = [
     current: false,
     children: [
       /* { name: 'Docs', href: '#' }, */
-      { name: 'Demo', href: '/html-to-slate' },
+      { name: 'Demo', href: '/html-to-slate', current: false },
     ],
   },
 ]

@@ -1,6 +1,7 @@
 "use client"
 import React, { FC, useEffect, useState } from 'react'
 import stringifyObject from 'stringify-object'
+import { Descendant } from 'slate'
 
 import RichTextEditor from '../RichTextEditor/default'
 import PayloadRichTextEditor from '../RichTextEditor/payload'
@@ -24,8 +25,8 @@ export const HtmlToSlateDemo: FC<IHtmlToSlateDemo> = ({
   editorConfig = "slate"
 }) => {
   const [ htmlValue, setHtmlValue ] = useState(initialValue)
-  const [ slateValue, setSlateValue ] = useState(null)
-  const [ serializedSlateValue, setSerializedSlateValue ] = useState([])
+  const [ slateValue, setSlateValue ] = useState<string>('')
+  const [ serializedSlateValue, setSerializedSlateValue ] = useState<unknown[]>([])
   const [ reserializedHtml, setReserializedHtml ] = useState('')
 
   useEffect(() => {
@@ -55,10 +56,10 @@ export const HtmlToSlateDemo: FC<IHtmlToSlateDemo> = ({
             htmlToSlate output
           </label>
           {editorConfig === "slate" && (
-          <RichTextEditor value={htmlToSlate(initialValue, htmlToSlateConfig)} dynamicValue={serializedSlateValue} />
+          <RichTextEditor value={htmlToSlate(initialValue, htmlToSlateConfig) as any} dynamicValue={serializedSlateValue as any} />
           )}
           {editorConfig === "payload" && (
-          <PayloadRichTextEditor value={htmlToSlate(initialValue, htmlToSlateConfig)} dynamicValue={serializedSlateValue} />
+          <PayloadRichTextEditor value={htmlToSlate(initialValue, htmlToSlateConfig) as any} dynamicValue={serializedSlateValue as any} />
           )}
         </div>
       </div>
@@ -67,7 +68,7 @@ export const HtmlToSlateDemo: FC<IHtmlToSlateDemo> = ({
           <label className="block font-bold text-gray-700 mb-6">
             Slate value
           </label>
-          <pre><code>{slateValue && JSON.parse(slateValue).map(node => stringifyObject(node)).join('\n')}</code></pre>
+          <pre><code>{slateValue && JSON.parse(slateValue).map((node: any) => stringifyObject(node)).join('\n')}</code></pre>
         </div>
         <div className="col-span-6">
           <label className="block font-bold text-gray-700 mb-6">

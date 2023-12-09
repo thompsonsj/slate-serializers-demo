@@ -30,9 +30,9 @@ export const SlateToTemplateDemo: FC = () => {
     setJsx(slateValue ? slateToTemplate(JSON.parse(slateValue), slateConfig.slateToTemplateConfig): [])
   }, [slateValue, slateToTemplateConfig])
 
-  const translatedJsx = jsx.map(value => {
+  const translatedJsx = jsx?.map((value: unknown, index: number) => {
     if (typeof value === "string") {
-      return <span dangerouslySetInnerHTML={{__html: value}} />
+      return <span key={index} dangerouslySetInnerHTML={{__html: value}} />
     } else {
       return value as ReactNode
     }
@@ -79,7 +79,7 @@ export const SlateToTemplateDemo: FC = () => {
             <label className="block font-bold text-gray-700 mb-6">
               Slate value
             </label>
-            <pre><code>{slateValue && JSON.parse(slateValue).map(node => stringifyObject(node)).join('\n')}</code></pre>
+            <pre><code>{slateValue && JSON.parse(slateValue).map((node: any) => stringifyObject(node)).join('\n')}</code></pre>
           </div>
         </div>
       </SlateValueContext.Provider>

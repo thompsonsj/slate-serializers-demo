@@ -6,11 +6,9 @@ import {
   Element as SlateElement,
 } from 'slate'
 import { Button } from '../../../components'
+import { LIST_TYPES, TEXT_ALIGN_TYPES } from '../../../constants'
 
-const LIST_TYPES = ['ol', 'ul']
-const TEXT_ALIGN_TYPES = ['left', 'center', 'right', 'justify']
-
-const isBlockActive = (editor, format, blockType = 'type') => {
+const isBlockActive = (editor: Editor, format: any, blockType = 'type') => {
   const { selection } = editor
   if (!selection) return false
 
@@ -20,19 +18,19 @@ const isBlockActive = (editor, format, blockType = 'type') => {
       match: n =>
         !Editor.isEditor(n) &&
         SlateElement.isElement(n) &&
-        n[blockType] === format,
+        (n as any)[blockType] === format,
     })
   )
 
   return !!match
 }
 
-const isMarkActive = (editor, format) => {
+const isMarkActive = (editor: Editor, format: any) => {
   const marks = Editor.marks(editor)
-  return marks ? marks[format] === true : false
+  return marks ? (marks as any)[format] === true : false
 }
 
-const toggleBlock = (editor, format) => {
+const toggleBlock = (editor: Editor, format: any) => {
   const isActive = isBlockActive(
     editor,
     format,
@@ -51,32 +49,38 @@ const toggleBlock = (editor, format) => {
   let newProperties: Partial<SlateElement>
   if (TEXT_ALIGN_TYPES.includes(format)) {
     newProperties = {
-      align: isActive ? undefined : format,
+      align: isActive ? undefined : format as string,
     }
   } else {
     newProperties = {
-      type: isActive ? 'paragraph' : isList ? 'li' : format,
+      type: isActive ? 'paragraph' as any : isList ? 'li' : format,
     }
   }
   Transforms.setNodes<SlateElement>(editor, newProperties)
 
   if (!isActive && isList) {
     const block = { type: format, children: [] }
-    Transforms.wrapNodes(editor, block)
+    Transforms.wrapNodes(editor, block as any)
   }
 }
 
-export const toggleMark = (editor, format) => {
+export const toggleMark = (editor: Editor, format: any) => {
   const isActive = isMarkActive(editor, format)
 
   if (isActive) {
-    Editor.removeMark(editor, format)
+    Editor.removeMark(editor, format as any)
   } else {
-    Editor.addMark(editor, format, true)
+    Editor.addMark(editor, format as any, true)
   }
 }
 
-export const BlockButton = ({ format, icon }) => {
+export const BlockButton = ({
+  format,
+  icon
+}: {
+  format: any
+  icon: any
+}) => {
   const editor = useSlate()
   return (
     <Button
@@ -85,7 +89,7 @@ export const BlockButton = ({ format, icon }) => {
         format,
         TEXT_ALIGN_TYPES.includes(format) ? 'align' : 'type'
       )}
-      onMouseDown={event => {
+      onMouseDown={(event: Event) => {
         event.preventDefault()
         toggleBlock(editor, format)
       }}
@@ -95,12 +99,18 @@ export const BlockButton = ({ format, icon }) => {
   )
 }
 
-export const MarkButton = ({ format, icon }) => {
+export const MarkButton = ({
+  format,
+  icon
+}: {
+  format: any
+  icon: any
+}) => {
   const editor = useSlate()
   return (
     <Button
       active={isMarkActive(editor, format)}
-      onMouseDown={event => {
+      onMouseDown={(event: Event) => {
         event.preventDefault()
         toggleMark(editor, format)
       }}
