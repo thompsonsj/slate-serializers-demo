@@ -26,6 +26,28 @@ const serializers = [
     docsLink: '',
     demoLink: '/html-to-slate',
   },
+  {
+    title: 'slateToReact',
+    package: '@slate-serializers/react',
+    npm: 'https://www.npmjs.com/package/@slate-serializers/react',
+    github: 'https://github.com/thompsonsj/slate-serializers/tree/main/packages/react',
+    content: <>
+      <p>Convert Slate JSON to React.</p>
+    </>,
+    docsLink: '',
+    demoLink: '/slate-to-react',
+  },
+  {
+    title: 'slateToTemplate',
+    package: '@slate-serializers/template',
+    npm: 'https://www.npmjs.com/package/@slate-serializers/template',
+    github: 'https://github.com/thompsonsj/slate-serializers/tree/main/packages/template',
+    content: <>
+      <p>Convert Slate JSON to an array HTML nodes mixed with custom components.</p>
+    </>,
+    docsLink: '',
+    demoLink: '/slate-to-template',
+  },
   // More serializers...
 ]
 

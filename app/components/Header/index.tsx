@@ -23,6 +23,22 @@ const navigation = [
       { name: 'Demo', href: '/html-to-slate', current: false },
     ],
   },
+  {
+    name: 'slateToReact',
+    current: false,
+    children: [
+      /* { name: 'Docs', href: '#' }, */
+      { name: 'Demo', href: '/slate-to-react', current: false },
+    ],
+  },
+  {
+    name: 'slateToTemplate',
+    current: false,
+    children: [
+      /* { name: 'Docs', href: '#' }, */
+      { name: 'Demo', href: '/slate-to-template', current: false },
+    ],
+  },
 ]
 
 export default function Example() {
