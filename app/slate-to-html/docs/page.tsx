@@ -29,7 +29,9 @@ export default function Page() {
           <li><a href="#elementmap"><code>elementMap</code></a></li>
           <li><a href="#marktransforms"><code>markTransforms</code></a></li>
           <li><a href="#elementtransforms"><code>elementTransforms</code></a></li>
+          <li><a href="#elementattributetransform"><code>elementAttributeTransform</code></a></li>
           <li><a href="#formatting"><code>formatting</code></a></li>
+          <li><a href="#defaulttag"><code>defaultTag</code></a></li>
         </ul>
       </li>
     </ul>
@@ -165,6 +167,15 @@ export default function Page() {
       })}</Code>
     </div>
 
+    <h4 id="elementattributetransform"><code>elementAttributeTransform</code></h4>
+
+    <p>Apply attribute transformations to every node.</p>
+
+    <ul>
+      <li>For a comprehensive example transforming HTML CSS attributes, see <a href={ghUrl("packages/tests/src/lib/html/snapshots/htmlToSlateToHtml.spec.ts")}>packages/tests/src/lib/html/snapshots/htmlToSlateToHtml.spec.ts</a>.</li>
+      <li><a href="#elementtransforms"><code>elementTransforms</code></a> can also be used to transform attributes, but these functions are defined per element. A function defined in <code>elementAttributeTransform</code> applies to every element.</li>
+    </ul>
+
     <h4 id ="formatting">Formatting</h4>
 
     <p>Control the way resulting HTML is encoded/formatted.</p>
@@ -201,6 +212,15 @@ export default function Page() {
     <h5><code>convertLineBreakToBr</code></h5>
 
     <p>Convert &#92;n line breaks in Slate text nodes to an HTML &lt;br&gt; element.</p>
+
+    <h4 id="defaulttag"><code>defaultTag</code></h4>
+
+    <p>Render a HTML element for Slate nodes that have no <code>type</code>.</p>
+
+    <ul>
+      <li>The Payload CMS configuration uses a <code>defaultTag</code> of <code>p</code>. See <a href={ghUrl("packages/dom/src/lib/config/payload.ts")}>packages/dom/src/lib/config/payload.ts</a>.</li>
+      <li>his is consistent with the approach taken by Payload CMS: See [payloadcms/payload/blob/master/docs/fields/rich-text.mdx](https://github.com/payloadcms/payload/blob/master/docs/fields/rich-text.mdx).</li>
+    </ul>
 
   </div>
 }
