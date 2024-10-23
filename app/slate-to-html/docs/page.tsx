@@ -219,7 +219,7 @@ export default function Page() {
 
     <ul>
       <li>The Payload CMS configuration uses a <code>defaultTag</code> of <code>p</code>. See <a href={ghUrl("packages/dom/src/lib/config/payload.ts")}>packages/dom/src/lib/config/payload.ts</a>.</li>
-      <li>his is consistent with the approach taken by Payload CMS: See [payloadcms/payload/blob/master/docs/fields/rich-text.mdx](https://github.com/payloadcms/payload/blob/master/docs/fields/rich-text.mdx).</li>
+      <li>This is consistent with the approach taken by Payload CMS: See [payloadcms/payload/blob/master/docs/fields/rich-text.mdx](https://github.com/payloadcms/payload/blob/master/docs/fields/rich-text.mdx).</li>
     </ul>
 
   </div>
