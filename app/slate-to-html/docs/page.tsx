@@ -173,7 +173,7 @@ export default function Page() {
 
     <ul>
       <li>For a comprehensive example transforming HTML CSS attributes, see <a href={ghUrl("packages/tests/src/lib/html/snapshots/htmlToSlateToHtml.spec.ts")}>packages/tests/src/lib/html/snapshots/htmlToSlateToHtml.spec.ts</a>.</li>
-      <li><a href="#elementtransforms"><code>elementTransforms</code></a> can also be used to transform attributes, but these functions are defined per element. A function defined in <code>elementAttributeTransform</code> applies to every element.</li>
+      <li><a href="#elementtransforms"><code>elementTransforms</code></a> can also be used to transform attributes, but these functions are defined per element. <code>elementAttributeTransform</code> accepts a single function that applies to every element.</li>
     </ul>
 
     <h4 id ="formatting">Formatting</h4>
