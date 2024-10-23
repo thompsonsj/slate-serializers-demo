@@ -13,6 +13,7 @@ export const markTransformsExampleSlate = [
 
 export const markTransformsExample = `
 import { slateToHtml, slateToHtmlConfig } from '@slate-serializers/html'
+import { Element } from "domhandler"
 
 const slate = ${JSON.stringify(markTransformsExampleSlate, undefined, 2)}
 
@@ -21,7 +22,9 @@ const config = {
   markTransforms: {
     ...slateToHtmlConfig.markTransforms,
     fontSize: ({ node }) => {
-      return new Element('span', { style: \`font-size:\${node.fontSize};\` })
+      return new Element('span', {
+        style: \`font-size:\${node.fontSize};\`
+      })
     }
   },
 }
