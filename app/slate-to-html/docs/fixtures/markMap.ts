@@ -10,7 +10,7 @@ export const markMapExampleSlate = [{
 }]
 
 export const markMapExample = `
-import { slateToHtml, payloadSlateToHtmlConfig } from '@slate-serializers/html'
+import { slateToHtml, slateToHtmlConfig } from '@slate-serializers/html'
 
 const slate = ${JSON.stringify(markMapExampleSlate, undefined, 2)}
 

@@ -18,7 +18,7 @@ export const elementMapExampleSlate = [
 ]
 
 export const elementMapExample = `
-import { slateToHtml, payloadSlateToHtmlConfig } from '@slate-serializers/html'
+import { slateToHtml, slateToHtmlConfig } from '@slate-serializers/html'
 
 const slate = ${JSON.stringify(elementMapExampleSlate, undefined, 2)}
 
