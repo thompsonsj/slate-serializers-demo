@@ -1,12 +1,12 @@
 import { Code } from "bright"
-import { slateToHtml, slateToHtmlConfig, payloadSlateToHtmlConfig } from '@slate-serializers/html'
+import { slateToHtml, slateToHtmlConfig } from '@slate-serializers/html'
 import { ghUrl } from "@/app/utilities/docs"
 import { Element } from "domhandler"
+import Link from "next/link"
 
 // fixtures
 import { defaultExample, defaultExampleSlate } from "./fixtures/default"
 import { markMapExample, markMapExampleSlate } from "./fixtures/markMap"
-import { payloadExample, payloadExampleSlate } from "./fixtures/payload"
 import { elementMapExample, elementMapExampleSlate } from "./fixtures/elementMap"
 import { markTransformsExample, markTransformsExampleSlate } from "./fixtures/markTransforms"
 import { elementTransformsExample, elementTransformsExampleSlate } from "./fixtures/elementTransforms"
@@ -21,7 +21,9 @@ export default function Page() {
     <ul>
       <li><a href="#default">Default</a></li>
       <li><a href="#configuration">Configuration</a></li>
-      <li><a href="#starting-point">Starting point</a></li>
+      <li><a href="#starting-point">Starting point</a><ul>
+        <li><a href="#payloadcms">Payload CMS</a></li>
+        </ul></li>
       <li>
         <a href="#options">Options</a>
         <ul>
@@ -60,14 +62,9 @@ export default function Page() {
       <li>copy <a href={ghUrl("packages/dom/src/lib/config/default.ts")}>packages/dom/src/lib/config/default.ts</a> and rewrite it as appropriate.</li>
       </ul>
 
-    <details>
-      <summary>Payload CMS</summary>
-      <p>If you are using Payload CMS, import the Payload configuration file and pass it as a parameter to the serializer.</p>
-      <div className="not-prose">
-        <Code lang="js">{payloadExample}</Code>
-        <Code lang="html" title="output.html">{slateToHtml(payloadExampleSlate, payloadSlateToHtmlConfig)}</Code>
-      </div>
-    </details>
+    <h4 id="payloadcms">Payload CMS</h4>
+
+    <p>If you are using <a href="https://payloadcms.com/docs/rich-text/slate">Slate Rich Text in Payload CMS</a>, a dedicated configuration file is available. See <Link href="/slate-to-html/docs/payload"><code>slateToHtml</code>: Payload CMS configuration</Link>.</p>
 
     <h3>Options</h3>
 
