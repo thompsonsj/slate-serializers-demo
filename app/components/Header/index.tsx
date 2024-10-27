@@ -19,7 +19,7 @@ const navigation = [
     name: 'htmlToSlate',
     current: false,
     children: [
-      /* { name: 'Docs', href: '#' }, */
+      { name: 'Docs', href: '/html-to-slate/docs' },
       { name: 'Demo', href: '/html-to-slate', current: false },
     ],
   },

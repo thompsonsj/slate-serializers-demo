@@ -3,6 +3,7 @@ import { htmlToSlate, htmlToSlateConfig, slateToHtml, slateToHtmlConfig } from '
 import { ghUrl } from "@/app/utilities/docs"
 import { Element } from "domhandler"
 import Link from "next/link"
+import { getAttributeValue } from 'domutils';
 
 // fixtures
 import { defaultExample, defaultExampleHtml } from "./fixtures/default"
@@ -28,7 +29,7 @@ export default function Page() {
         <a href="#options">Options</a>
         <ul>
           <li><a href="#texttags"><code>textTags</code></a></li>
-          <li><a href="#elementmap"><code>elementMap</code></a></li>
+          <li><a href="#elementtags"><code>elementTags</code></a></li>
           <li><a href="#marktransforms"><code>markTransforms</code></a></li>
           <li><a href="#elementtransforms"><code>elementTransforms</code></a></li>
           <li><a href="#elementattributetransform"><code>elementAttributeTransform</code></a></li>
@@ -74,9 +75,11 @@ export default function Page() {
     
     <ul>
       <DefaultConfigListItem />
-      <li>Receives `el` of type [`Element`](https://domhandler.js.org/classes/Element.html) as an argument.</li>
+      <li>Receives <code>el</code> of type <a href="https://domhandler.js.org/classes/Element.html"><code>Element</code></a> as an argument.<ul><li>Combine with utilities from <a href="https://domutils.js.org/"><code>domutils</code></a> to perform further manipulation.</li></ul></li>
       <li>Test examples: <a href={ghUrl("packages/html/src/lib/tests/htmlToSlate/configuration/textTags.spec.ts")}>packages/html/src/lib/tests/htmlToSlate/configuration/textTags.spec.ts</a>.</li>
     </ul>
+
+    <p>In the following example, <code>strong</code> and <code>i</code> HTML tags are mapped in the default configuration.</p>
 
     <div className="not-prose">
       <Code lang="js">{textTagsExample}</Code>
@@ -85,11 +88,17 @@ export default function Page() {
         textTags: {
           ...htmlToSlateConfig.textTags,
           sub: () => ({ subscript: true }),
+          time: (el) => ({
+            ...(el && {
+              datetime: getAttributeValue(el, 'datetime'),
+            }),
+            time: true,
+          }),
         },
       }), undefined, 2)}</Code>
     </div>
 
-    <h4 id ="elementmap"><code>elementMap</code></h4>
+    <h4 id ="elementtags"><code>elementTags</code></h4>
 
     <p>Map Slate JSON <code>type</code> values to HTML element tags.</p>
     

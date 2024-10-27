@@ -1,4 +1,4 @@
-import { ReactNode, Fragment, useState } from 'react'
+import { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import { Sidebar } from './components/Sidebar'
 import './globals.css'
