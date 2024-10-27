@@ -8,9 +8,9 @@ import { getAttributeValue } from 'domutils';
 // fixtures
 import { defaultExample, defaultExampleHtml } from "./fixtures/default"
 import { textTagsExample, textTagsExampleHtml } from "./fixtures/textTags"
-import { elementMapExample, elementMapExampleSlate } from "./fixtures/elementMap"
+import { elementTagsExample, elementTagsExampleHtml } from "./fixtures/elementTags"
 import { markTransformsExample, markTransformsExampleSlate } from "./fixtures/markTransforms"
-import { elementTransformsExample, elementTransformsExampleSlate } from "./fixtures/elementTransforms"
+import { textTagsVsElementTagsExample, textTagsVsElementTagsExampleHtml } from "./fixtures/texttagsvselementtags"
 
 const DefaultConfigListItem = () => <li>Default: <a href={ghUrl("packages/html/src/lib/serializers/htmlToSlate/config/default.ts")}>packages/html/src/lib/serializers/htmlToSlate/config/default.ts</a>.</li>
 
@@ -30,7 +30,7 @@ export default function Page() {
         <ul>
           <li><a href="#texttags"><code>textTags</code></a></li>
           <li><a href="#elementtags"><code>elementTags</code></a></li>
-          <li><a href="#marktransforms"><code>markTransforms</code></a></li>
+          <li><a href="#texttagsvselementtags"><code>textTags</code> vs <code>elementTags</code></a></li>
           <li><a href="#elementtransforms"><code>elementTransforms</code></a></li>
           <li><a href="#elementattributetransform"><code>elementAttributeTransform</code></a></li>
           <li><a href="#formatting"><code>formatting</code></a></li>
@@ -100,25 +100,74 @@ export default function Page() {
 
     <h4 id ="elementtags"><code>elementTags</code></h4>
 
-    <p>Map Slate JSON <code>type</code> values to HTML element tags.</p>
+    <p>Map HTML element tags to Slate JSON nodes.</p>
     
     <ul>
       <DefaultConfigListItem />
-      <li>Staightforward transform - no attributes are considered.</li>
-      <li>Use <code>elementTransforms</code> for more control over the returned element.</li>
-      <li>Test example: <a href={ghUrl("packages/html/src/lib/tests/slateToHtml/configuration/elementMap.spec.ts")}>packages/html/src/lib/tests/slateToHtml/configuration/elementMap.spec.ts</a>.</li>
+      <li>Receives <code>el</code> of type <a href="https://domhandler.js.org/classes/Element.html"><code>Element</code></a> as an argument.<ul><li>Combine with utilities from <a href="https://domutils.js.org/"><code>domutils</code></a> to perform further manipulation.</li></ul></li>
+      <li>Test examples: <a href={ghUrl("packages/html/src/lib/tests/htmlToSlate/configuration/elementTags.spec.ts")}>packages/html/src/lib/tests/htmlToSlate/configuration/elementTags.spec.ts</a>.</li>
     </ul>
 
     <div className="not-prose">
-      <Code lang="js">{elementMapExample}</Code>
-      <Code lang="html" title="output.html">{slateToHtml(elementMapExampleSlate, {
-        ...slateToHtmlConfig,
-        elementMap: {
-          // default configuration includes 'h1'
-          ...slateToHtmlConfig.elementMap,
-          ['heading-one']: 'h1',
+      <Code lang="js">{elementTagsExample}</Code>
+      <Code lang="json" title="output.json">{JSON.stringify(htmlToSlate(elementTagsExampleHtml, {
+        ...htmlToSlateConfig,
+        elementTags: {
+          ...htmlToSlateConfig.elementTags,
+          article: (el) => ({
+            ...(el && {
+              id: getAttributeValue(el, 'id'),
+            }),
+            type: 'article',
+          }),
         },
-      })}</Code>
+      }), undefined, 2)}</Code>
+    </div>
+
+    <h4 id ="texttagsvselementtags"><code>textTags</code> vs <code>elementTags</code></h4>
+
+    <ul>
+      <li>Test example: <a href={ghUrl("packages/html/src/lib/tests/htmlToSlate/configuration/textTagsVselementTags.spec.ts")}>packages/html/src/lib/tests/htmlToSlate/configuration/textTagsVselementTags.spec.ts</a>.</li>
+    </ul>
+
+    <p>Use <code>elementTags</code> transform functions for HTML element tags that structure content. e.g. <code>h1</code>, <code>h2</code>, <code>div</code>...etc.</p>
+
+    <ul>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element#content_sectioning">Content sectioning | Elements | HTML</a></li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element#text_content">Text content | Elements | HTML</a></li>
+    </ul>
+
+    <p>Use <code>textTags</code> transform functions for HTML element tags that define inline meaning, structure or style of content. e.g. <code>strong</code>, <code>abbr</code>, <code>sub</code>...etc.</p>
+
+    <ul>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element#inline_text_semantics">Inline text semantics | Elements | HTML</a></li>
+    </ul>
+
+    Note how <code>textTags</code> are combined to represent inline meaning/structure/style whereas <code>elementTags</code> always create new Slate nodes.
+
+    <div className="not-prose">
+      <Code lang="js">{textTagsVsElementTagsExample}</Code>
+      <Code lang="html" title="output.html">{JSON.stringify(htmlToSlate(textTagsVsElementTagsExampleHtml, {
+        ...htmlToSlateConfig,
+        textTags: {
+          ...htmlToSlateConfig.textTags,
+          time: (el) => ({
+            ...(el && {
+              datetime: getAttributeValue(el, 'datetime'),
+            }),
+            time: true,
+          }),
+        },
+        elementTags: {
+          ...htmlToSlateConfig.elementTags,
+          article: (el) => ({
+            ...(el && {
+              id: getAttributeValue(el, 'id'),
+            }),
+            type: 'article',
+          }),
+        },
+      }), undefined, 2)}</Code>
     </div>
 
     <h4 id ="marktransforms"><code>markTransforms</code></h4>
@@ -156,20 +205,7 @@ export default function Page() {
       <li>Test example: <a href={ghUrl("packages/html/src/lib/tests/slateToHtml/configuration/elementTransforms.spec.ts")}>packages/html/src/lib/tests/slateToHtml/configuration/elementTransforms.spec.ts</a>.</li>
     </ul>
 
-    <div className="not-prose">
-      <Code lang="js">{elementTransformsExample}</Code>
-      <Code lang="html" title="output.html">{slateToHtml(elementTransformsExampleSlate, {
-        ...slateToHtmlConfig,
-        elementTransforms: {
-          ...slateToHtmlConfig.elementTransforms,
-          image: ({ node }) => {
-            return new Element('img', {
-              src: node.url,
-            })
-          },
-        },
-      })}</Code>
-    </div>
+    
 
     <h4 id="elementattributetransform"><code>elementAttributeTransform</code></h4>
 
