@@ -31,6 +31,7 @@ export default function Page() {
           <li><a href="#elementtags"><code>elementTags</code></a></li>
           <li><a href="#texttagsvselementtags"><code>textTags</code> vs <code>elementTags</code></a></li>
           <li><a href="#elementattributetransform"><code>elementAttributeTransform</code></a></li>
+          <li><a href="#htmlupdatermap"><code>htmlUpdaterMap</code></a></li>
           <li><a href="#htmlpreprocessstring"><code>htmlPreProcessString</code></a></li>
           <li><a href="#filterwhitespacenodes"><code>filterWhitespaceNodes</code></a></li>
           <li><a href="#convertbrtolinebreak"><code>convertBrToLineBreak</code></a></li>
@@ -193,6 +194,16 @@ export default function Page() {
         },
       }), undefined, 2)}</Code>
     </div>
+
+    <h4 id="htmlupdatermap"><code>htmlUpdaterMap</code></h4>
+
+    <p>Manipulate/Transform your HTML before serialization.</p>
+
+    <p>A powerful feature that allows you to hook into the DOM object created using <code>htmlparser2</code> and perform manipultion with utilities such as <a href="https://domutils.js.org/"><code>domutils</code></a>.</p>
+
+    <ul>
+      <li>Test example: <a href={ghUrl("packages/html/src/lib/tests/htmlToSlate/configuration/htmlUpdaterMap.spec.ts")}>packages/html/src/lib/tests/htmlToSlate/configuration/htmlUpdaterMap.spec.ts</a>.</li>
+    </ul>
 
     <h4 id="htmlpreprocessstring"><code>htmlPreProcessString</code></h4>
 
