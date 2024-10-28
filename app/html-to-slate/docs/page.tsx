@@ -9,7 +9,7 @@ import { getAttributeValue } from 'domutils';
 import { defaultExample, defaultExampleHtml } from "./fixtures/default"
 import { textTagsExample, textTagsExampleHtml } from "./fixtures/textTags"
 import { elementTagsExample, elementTagsExampleHtml } from "./fixtures/elementTags"
-import { markTransformsExample, markTransformsExampleSlate } from "./fixtures/markTransforms"
+import { elementAttributeTransformExample, elementAttributeTransformExampleHtml } from "./fixtures/elementAttributeTransform"
 import { textTagsVsElementTagsExample, textTagsVsElementTagsExampleHtml } from "./fixtures/texttagsvselementtags"
 
 const DefaultConfigListItem = () => <li>Default: <a href={ghUrl("packages/html/src/lib/serializers/htmlToSlate/config/default.ts")}>packages/html/src/lib/serializers/htmlToSlate/config/default.ts</a>.</li>
@@ -147,7 +147,7 @@ export default function Page() {
 
     <div className="not-prose">
       <Code lang="js">{textTagsVsElementTagsExample}</Code>
-      <Code lang="html" title="output.html">{JSON.stringify(htmlToSlate(textTagsVsElementTagsExampleHtml, {
+      <Code lang="json" title="output.json">{JSON.stringify(htmlToSlate(textTagsVsElementTagsExampleHtml, {
         ...htmlToSlateConfig,
         textTags: {
           ...htmlToSlateConfig.textTags,
@@ -170,51 +170,29 @@ export default function Page() {
       }), undefined, 2)}</Code>
     </div>
 
-    <h4 id ="marktransforms"><code>markTransforms</code></h4>
-
-    <p>Define transform functions for Slate JSON properties.</p>
-
-    <ul>
-      <DefaultConfigListItem />
-      <li>Overrides corresponding values in <a href="#markmap"><code>markMap</code></a>.</li>
-      <li>Use <code>markTransforms</code> for more control over the returned element.</li>
-      <li>Test example: <a href={ghUrl("packages/html/src/lib/tests/slateToHtml/configuration/markTransforms.spec.ts")}>packages/html/src/lib/tests/slateToHtml/configuration/markTransforms.spec.ts</a>.</li>
-    </ul>
-
-    <div className="not-prose">
-      <Code lang="js">{markTransformsExample}</Code>
-      <Code lang="html" title="output.html">{slateToHtml(markTransformsExampleSlate, {
-        ...slateToHtmlConfig,
-        markTransforms: {
-          ...slateToHtmlConfig.markTransforms,
-          fontSize: ({ node }) => {
-            return new Element('span', { style: `font-size:${node.fontSize};` })
-          }
-        },
-      })}</Code>
-    </div>
-
-    <h4 id ="elementtransforms"><code>elementTransforms</code></h4>
-
-    <p>Map Slate JSON <code>type</code> values to HTML element tags.</p>
-
-    <ul>
-      <DefaultConfigListItem />
-      <li>Overrides corresponding values in <a href="#elementmap"><code>elementMap</code></a>.</li>
-      <li>Use <code>elementTransforms</code> for more control over the returned element.</li>
-      <li>Test example: <a href={ghUrl("packages/html/src/lib/tests/slateToHtml/configuration/elementTransforms.spec.ts")}>packages/html/src/lib/tests/slateToHtml/configuration/elementTransforms.spec.ts</a>.</li>
-    </ul>
-
-    
-
     <h4 id="elementattributetransform"><code>elementAttributeTransform</code></h4>
 
     <p>Apply attribute transformations to every node.</p>
 
     <ul>
-      <li>For a comprehensive example transforming HTML CSS attributes, see <a href={ghUrl("packages/tests/src/lib/html/snapshots/htmlToSlateToHtml.spec.ts")}>packages/tests/src/lib/html/snapshots/htmlToSlateToHtml.spec.ts</a>.</li>
-      <li><a href="#elementtransforms"><code>elementTransforms</code></a> can also be used to transform attributes, but these functions are defined per element. <code>elementAttributeTransform</code> accepts a single function that applies to every element.</li>
+      <li>Test example: <a href={ghUrl("packages/html/src/lib/tests/htmlToSlate/configuration/elementAttributeTransform.spec.ts")}>packages/html/src/lib/tests/htmlToSlate/configuration/elementAttributeTransform.spec.ts</a>.</li>
+      <li><a href="#elementtags"><code>elementTags</code></a> can also be used to transform attributes, but these functions are defined per element. <code>elementAttributeTransform</code> accepts a single function that applies to every element.</li>
     </ul>
+
+    <div className="not-prose">
+      <Code lang="js">{elementAttributeTransformExample}</Code>
+      <Code lang="json" title="output.json">{JSON.stringify(htmlToSlate(elementAttributeTransformExampleHtml, {
+        ...htmlToSlateConfig,
+        elementAttributeTransform: ({ el }) => {
+          const attribs: { [key: string]: string } = {};
+          const id = getAttributeValue(el, 'id');
+          if (id) {
+            attribs['id'] = id;
+          }
+          return attribs;
+        },
+      }), undefined, 2)}</Code>
+    </div>
 
     <h4 id ="formatting">Formatting</h4>
 
