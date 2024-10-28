@@ -1,7 +1,6 @@
 import { Code } from "bright"
-import { htmlToSlate, htmlToSlateConfig, slateToHtml, slateToHtmlConfig } from '@slate-serializers/html'
+import { htmlToSlate, htmlToSlateConfig } from '@slate-serializers/html'
 import { ghUrl } from "@/app/utilities/docs"
-import { Element } from "domhandler"
 import Link from "next/link"
 import { getAttributeValue } from 'domutils';
 
@@ -31,10 +30,11 @@ export default function Page() {
           <li><a href="#texttags"><code>textTags</code></a></li>
           <li><a href="#elementtags"><code>elementTags</code></a></li>
           <li><a href="#texttagsvselementtags"><code>textTags</code> vs <code>elementTags</code></a></li>
-          <li><a href="#elementtransforms"><code>elementTransforms</code></a></li>
           <li><a href="#elementattributetransform"><code>elementAttributeTransform</code></a></li>
-          <li><a href="#formatting"><code>formatting</code></a></li>
-          <li><a href="#defaulttag"><code>defaultTag</code></a></li>
+          <li><a href="#htmlpreprocessstring"><code>htmlPreProcessString</code></a></li>
+          <li><a href="#filterwhitespacenodes"><code>filterWhitespaceNodes</code></a></li>
+          <li><a href="#convertbrtolinebreak"><code>convertBrToLineBreak</code></a></li>
+          <li><a href="#trimwhitespace"><code>trimWhiteSpace</code></a></li>
         </ul>
       </li>
     </ul>
@@ -194,50 +194,48 @@ export default function Page() {
       }), undefined, 2)}</Code>
     </div>
 
-    <h4 id ="formatting">Formatting</h4>
+    <h4 id="htmlpreprocessstring"><code>htmlPreProcessString</code></h4>
 
-    <p>Control the way resulting HTML is encoded/formatted.</p>
+    <p>Perform any operations on the HTML string before serializing to the DOM. This is the first operation to run.</p>
+
+    <p>String operations are not ideal, but may be necessary in some cases.</p>
 
     <ul>
       <DefaultConfigListItem />
-      <li>Test examples: <a href={ghUrl("packages/html/src/lib/tests/slateToHtml/configuration/formatting.spec.ts")}>packages/html/src/lib/tests/slateToHtml/configuration/formatting.spec.ts</a>.</li>
+      <li>In the default config, regular expressions are used to replace all <code>&lt;pre&gt;</code> HTML elements with <code>&lt;code&gt;</code>. This is helpful because <code>htmlparser2</code> will separate out <code>&lt;pre&gt;</code> tags into their own block, whereas <code>&lt;code&gt;</code> tags are kept inline.</li>
     </ul>
 
-    <h5><code>encodeEntities</code></h5>
+    <h4 id="filterwhitespacenodes"><code>filterWhitespaceNodes</code></h4>
 
-    <p>See <a href="https://github.com/cheeriojs/dom-serializer#encodeentities">cheeriojs/dom-serializer - encodeEntities</a>.</p>
+    <p>Remove any Slate JSON nodes that have no type or content. For example:</p>
+
+    <div className="not-prose">
+      <Code lang="js">{JSON.stringify({"children": []}, undefined, 2)}</Code>
+    </div>
+
+    <p>These nodes may appear after <a href={ghUrl("docs/engineering.md#whitespace")}>processing whitespace</a>.</p>
+
+    <h4 id="convertbrtolinebreak"><code>convertBrToLineBreak</code></h4>
+
+    <p>Convert <code>&lt;br&gt;</code> HTML element tags to Slate nodes with empty content or <code>\n</code> as appropriate.</p>
+
+    <p>Default: <code>true</code>.</p>
 
     <ul>
-      <li>Default: <code>true</code></li>
+      <DefaultConfigListItem />
+      <li>Test examples: <a href={ghUrl("packages/html/src/lib/tests/htmlToSlate/configuration/convertBrToLineBreak.spec.ts")}>packages/html/src/lib/tests/htmlToSlate/configuration/convertBrToLineBreak.spec.ts</a>.</li>
     </ul>
 
-    <h5><code>alwaysEncodeBreakingEntities</code></h5>
+    <h4 id="trimwhitespace"><code>trimWhiteSpace</code></h4>
 
-    <p>Encode &amp;, &lt; and &gt; regardless of other option settings.</p>
+    <p>Extra whitespace is valid in HTML and will often be reduced to a single space or removed when the HTML is rendered. By default, <code>htmlToSlate</code> will apply such whitespace reduction rules to Slate node values.</p>
 
-    <ul>
-      <li>Default: <code>false</code></li>
-    </ul>
-
-    <h5><code>alwaysEncodeCodeEntities</code></h5>
-
-    <p>Encode entities in &lt;pre&gt; tags regardless of other option settings.</p>
+    <p>Default: <code>true</code>.</p>
 
     <ul>
-      <li>Default: <code>true</code></li>
-    </ul>
-
-    <h5><code>convertLineBreakToBr</code></h5>
-
-    <p>Convert &#92;n line breaks in Slate text nodes to an HTML &lt;br&gt; element.</p>
-
-    <h4 id="defaulttag"><code>defaultTag</code></h4>
-
-    <p>Render a HTML element for Slate nodes that have no <code>type</code>.</p>
-
-    <ul>
-      <li>The Payload CMS configuration uses a <code>defaultTag</code> of <code>p</code>. See <a href={ghUrl("packages/dom/src/lib/config/payload.ts")}>packages/dom/src/lib/config/payload.ts</a>.</li>
-      <li>This is consistent with the approach taken by Payload CMS: See <a href="https://github.com/payloadcms/payload/blob/master/docs/fields/rich-text.mdx">payloadcms/payload/blob/master/docs/fields/rich-text.mdx</a>.</li>
+      <DefaultConfigListItem />
+      <li>Test examples: <a href={ghUrl("packages/html/src/lib/tests/htmlToSlate/configuration/whitespace.spec.ts")}>packages/html/src/lib/tests/htmlToSlate/configuration/whitespace.spec.ts</a>.</li>
+      <li>See rationale in <a href={ghUrl("docs/engineering.md#whitespace")}>processing whitespace</a>.</li>
     </ul>
 
   </div>
