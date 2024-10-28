@@ -1,5 +1,5 @@
 import { Code } from "bright"
-import { slateToHtml, htmlToSlate, payloadSlateToHtmlConfig, payloadHtmlToSlateConfig } from '@slate-serializers/html'
+import { htmlToSlate, payloadHtmlToSlateConfig } from '@slate-serializers/html'
 import { payloadExample, payloadExampleHtml } from "./fixtures/payload"
 import { comprehensiveExample, comprehensiveExampleHtml } from "./fixtures/comprehensive"
 import Link from "next/link"
