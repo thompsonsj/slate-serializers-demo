@@ -2,7 +2,8 @@ import { Code } from "bright"
 import { htmlToSlate, htmlToSlateConfig } from '@slate-serializers/html'
 import { ghUrl } from "@/app/utilities/docs"
 import Link from "next/link"
-import { getAttributeValue } from 'domutils';
+import { Element } from 'domhandler';
+import { findOne, getAttributeValue } from 'domutils';
 
 // fixtures
 import { defaultExample, defaultExampleHtml } from "./fixtures/default"
@@ -10,6 +11,7 @@ import { textTagsExample, textTagsExampleHtml } from "./fixtures/textTags"
 import { elementTagsExample, elementTagsExampleHtml } from "./fixtures/elementTags"
 import { elementAttributeTransformExample, elementAttributeTransformExampleHtml } from "./fixtures/elementAttributeTransform"
 import { textTagsVsElementTagsExample, textTagsVsElementTagsExampleHtml } from "./fixtures/texttagsvselementtags"
+import { htmlUpdaterMapExample, htmlUpdaterMapExampleHtml } from "./fixtures/htmlUpdaterMap";
 
 const DefaultConfigListItem = () => <li>Default: <a href={ghUrl("packages/html/src/lib/serializers/htmlToSlate/config/default.ts")}>packages/html/src/lib/serializers/htmlToSlate/config/default.ts</a>.</li>
 
@@ -199,11 +201,46 @@ export default function Page() {
 
     <p>Manipulate/Transform your HTML before serialization.</p>
 
-    <p>A powerful feature that allows you to hook into the DOM object created using <code>htmlparser2</code> and perform manipultion with utilities such as <a href="https://domutils.js.org/"><code>domutils</code></a>.</p>
+    <p>A powerful feature that allows you to hook into the DOM object created using <code>htmlparser2</code> and perform manipulation with utilities such as <a href="https://domutils.js.org/"><code>domutils</code></a> before Slate nodes are created.</p>
 
     <ul>
       <li>Test example: <a href={ghUrl("packages/html/src/lib/tests/htmlToSlate/configuration/htmlUpdaterMap.spec.ts")}>packages/html/src/lib/tests/htmlToSlate/configuration/htmlUpdaterMap.spec.ts</a>.</li>
     </ul>
+
+    <p>In the following example, the structure of the DOM is changed before Slate nodes are created.</p>
+
+    <div className="not-prose">
+      <Code lang="js">{htmlUpdaterMapExample}</Code>
+      <Code lang="json" title="output.json">{JSON.stringify(htmlToSlate(htmlUpdaterMapExampleHtml, {
+        ...htmlToSlateConfig,
+        elementTags: {
+          ...htmlToSlateConfig.elementTags,
+          figure: (el) => ({
+            ...(el && el.attribs),
+            type: 'image',
+          }),
+        },
+        htmlUpdaterMap: {
+          figure: (el) => {
+            const img = findOne((node) => node.name === 'img', [el]);
+            if (!img) {
+              return el;
+            }
+            const src = img.attribs['src'];
+            const alt = img.attribs['alt'];
+            return new Element(
+              'figure',
+              {
+                ...el.attribs,
+                'data-src': src,
+                'data-alt': alt,
+              },
+              []
+            );
+          },
+        },
+      }), undefined, 2)}</Code>
+    </div>
 
     <h4 id="htmlpreprocessstring"><code>htmlPreProcessString</code></h4>
 
