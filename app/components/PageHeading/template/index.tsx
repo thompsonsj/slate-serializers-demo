@@ -1,26 +1,6 @@
-import { FC, Fragment, useContext, ReactNode } from 'react'
-import {
-  CogIcon,
-  CheckIcon,
-  ChevronDownIcon,
-  LinkIcon,
-  PencilIcon,
-} from '@heroicons/react/20/solid'
-import { Menu, Transition } from '@headlessui/react'
-import { Select } from './Select'
-import cx from "classnames"
-import { SlateToReactConfigContext } from '../../../contexts/SlateToReactConfigContext'
-
-const configs = {
-  slateToDom: {
-    text: "Default",
-    url: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/default.ts",
-  },
-  htmlToSlate: {
-    text: "Default",
-    url: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/htmlToSlate/default.ts",
-  }
-}
+import { FC, useContext, ReactNode } from 'react'
+import { CogIcon } from '@heroicons/react/20/solid'
+import { SlateToTemplateConfigContext } from '../../../contexts/SlateToTemplateConfigContext'
 
 interface IPageHeading {
   title?: string
@@ -35,7 +15,7 @@ export const PageHeading: FC<IPageHeading> = ({
   menu,
   className
 }) => {
-  const { configName, configUrl, configUrlDom } = useContext(SlateToReactConfigContext)
+  const { configName, configUrl, configUrlDom } = useContext(SlateToTemplateConfigContext)
 
   return (
     <div className={className}>
@@ -49,8 +29,8 @@ export const PageHeading: FC<IPageHeading> = ({
             <div className="mt-2 flex items-center text-sm text-gray-500">
               <CogIcon className="mr-1.5 h-5 w-5 shrink-0 text-gray-400" aria-hidden="true" />
               <strong>Config:&nbsp;&nbsp;</strong> <a target="_blank" className="underline" href=
-              {configUrlDom}>{configName} (Dom)</a>, &nbsp; <a target="_blank" className="underline" href=
-              {configUrl}>{configName} (React)</a>.
+              {configUrlDom}>{configName} (DOM)</a>, &nbsp; <a target="_blank" className="underline" href=
+              {configUrl}>{configName} (template)</a>.
             </div>
             )}
           </div>

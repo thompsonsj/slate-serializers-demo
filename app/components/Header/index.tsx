@@ -39,7 +39,14 @@ const navigation: NavItem[] = [
   },
   {
     name: 'slateToTemplate',
-    children: [{ name: 'Demo', href: '/slate-to-template' }],
+    children: [
+      { name: 'Docs', href: '/slate-to-template/docs' },
+      { name: 'Demo', href: '/slate-to-template' },
+    ],
+  },
+  {
+    name: 'slateToDom',
+    children: [{ name: 'Docs', href: '/slate-to-dom/docs' }],
   },
 ]
 

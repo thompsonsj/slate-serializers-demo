@@ -43,12 +43,27 @@ const serializers = [
     npm: 'https://www.npmjs.com/package/@slate-serializers/template',
     github: 'https://github.com/thompsonsj/slate-serializers/tree/main/packages/template',
     content: <>
-      <p>Convert Slate JSON to an array HTML nodes mixed with custom components.</p>
+      <p>Convert Slate JSON to an array of HTML strings mixed with custom serializers (e.g. JSX).</p>
     </>,
-    docsLink: '',
+    docsLink: '/slate-to-template/docs',
     demoLink: '/slate-to-template',
   },
-  // More serializers...
+  {
+    title: 'slateToDom',
+    package: '@slate-serializers/dom',
+    npm: 'https://www.npmjs.com/package/@slate-serializers/dom',
+    github: 'https://github.com/thompsonsj/slate-serializers/tree/main/packages/dom',
+    content: (
+      <>
+        <p>
+          Convert Slate JSON to a <code>htmlparser2</code> DOM before serializing to HTML—useful when you need to
+          manipulate the tree first.
+        </p>
+      </>
+    ),
+    docsLink: '/slate-to-dom/docs',
+    demoLink: '',
+  },
 ]
 
 export const Grid = () => {

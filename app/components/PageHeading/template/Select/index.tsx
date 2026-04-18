@@ -9,6 +9,7 @@ import {
 import { Descendant } from 'slate'
 import { SlateValueContext } from '../../../../contexts/SlateValueContext'
 import cx from 'classnames'
+import { domConfigUrl, templateConfigUrl } from '@/app/utilities/slate-serializers-config-urls'
 
 export const initialValue: any[] = [
   {
@@ -53,11 +54,11 @@ export const initialValue: any[] = [
                       "text": "content rendered using the "
                   },
                   {
-                      "text": "<SlateToReact>",
+                      "text": "slateToTemplate",
                       "code": true
                   },
                   {
-                      "text": " component."
+                      "text": "."
                   }
               ]
           }
@@ -196,8 +197,8 @@ const publishingOptions = [
     config: {
       configName: "Default",
       configSlug: "default",
-      configUrlDom: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/default.ts",
-      configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToReact/default.tsx",
+      configUrlDom: domConfigUrl.default,
+      configUrl: templateConfigUrl.default,
       slateToTemplateConfig: slateToTemplateConfig,   
       initialValue,
     }
@@ -209,8 +210,8 @@ const publishingOptions = [
     config: {
       configName: "Slate demo",
       configSlug: "slate",
-      configUrlDom: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/slateDemo.ts",
-      configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToReact/slateDemo.tsx",
+      configUrlDom: domConfigUrl.slateDemo,
+      configUrl: templateConfigUrl.slateDemo,
       slateToTemplateConfig: slateDemoSlateToTemplateConfig,  
       initialValue: slateValue,
     }
@@ -222,8 +223,8 @@ const publishingOptions = [
     config: {
       configName: "Payload CMS",
       configSlug: "payload",
-      configUrlDom: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/payload.ts",
-      configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToReact/payload.tsx",
+      configUrlDom: domConfigUrl.payload,
+      configUrl: templateConfigUrl.payload,
       slateToTemplateConfig: payloadSlateToTemplateConfig,  
       initialValue: payloadValue,
     }
