@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`slate-to-react docs: slateToHtml output (fixture configs) > default 1`] = `"<h1>Heading 1</h1><p>Paragraph 1</p>"`;
+
+exports[`slate-to-react docs: slateToHtml output (fixture configs) > elementMap 1`] = `"<h1>Heading 1</h1><h1>Heading 1 (identified with our custom type)</h1>"`;
+
+exports[`slate-to-react docs: slateToHtml output (fixture configs) > elementTransforms 1`] = `"<p>Paragraph</p><img src="https://picsum.photos/id/237/200/300">"`;
+
+exports[`slate-to-react docs: slateToHtml output (fixture configs) > markMap 1`] = `"<p><strong><sub>Subscript and bold text</sub></strong></p>"`;
+
+exports[`slate-to-react docs: slateToHtml output (fixture configs) > markTransforms 1`] = `"<p><span style="font-size:96px;"><strong>Paragraph</strong></span></p>"`;

@@ -1,3 +1,5 @@
+import { slateToHtmlConfig } from '@slate-serializers/html'
+
 export const markMapExampleSlate = [{
   type: 'p',
   children: [
@@ -8,6 +10,15 @@ export const markMapExampleSlate = [{
     },
   ],
 }]
+
+/** Parallel DOM config for slateToHtml (equivalent HTML column). */
+export const markMapHtmlConfig = {
+  ...slateToHtmlConfig,
+  markMap: {
+    ...slateToHtmlConfig.markMap,
+    subScript: ['sub'],
+  },
+}
 
 export const markMapExample = `
 import { SlateToReact, slateToReactConfig } from '@slate-serializers/react'

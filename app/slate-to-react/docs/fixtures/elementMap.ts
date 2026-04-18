@@ -1,3 +1,5 @@
+import { slateToHtmlConfig } from '@slate-serializers/html'
+
 export const elementMapExampleSlate = [
   {
     type: 'h1',
@@ -16,6 +18,14 @@ export const elementMapExampleSlate = [
     ],
   },
 ]
+
+export const elementMapHtmlConfig = {
+  ...slateToHtmlConfig,
+  elementMap: {
+    ...slateToHtmlConfig.elementMap,
+    ['heading-one']: 'h1',
+  },
+}
 
 export const elementMapExample = `
 import { SlateToReact, slateToReactConfig } from '@slate-serializers/react'
