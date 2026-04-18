@@ -27,7 +27,7 @@ const navigation = [
     name: 'slateToReact',
     current: false,
     children: [
-      /* { name: 'Docs', href: '#' }, */
+      { name: 'Docs', href: '/slate-to-react/docs' },
       { name: 'Demo', href: '/slate-to-react', current: false },
     ],
   },
