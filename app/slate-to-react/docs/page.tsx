@@ -74,7 +74,7 @@ export default function Page() {
 
     <h2 id="configuration">Configuration</h2>
 
-    <p>Slate JS has a <strong>schema-less core</strong>. It makes few assumptions the schema of the data you will be transforming. See <a href="https://docs.slatejs.org/#principles">Principles | Introduction | Slate</a></p>
+    <p>Slate JS has a <strong>schema-less core</strong>. It makes few assumptions about the schema of the data you will be transforming. See <a href="https://docs.slatejs.org/#principles">Principles | Introduction | Slate</a></p>
 
     <p>As a result, it is likely that you will need to create your own configuration file that implements your schema.</p>
 
