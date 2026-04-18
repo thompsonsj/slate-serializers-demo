@@ -46,7 +46,7 @@ export const HtmlToSlateDemo: FC<IHtmlToSlateDemo> = ({
             Edit HTML content
           </label>
           <textarea
-            className="block w-full h-[400px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className="block w-full h-[400px] rounded-md border-gray-300 shadow-xs focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
             defaultValue={initialValue}
             onChange={ev => setHtmlValue(ev.target.value)}
           ></textarea>

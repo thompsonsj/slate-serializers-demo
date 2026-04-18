@@ -16,7 +16,7 @@ export const PageHeadingBasic: FC<IPageHeadingBasic> = ({
 }) => {
   return (
     <div className={cx(
-      "p-6 bg-slate-200 rounded",
+      "p-6 bg-slate-200 rounded-sm",
       className
     )}>
       <div className="lg:flex lg:items-center lg:justify-between">

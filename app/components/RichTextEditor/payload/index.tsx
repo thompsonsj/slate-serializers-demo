@@ -95,7 +95,7 @@ const RichTextEditor = ({
           'prose',
           'p-6',
           'rounded-lg border border-gray-300',
-          'shadow-sm',
+          'shadow-xs',
           'focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500'
         )}
         renderElement={renderElement}

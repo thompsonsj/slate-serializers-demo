@@ -25,7 +25,7 @@ export const PageHeading: FC<IPageHeading> = ({
       title={title}
       description={configName && (
         <div className="mt-2 flex items-center text-sm text-gray-500">
-          <CogIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
+          <CogIcon className="mr-1.5 h-5 w-5 shrink-0 text-gray-400" aria-hidden="true" />
           <strong>Config:&nbsp;&nbsp;</strong> <a target="_blank" rel="noreferrer" className="underline" href=
           {configUrl}>{configName}</a>.
         </div>

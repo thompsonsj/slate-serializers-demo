@@ -47,7 +47,7 @@ export const PageHeading: FC<IPageHeading> = ({
           <div className="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
             {configName && (
             <div className="mt-2 flex items-center text-sm text-gray-500">
-              <CogIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
+              <CogIcon className="mr-1.5 h-5 w-5 shrink-0 text-gray-400" aria-hidden="true" />
               <strong>Config:&nbsp;&nbsp;</strong> <a target="_blank" className="underline" href=
               {configUrlDom}>{configName} (Dom)</a>, &nbsp; <a target="_blank" className="underline" href=
               {configUrl}>{configName} (React)</a>.

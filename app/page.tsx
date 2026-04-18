@@ -10,7 +10,7 @@ const App = () => {
       <PageHeadingBasic
         title="slate-serializers"
         description={<>A collection of serializers to convert <a href="https://www.npmjs.com/package/slate">Slate</a> JSON objects to various formats and vice versa. Designed to work in both Node.js and browser environments.</>}
-        className="p-6 bg-slate-200 rounded"
+        className="p-6 bg-slate-200 rounded-sm"
       />
       <div className="mt-6">
         <Grid />

@@ -55,7 +55,7 @@ export const Grid = () => {
   return (
     <ul className="grid grid-cols-1 gap-6 lg:grid-cols-2">
       {serializers.map((s, index) => (
-        <li key={index} className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow">
+        <li key={index} className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow-sm">
           <div className="w-full items-center justify-between space-y-6 p-6">
             
             <h2 className="truncate text-lg font-medium text-gray-900"><code>{s.title}</code></h2>
@@ -66,7 +66,7 @@ export const Grid = () => {
           {s.npm && (
               <a
                 href={s.npm}
-                className="inline rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="inline rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 <span className="sr-only">View project on npm</span>
                 <IoLogoNpm className="h-6 w-6" aria-hidden="true" />
@@ -75,7 +75,7 @@ export const Grid = () => {
             {s.github && (
               <a
                 href={s.github}
-                className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 <span className="sr-only">View project on GitHub</span>
                 <BsGithub className="h-6 w-6" aria-hidden="true" />
