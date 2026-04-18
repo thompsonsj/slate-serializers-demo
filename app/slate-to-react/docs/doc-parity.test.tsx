@@ -3,8 +3,8 @@
  * 1. Every `<Code>` snippet embeds the same `JSON.stringify(slate, null, 2)` as the live demo’s fixture data.
  * 2. Snapshots lock `slateToHtml` output for the HTML column configs (see ./fixtures/*.ts).
  *
- * React demo configs live in `*.demo.ts(x)` so Vitest does not import `@slate-serializers/react` (bundled ulidx
- * fails to initialize in the test runner).
+ * React demo configs live in `*.demo.ts(x)` so Vitest does not import `@slate-serializers/react` in the same graph
+ * as the interactive demo (keeps the test bundle smaller and avoids client-only concerns).
  */
 import { slateToHtml } from '@slate-serializers/html'
 import { describe, expect, it } from 'vitest'

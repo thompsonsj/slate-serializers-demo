@@ -87,7 +87,8 @@ const config: SlateToTemplateConfig = {
           <strong>
             <Link href="/slate-to-react/docs">SlateToReact</Link>
           </strong>{' '}
-          — React component output with <code>config.dom</code> + <code>config.react.elementTransforms</code>.
+          — React component output: flat <code>config</code> with the same keys as <code>slateToHtml</code>, plus{' '}
+          <code>elementTransforms</code>.
         </li>
         <li>
           <strong>slateToTemplate</strong> — one output slot per top-level node; mix HTML strings and custom outputs.

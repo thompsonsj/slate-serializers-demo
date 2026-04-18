@@ -1,5 +1,5 @@
 import { slateToHtmlConfig } from '@slate-serializers/html'
-import { Element } from 'domhandler'
+import { Element } from '@/app/lib/dom-element'
 
 export const elementTransformsExampleSlate = [
   {
@@ -36,13 +36,10 @@ const slate = ${JSON.stringify(elementTransformsExampleSlate, undefined, 2)}
 
 const config = {
   ...slateToReactConfig,
-  react: {
-    ...slateToReactConfig.react,
-    elementTransforms: {
-      ...slateToReactConfig.react.elementTransforms,
-      image: ({ node }) => {
-        return React.createElement('img', { src: node?.url ?? '', alt: '' })
-      },
+  elementTransforms: {
+    ...slateToReactConfig.elementTransforms,
+    image: ({ node }) => {
+      return React.createElement('img', { src: node?.url ?? '', alt: '' })
     },
   },
 }

@@ -40,13 +40,18 @@ export default function Page() {
 
 const slate = [{ type: 'p', children: [{ text: 'Hello' }] }]
 const dom = slateToDom(slate, slateToDomConfig)
-// domhandler Document / nodes — pass to dom-serializer or traverse with domutils`}</Code>
+// Document / Element / ChildNode types match domhandler; import types from @slate-serializers/dom or slate-serializers
+// instead of domhandler directly. Pass nodes to dom-serializer or traverse with domutils.`}</Code>
       </div>
 
       <h2>Additional exports</h2>
       <p>
         The package also exports helpers such as <code>extractCssFromStyle</code>, <code>styleMapToAttribs</code>, and{' '}
-        <code>isEmptyObject</code> for working with attributes and styles. See{' '}
+        <code>isEmptyObject</code> for working with attributes and styles. It re-exports domhandler-facing{' '}
+        <strong>types</strong> such as <code>Element</code>, <code>ChildNode</code>, and <code>Text</code> so you can{' '}
+        <code>import type &#123; Element, ChildNode, Text &#125; from &apos;@slate-serializers/dom&apos;</code> (or{' '}
+        <code>slate-serializers</code>) instead of depending on <code>domhandler</code> for typings. See{' '}
+        <a href="https://github.com/thompsonsj/slate-serializers/pull/215">PR #215</a>. See{' '}
         <a href={ghUrl('packages/dom/src/index.ts')}>packages/dom/src/index.ts</a>.
       </p>
 

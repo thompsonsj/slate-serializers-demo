@@ -54,7 +54,7 @@ export default function Page() {
     </ul>
 
     <p>
-      The <code>&lt;SlateToReact&gt;</code> component uses a nested configuration object: <code>dom</code> holds the same options as <Link href="/slate-to-html/docs"><code>slateToHtml</code></Link> (mark and element mapping, formatting, and so on), while <code>react.elementTransforms</code> supplies React components for element types that need them.
+      The <code>&lt;SlateToReact&gt;</code> configuration is a flat object: the same keys as <Link href="/slate-to-html/docs"><code>slateToHtml</code></Link> (<code>markMap</code>, <code>elementMap</code>, formatting options, and so on) plus <code>elementTransforms</code> for React output (each function returns a React node, for example JSX or <code>React.createElement</code>).
     </p>
 
     <h2 id="default">Default</h2>
@@ -82,7 +82,7 @@ export default function Page() {
 
     <ul>
       <li>See <a href={ghUrl("packages/react/src/lib/config/payload.tsx")}>packages/react/src/lib/config/payload.tsx</a> for an example of how to extend the default configuration; or</li>
-      <li>copy <a href={ghUrl("packages/react/src/lib/config/default.tsx")}>packages/react/src/lib/config/default.tsx</a> and rewrite it as appropriate.</li>
+      <li>copy <a href={ghUrl("packages/react/src/lib/config/default.tsx")}>packages/react/src/lib/config/default.tsx</a> (source) and rewrite it as appropriate.</li>
     </ul>
 
     <h4 id="payloadcms">Payload CMS</h4>
@@ -99,8 +99,8 @@ export default function Page() {
       <DefaultConfigListItem />
       <li>A Slate JSON node may have multiple attributes.</li>
       <li>Accepts an array of HTML element tag names.</li>
-      <li>Configure these on <code>config.dom.markMap</code>.</li>
-      <li>See <Link href="/slate-to-html/docs#markmap"><code>markMap</code> | <code>slateToHtml</code></Link>. The <code>dom</code> portion of the React config matches <code>slateToHtml</code>.</li>
+      <li>Configure these on <code>config.markMap</code>.</li>
+      <li>See <Link href="/slate-to-html/docs#markmap"><code>markMap</code> | <code>slateToHtml</code></Link>. The same keys apply as in <code>slateToHtml</code>.</li>
       <li>Test example: <a href={ghUrl("packages/html/src/lib/tests/slateToHtml/configuration/markMap.spec.ts")}>packages/html/src/lib/tests/slateToHtml/configuration/markMap.spec.ts</a>.</li>
     </ul>
 
@@ -122,8 +122,8 @@ export default function Page() {
     <ul>
       <DefaultConfigListItem />
       <li>Straightforward transform - no attributes are considered.</li>
-      <li>Use <code>react.elementTransforms</code> for more control over the returned element.</li>
-      <li>Configure mapping on <code>config.dom.elementMap</code>.</li>
+      <li>Use <code>elementTransforms</code> for more control over the returned element.</li>
+      <li>Configure mapping on <code>config.elementMap</code>.</li>
       <li>Test example: <a href={ghUrl("packages/html/src/lib/tests/slateToHtml/configuration/elementMap.spec.ts")}>packages/html/src/lib/tests/slateToHtml/configuration/elementMap.spec.ts</a>.</li>
     </ul>
 
@@ -160,7 +160,7 @@ export default function Page() {
 
     <h4 id="elementtransforms"><code>elementTransforms</code></h4>
 
-    <p>For React, define transforms on <code>config.react.elementTransforms</code>. Each function returns a React node (for example JSX or <code>React.createElement</code>).</p>
+    <p>For React, define transforms on <code>config.elementTransforms</code>. Each function returns a React node (for example JSX or <code>React.createElement</code>).</p>
 
     <ul>
       <DefaultConfigListItem />
@@ -186,7 +186,7 @@ export default function Page() {
     <ul>
       <li>For a comprehensive example transforming HTML CSS attributes, see <a href={ghUrl("packages/tests/src/lib/html/snapshots/htmlToSlateToHtml.spec.ts")}>packages/tests/src/lib/html/snapshots/htmlToSlateToHtml.spec.ts</a>.</li>
       <li><a href="#elementtransforms"><code>elementTransforms</code></a> can also be used to transform attributes, but these functions are defined per element. <code>elementAttributeTransform</code> accepts a single function that applies to every element.</li>
-      <li>Set this on <code>config.dom.elementAttributeTransform</code>.</li>
+      <li>Set this on <code>config.elementAttributeTransform</code>.</li>
     </ul>
 
     <h4 id="formatting">Formatting</h4>
@@ -195,7 +195,7 @@ export default function Page() {
 
     <ul>
       <DefaultConfigListItem />
-      <li>These options live on <code>config.dom</code> (same as <code>slateToHtml</code>).</li>
+      <li>These options live on <code>config</code> at the top level (same keys as <code>slateToHtml</code>).</li>
       <li>Test examples: <a href={ghUrl("packages/html/src/lib/tests/slateToHtml/configuration/formatting.spec.ts")}>packages/html/src/lib/tests/slateToHtml/configuration/formatting.spec.ts</a>.</li>
     </ul>
 

@@ -15,6 +15,19 @@ export function GettingStarted() {
         configs—useful if you want a single dependency for server-side HTML ↔ Slate workflows.
       </p>
 
+      <h3>TypeScript: DOM types in configs</h3>
+      <p>
+        Public APIs that mention domhandler types (for example <code>Element</code>, <code>ChildNode</code>,{' '}
+        <code>Text</code>) should be typed using re-exports from the library instead of importing those types from{' '}
+        <code>domhandler</code> directly:{' '}
+        <code>import type &#123; Element, ChildNode, Text &#125; from &apos;@slate-serializers/html&apos;</code> or{' '}
+        <code>slate-serializers</code> (see{' '}
+        <a href="https://github.com/thompsonsj/slate-serializers/pull/215">PR #215</a>
+        ). To <strong>construct</strong> nodes with <code>new Element(...)</code> in custom transforms, use the{' '}
+        <code>Element</code> class from <code>domhandler</code> (add it as a dependency). This site imports that
+        constructor from a small module (<code>@/app/lib/dom-element</code>) so feature code stays in one place.
+      </p>
+
       <h3>Packages at a glance</h3>
       <div className="not-prose overflow-x-auto">
         <table className="min-w-full text-left text-sm border border-gray-200">
@@ -44,8 +57,8 @@ export function GettingStarted() {
             <tr>
               <td className="p-3 font-mono text-xs sm:text-sm">@slate-serializers/react</td>
               <td className="p-3">
-                <code>&lt;SlateToReact /&gt;</code> for React output with <code>config.dom</code> +{' '}
-                <code>config.react.elementTransforms</code>.
+                <code>&lt;SlateToReact /&gt;</code> for React output: same top-level keys as <code>slateToHtml</code>, plus{' '}
+                <code>elementTransforms</code> for React nodes.
               </td>
             </tr>
             <tr>

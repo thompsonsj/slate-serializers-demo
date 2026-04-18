@@ -1,5 +1,5 @@
 import { slateToHtmlConfig } from '@slate-serializers/html'
-import { Element } from 'domhandler'
+import { Element } from '@/app/lib/dom-element'
 
 export const markTransformsExampleSlate = [
   {

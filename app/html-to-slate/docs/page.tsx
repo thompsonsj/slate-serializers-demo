@@ -2,7 +2,7 @@ import { Code } from "bright"
 import { htmlToSlate, htmlToSlateConfig } from '@slate-serializers/html'
 import { ghUrl } from "@/app/utilities/docs"
 import Link from "next/link"
-import { Element } from 'domhandler';
+import { Element } from '@/app/lib/dom-element'
 import { findOne, getAttributeValue } from 'domutils';
 
 // fixtures
@@ -78,7 +78,14 @@ export default function Page() {
     
     <ul>
       <DefaultConfigListItem />
-      <li>Receives <code>el</code> of type <a href="https://domhandler.js.org/classes/Element.html"><code>Element</code></a> as an argument.<ul><li>Combine with utilities from <a href="https://domutils.js.org/"><code>domutils</code></a> to perform further manipulation.</li></ul></li>
+      <li>
+        Receives <code>el</code> of type <code>Element</code>. For TypeScript, import that type from{' '}
+        <code>@slate-serializers/html</code> or <code>slate-serializers</code> rather than from <code>domhandler</code>{' '}
+        (see <a href="https://github.com/thompsonsj/slate-serializers/pull/215">PR #215</a>).
+        <ul>
+          <li>Combine with utilities from <a href="https://domutils.js.org/"><code>domutils</code></a> to perform further manipulation.</li>
+        </ul>
+      </li>
       <li>Test examples: <a href={ghUrl("packages/html/src/lib/tests/htmlToSlate/configuration/textTags.spec.ts")}>packages/html/src/lib/tests/htmlToSlate/configuration/textTags.spec.ts</a>.</li>
     </ul>
 
@@ -107,7 +114,14 @@ export default function Page() {
     
     <ul>
       <DefaultConfigListItem />
-      <li>Receives <code>el</code> of type <a href="https://domhandler.js.org/classes/Element.html"><code>Element</code></a> as an argument.<ul><li>Combine with utilities from <a href="https://domutils.js.org/"><code>domutils</code></a> to perform further manipulation.</li></ul></li>
+      <li>
+        Receives <code>el</code> of type <code>Element</code>. For TypeScript, import that type from{' '}
+        <code>@slate-serializers/html</code> or <code>slate-serializers</code> rather than from <code>domhandler</code>{' '}
+        (see <a href="https://github.com/thompsonsj/slate-serializers/pull/215">PR #215</a>).
+        <ul>
+          <li>Combine with utilities from <a href="https://domutils.js.org/"><code>domutils</code></a> to perform further manipulation.</li>
+        </ul>
+      </li>
       <li>Test examples: <a href={ghUrl("packages/html/src/lib/tests/htmlToSlate/configuration/elementTags.spec.ts")}>packages/html/src/lib/tests/htmlToSlate/configuration/elementTags.spec.ts</a>.</li>
     </ul>
 
