@@ -27,13 +27,10 @@ const slate = ${JSON.stringify(markMapExampleSlate, undefined, 2)}
 
 const config = {
   ...slateToReactConfig,
-  dom: {
-    ...slateToReactConfig.dom,
-    markMap: {
-      // bold already in default configuration
-      ...slateToReactConfig.dom.markMap,
-      subScript: ['sub'],
-    },
+  markMap: {
+    // bold already in default configuration
+    ...slateToReactConfig.markMap,
+    subScript: ['sub'],
   },
 }
 

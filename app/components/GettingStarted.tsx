@@ -15,6 +15,20 @@ export function GettingStarted() {
         configs—useful if you want a single dependency for server-side HTML ↔ Slate workflows.
       </p>
 
+      <h3>DOM types and constructors</h3>
+      <p>
+        Serializer configs use the same DOM model as <code>htmlparser2</code> / <code>domhandler</code>, but you should not add{' '}
+        <code>domhandler</code> as an app dependency for types or constructors. Import <strong>types</strong> such as{' '}
+        <code>ChildNode</code> with{' '}
+        <code>import type &#123; ChildNode &#125; from &apos;@slate-serializers/html&apos;</code> (or{' '}
+        <code>slate-serializers</code>; see{' '}
+        <a href="https://github.com/thompsonsj/slate-serializers/pull/215">PR #215</a>). Import the <code>Element</code>{' '}
+        and <code>Text</code> <strong>constructors</strong> from the same packages when you build nodes in{' '}
+        <code>markTransforms</code> / <code>elementTransforms</code> (see{' '}
+        <a href="https://github.com/thompsonsj/slate-serializers/pull/218">PR #218</a>), e.g.{' '}
+        <code>import &#123; Element, Text &#125; from &apos;@slate-serializers/html&apos;</code>.
+      </p>
+
       <h3>Packages at a glance</h3>
       <div className="not-prose overflow-x-auto">
         <table className="min-w-full text-left text-sm border border-gray-200">
@@ -44,8 +58,8 @@ export function GettingStarted() {
             <tr>
               <td className="p-3 font-mono text-xs sm:text-sm">@slate-serializers/react</td>
               <td className="p-3">
-                <code>&lt;SlateToReact /&gt;</code> for React output with <code>config.dom</code> +{' '}
-                <code>config.react.elementTransforms</code>.
+                <code>&lt;SlateToReact /&gt;</code> for React output: same top-level keys as <code>slateToHtml</code>, plus{' '}
+                <code>elementTransforms</code> for React nodes.
               </td>
             </tr>
             <tr>
