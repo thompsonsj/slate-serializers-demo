@@ -6,7 +6,8 @@ const ENGINEERING =
 
 export function GettingStarted() {
   return (
-    <div className="prose max-w-none mb-10">
+    <div className="mt-10 max-w-prose mb-10">
+      <div className="prose">
       <h2>Getting started</h2>
       <p>
         Install only the packages you need. Each serializer is published under <code>@slate-serializers/</code> on npm.
@@ -106,6 +107,7 @@ export function RichText({ value }: { value: any[] }) {
         compatibility detail and parser choices, see{' '}
         <a href={ENGINEERING}>Engineering decisions</a> in the monorepo.
       </p>
+      </div>
     </div>
   )
 }
