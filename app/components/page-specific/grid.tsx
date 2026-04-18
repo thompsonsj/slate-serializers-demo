@@ -34,7 +34,7 @@ const serializers = [
     content: <>
       <p>Convert Slate JSON to React.</p>
     </>,
-    docsLink: '',
+    docsLink: '/slate-to-react/docs',
     demoLink: '/slate-to-react',
   },
   {
