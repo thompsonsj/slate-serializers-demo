@@ -34,13 +34,10 @@ const slate = ${JSON.stringify(elementMapExampleSlate, undefined, 2)}
 
 const config = {
   ...slateToReactConfig,
-  dom: {
-    ...slateToReactConfig.dom,
-    elementMap: {
-      // default configuration includes 'h1'
-      ...slateToReactConfig.dom.elementMap,
-      ['heading-one']: 'h1',
-    },
+  elementMap: {
+    // default configuration includes 'h1'
+    ...slateToReactConfig.elementMap,
+    ['heading-one']: 'h1',
   },
 }
 

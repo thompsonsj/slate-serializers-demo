@@ -14,9 +14,11 @@ export function HomeClient({ children }: { children: ReactNode }) {
           <div className="max-w-prose">
             <div className="prose">
               <p>
-                A collection of serializers to convert{' '}
-                <a href="https://www.npmjs.com/package/slate">Slate</a> JSON objects to various formats and vice versa.
-                Designed to work in both Node.js and browser environments.
+                <strong>slate-serializers</strong> helps{' '}
+                <a href="https://www.npmjs.com/package/slate">Slate.js</a> apps turn editor content into{' '}
+                <strong>HTML</strong> and back, render it as <strong>React</strong> components, walk an intermediate{' '}
+                <strong>DOM</strong> tree, or emit <strong>template-style</strong> output (e.g. JSX or partial HTML). Works
+                in Node.js and the browser.
               </p>
             </div>
           </div>

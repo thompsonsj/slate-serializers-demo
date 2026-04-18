@@ -10,6 +10,12 @@ export function GettingStarted() {
       <div className="prose">
       <h2>Getting started</h2>
       <p>
+        If you use <a href="https://www.npmjs.com/package/slate">Slate.js</a> and need to store or display rich text
+        outside the editor, these packages cover the common paths: <strong>HTML</strong> round-trip,{' '}
+        <strong>React</strong> rendering, a <strong>DOM</strong> stage before HTML, and <strong>template</strong> /
+        custom serializers for non-HTML targets.
+      </p>
+      <p>
         Install only the packages you need. Each serializer is published under <code>@slate-serializers/</code> on npm.
         The umbrella package <code>slate-serializers</code> re-exports the HTML and DOM serializers and their default
         configs—useful if you want a single dependency for server-side HTML ↔ Slate workflows.

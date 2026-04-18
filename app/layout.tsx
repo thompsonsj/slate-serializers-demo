@@ -4,18 +4,69 @@ import { Sidebar } from './components/Sidebar'
 import './globals.css'
 
 
+const siteDescription =
+  'Documentation and interactive demos for slate-serializers: npm packages that serialize Slate.js editor content to HTML strings and parse HTML back to Slate nodes, render Slate to React components, produce DOM for custom pipelines, and emit template-style output (e.g. JSX or partial HTML).'
+
 export const metadata: Metadata = {
+  metadataBase: new URL('https://thompsonsj.github.io'),
   title: 'slate-serializers — docs & demos',
-  description:
-    'Interactive documentation for @slate-serializers: Slate to HTML, HTML to Slate, React, DOM, and template serializers.',
+  description: siteDescription,
+  keywords: [
+    'Slate.js',
+    'Slate editor',
+    'rich text',
+    'serialization',
+    'slateToHtml',
+    'htmlToSlate',
+    'Slate to HTML',
+    'HTML to Slate',
+    'Slate to React',
+    'slate-serializers',
+    '@slate-serializers/html',
+    '@slate-serializers/react',
+    'slateToDom',
+    'slateToTemplate',
+  ],
+  openGraph: {
+    title: 'slate-serializers — Slate.js serialization (HTML, React, DOM, templates)',
+    description: siteDescription,
+    type: 'website',
+    url: '/slate-serializers-demo/',
+    siteName: 'slate-serializers demo',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'slate-serializers — Slate.js serialization docs & demos',
+    description: siteDescription,
+  },
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'slate-serializers',
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Any',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    description: siteDescription,
+    url: 'https://thompsonsj.github.io/slate-serializers-demo/',
+    isBasedOn: 'https://github.com/thompsonsj/slate-serializers',
+    featureList: [
+      'Serialize Slate.js document JSON to HTML',
+      'Parse HTML to Slate.js nodes',
+      'Render Slate content as React components',
+      'Serialize Slate to DOM or template-style output',
+    ],
+  }
 
   return (
     <html lang="en">
     <body>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div>
         <Sidebar />
         <main className="py-10 lg:pl-72">

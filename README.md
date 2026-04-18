@@ -4,6 +4,8 @@ Interactive **documentation and demo site** for [**slate-serializers**](https://
 
 **Live site:** [thompsonsj.github.io/slate-serializers-demo](https://thompsonsj.github.io/slate-serializers-demo)
 
+**LLM / tool summary:** [public/llms.txt](public/llms.txt) (also served at `/slate-serializers-demo/llms.txt` on the live site) — short, keyword-dense description of what slate-serializers does for Slate.js (HTML, React, DOM, templates).
+
 The library source lives in a separate repository; this app consumes the published `@slate-serializers/*` packages from npm.
 
 ## Local development

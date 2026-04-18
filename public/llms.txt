@@ -1,0 +1,27 @@
+# slate-serializers (this site)
+
+> Machine-oriented summary for tools and assistants. Human docs: https://thompsonsj.github.io/slate-serializers-demo/ — this file: https://thompsonsj.github.io/slate-serializers-demo/llms.txt
+
+## What this is
+
+- **slate-serializers** is a set of **npm packages** for **[Slate.js](https://www.npmjs.com/package/slate)** (rich-text editor framework).
+- Use it to **serialize Slate editor state** (JSON / `Descendant[]`) **to and from HTML**, and to **other targets**.
+
+## Capabilities (pick packages as needed)
+
+| Goal | Typical entry points | npm scope |
+|------|----------------------|-----------|
+| Slate ↔ HTML string | `slateToHtml`, `htmlToSlate` | `@slate-serializers/html` |
+| Slate → DOM (htmlparser2 model), then HTML or custom | `slateToDom` | `@slate-serializers/dom` |
+| Slate → React elements | `<SlateToReact />` | `@slate-serializers/react` |
+| Slate → template chunks (HTML strings, JSX, custom) | `slateToTemplate` | `@slate-serializers/template` |
+| One dependency for HTML + DOM serializers | re-exports | `slate-serializers` (meta package) |
+
+## What this repository is
+
+- **slate-serializers-demo** — Next.js **documentation and interactive demos** for the library above.
+- **Library source** lives at: https://github.com/thompsonsj/slate-serializers
+
+## Keywords
+
+Slate.js, Slate editor, rich text, serialization, deserialize, HTML, React, DOM, template, `slateToHtml`, `htmlToSlate`, `slateToDom`, `SlateToReact`, `slateToTemplate`
