@@ -10,8 +10,8 @@ export default function Page() {
       </h1>
 
       <p>
-        From <code>@slate-serializers/dom</code>. Converts Slate JSON to a <code>htmlparser2</code> DOM (via{' '}
-        <code>domhandler</code> nodes). <Link href="/slate-to-html/docs">slateToHtml</Link> uses this pipeline and
+        From <code>@slate-serializers/dom</code>. Converts Slate JSON to a <code>htmlparser2</code> DOM (nodes use the
+        same model as <code>domhandler</code>). <Link href="/slate-to-html/docs">slateToHtml</Link> uses this pipeline and
         then serializes to an HTML string—you only need <code>slateToDom</code> when you want to walk or mutate the
         DOM before serialization.
       </p>
@@ -40,13 +40,19 @@ export default function Page() {
 
 const slate = [{ type: 'p', children: [{ text: 'Hello' }] }]
 const dom = slateToDom(slate, slateToDomConfig)
-// domhandler Document / nodes — pass to dom-serializer or traverse with domutils`}</Code>
+// Import types and Element/Text constructors from @slate-serializers/dom or @slate-serializers/html (PR #215, #218).
+// Pass nodes to dom-serializer or traverse with domutils.`}</Code>
       </div>
 
       <h2>Additional exports</h2>
       <p>
         The package also exports helpers such as <code>extractCssFromStyle</code>, <code>styleMapToAttribs</code>, and{' '}
-        <code>isEmptyObject</code> for working with attributes and styles. See{' '}
+        <code>isEmptyObject</code> for working with attributes and styles. It re-exports the <code>ChildNode</code>{' '}
+        <strong>type</strong> and the <code>Element</code> and <code>Text</code> <strong>constructors</strong> from
+        domhandler so you can import them from <code>@slate-serializers/dom</code> or <code>@slate-serializers/html</code>{' '}
+        without a direct <code>domhandler</code> dependency — see{' '}
+        <a href="https://github.com/thompsonsj/slate-serializers/pull/215">PR #215</a> and{' '}
+        <a href="https://github.com/thompsonsj/slate-serializers/pull/218">PR #218</a>. Index:{' '}
         <a href={ghUrl('packages/dom/src/index.ts')}>packages/dom/src/index.ts</a>.
       </p>
 

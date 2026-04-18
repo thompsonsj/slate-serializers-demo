@@ -15,9 +15,9 @@
     "@faceless-ui/modal": "^3.0.0",
     "@headlessui/react": "^2.2.10",
     "@heroicons/react": "^2.2.0",
-    "@slate-serializers/html": "^2.2.3",
-    "@slate-serializers/react": "^2.2.3",
-    "@slate-serializers/template": "^2.2.3",
+    "@slate-serializers/html": "^2.5.0",
+    "@slate-serializers/react": "^2.5.0",
+    "@slate-serializers/template": "^2.5.0",
     "bright": "^1.0.0",
     "classnames": "^2.5.1",
     "is-url": "^1.2.4",
@@ -28,8 +28,7 @@
     "slate": "^0.101.5",
     "slate-history": "^0.113.1",
     "slate-react": "^0.101.6",
-    "stringify-object": "^5.0.0",
-    "ulidx": "^2.4.1"
+    "stringify-object": "^5.0.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.2",

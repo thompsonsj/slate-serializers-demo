@@ -54,7 +54,11 @@ export default function Page() {
     </ul>
 
     <p>
-      The <code>&lt;SlateToReact&gt;</code> <code>config</code> is a single flat object: the same top-level keys as <Link href="/slate-to-html/docs"><code>slateToHtml</code></Link> (for example <code>markMap</code>, <code>elementMap</code>, encoding options), plus <code>elementTransforms</code> and <code>markTransforms</code> that return React nodes where you override the default mapping.
+      The <code>&lt;SlateToReact&gt;</code> <code>config</code> is a flat object: the same top-level keys as{' '}
+      <Link href="/slate-to-html/docs"><code>slateToHtml</code></Link> (<code>markMap</code>, <code>elementMap</code>, formatting
+      options, and so on). Use <code>elementTransforms</code> where an element type needs custom React output (each function
+      returns a React node, for example JSX or <code>React.createElement</code>). See{' '}
+      <a href="#marktransforms"><code>markTransforms</code></a> below for how marks differ from <code>slateToHtml</code>.
     </p>
 
     <h2 id="default">Default</h2>
@@ -82,7 +86,7 @@ export default function Page() {
 
     <ul>
       <li>See <a href={ghUrl("packages/react/src/lib/config/payload.tsx")}>packages/react/src/lib/config/payload.tsx</a> for an example of how to extend the default configuration; or</li>
-      <li>copy <a href={ghUrl("packages/react/src/lib/config/default.tsx")}>packages/react/src/lib/config/default.tsx</a> and rewrite it as appropriate.</li>
+      <li>copy <a href={ghUrl("packages/react/src/lib/config/default.tsx")}>packages/react/src/lib/config/default.tsx</a> (source) and rewrite it as appropriate.</li>
     </ul>
 
     <h4 id="payloadcms">Payload CMS</h4>
@@ -100,7 +104,7 @@ export default function Page() {
       <li>A Slate JSON node may have multiple attributes.</li>
       <li>Accepts an array of HTML element tag names.</li>
       <li>Configure these on <code>config.markMap</code>.</li>
-      <li>See <Link href="/slate-to-html/docs#markmap"><code>markMap</code> | <code>slateToHtml</code></Link>. The same option applies on <code>&lt;SlateToReact&gt;</code> as on <code>slateToHtml</code>.</li>
+      <li>See <Link href="/slate-to-html/docs#markmap"><code>markMap</code> | <code>slateToHtml</code></Link>. The same keys apply on <code>&lt;SlateToReact&gt;</code> as in <code>slateToHtml</code>.</li>
       <li>Test example: <a href={ghUrl("packages/html/src/lib/tests/slateToHtml/configuration/markMap.spec.ts")}>packages/html/src/lib/tests/slateToHtml/configuration/markMap.spec.ts</a>.</li>
     </ul>
 
