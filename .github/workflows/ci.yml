@@ -1,0 +1,48 @@
+# Lint, TypeScript, production build, and static-export checks (GitHub Pages).
+# See: https://nextjs.org/docs/app/guides/ci-build-caching
+name: CI
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CI: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: TypeScript
+        run: npm run type-check
+
+      - name: Production build
+        run: npm run build
+
+      - name: Verify static export (GitHub Pages)
+        run: |
+          set -e
+          test -f out/index.html
+          test -f out/404.html
+          test -d out/_next
+          test -f out/.nojekyll
