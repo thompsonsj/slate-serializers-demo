@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 
 @theme {
   --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
@@ -40,7 +41,8 @@ code {
     monospace;
 }
 
-pre {
+/* Do not style all `pre` tags globally — it breaks Bright/Tailwind code blocks (e.g. light bg + light text). */
+pre:not([class]) {
   padding: 10px;
   background-color: #eee;
   white-space: pre-wrap;
