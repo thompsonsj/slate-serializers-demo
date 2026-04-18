@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import { Sidebar } from './components/Sidebar'
+import { SITE_ORIGIN, SITE_URL } from './site'
 import './globals.css'
 
 
@@ -8,8 +9,11 @@ const siteDescription =
   'Documentation and interactive demos for slate-serializers: npm packages that serialize Slate.js editor content to HTML strings and parse HTML back to Slate nodes, render Slate to React components, produce DOM for custom pipelines, and emit template-style output (e.g. JSX or partial HTML).'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://thompsonsj.github.io'),
-  title: 'slate-serializers — docs & demos',
+  metadataBase: new URL(SITE_ORIGIN),
+  title: {
+    default: 'slate-serializers — docs & demos',
+    template: '%s | slate-serializers',
+  },
   description: siteDescription,
   keywords: [
     'Slate.js',
@@ -50,7 +54,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     operatingSystem: 'Any',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     description: siteDescription,
-    url: 'https://thompsonsj.github.io/slate-serializers-demo/',
+    url: `${SITE_URL}/`,
     isBasedOn: 'https://github.com/thompsonsj/slate-serializers',
     featureList: [
       'Serialize Slate.js document JSON to HTML',

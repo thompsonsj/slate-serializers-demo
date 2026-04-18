@@ -6,6 +6,10 @@ Interactive **documentation and demo site** for [**slate-serializers**](https://
 
 **LLM / tool summary:** [public/llms.txt](public/llms.txt) (also served at `/slate-serializers-demo/llms.txt` on the live site) — short, keyword-dense description of what slate-serializers does for Slate.js (HTML, React, DOM, templates).
 
+**Crawlers:** [public/robots.txt](public/robots.txt) allows indexing and points to the sitemap. **`app/sitemap.ts`** generates `sitemap.xml` at build time (full URLs under `https://thompsonsj.github.io/slate-serializers-demo/`).
+
+**AI / editor agents:** see [AGENTS.md](AGENTS.md) for repo layout, commands, and conventions.
+
 The library source lives in a separate repository; this app consumes the published `@slate-serializers/*` packages from npm.
 
 ## Local development

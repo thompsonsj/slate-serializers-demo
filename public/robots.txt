@@ -1,0 +1,24 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Optional: common AI crawlers (allow full site)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Machine-readable overview for tools (see https://llmstxt.org/)
+# https://thompsonsj.github.io/slate-serializers-demo/llms.txt
+
+Sitemap: https://thompsonsj.github.io/slate-serializers-demo/sitemap.xml

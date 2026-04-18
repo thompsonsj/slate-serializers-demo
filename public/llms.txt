@@ -22,6 +22,11 @@
 - **slate-serializers-demo** — Next.js **documentation and interactive demos** for the library above.
 - **Library source** lives at: https://github.com/thompsonsj/slate-serializers
 
+## Site map & crawlers
+
+- Sitemap: `https://thompsonsj.github.io/slate-serializers-demo/sitemap.xml` (generated from `app/sitemap.ts` at build time)
+- Robots: `https://thompsonsj.github.io/slate-serializers-demo/robots.txt`
+
 ## Keywords
 
 Slate.js, Slate editor, rich text, serialization, deserialize, HTML, React, DOM, template, `slateToHtml`, `htmlToSlate`, `slateToDom`, `SlateToReact`, `slateToTemplate`
