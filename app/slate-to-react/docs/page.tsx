@@ -1,93 +1,32 @@
-import React from "react"
 import { Code } from "bright"
-import { slateToHtml, slateToHtmlConfig } from '@slate-serializers/html'
+import { slateToHtml } from '@slate-serializers/html'
 import { ghUrl } from "@/app/utilities/docs"
-import { Element } from "domhandler"
 import Link from "next/link"
 
 // fixtures
 import { defaultExample, defaultExampleSlate } from "./fixtures/default"
-import { markMapExample, markMapExampleSlate } from "./fixtures/markMap"
-import { elementMapExample, elementMapExampleSlate } from "./fixtures/elementMap"
-import { markTransformsExample, markTransformsExampleSlate } from "./fixtures/markTransforms"
-import { elementTransformsExample, elementTransformsExampleSlate } from "./fixtures/elementTransforms"
-import { SlateToReact, slateToReactConfig } from "@slate-serializers/react"
+import {
+  markMapExample,
+  markMapExampleSlate,
+  markMapHtmlConfig,
+} from "./fixtures/markMap"
+import { markMapDemoConfig } from "./fixtures/markMap.demo"
+import {
+  elementMapExample,
+  elementMapExampleSlate,
+  elementMapHtmlConfig,
+} from "./fixtures/elementMap"
+import { elementMapDemoConfig } from "./fixtures/elementMap.demo"
+import { markTransformsExample, markTransformsExampleSlate, markTransformsHtmlConfig } from "./fixtures/markTransforms"
+import {
+  elementTransformsExample,
+  elementTransformsExampleSlate,
+  elementTransformsHtmlConfig,
+} from "./fixtures/elementTransforms"
+import { elementTransformsDemoConfig } from "./fixtures/elementTransforms.demo"
+import { SlateToReact } from "@slate-serializers/react"
 
 const DefaultConfigListItem = () => <li>Default: <a href={ghUrl("packages/react/src/lib/config/default.tsx")}>packages/react/src/lib/config/default.tsx</a>.</li>
-
-const markMapDemoConfig = {
-  ...slateToReactConfig,
-  dom: {
-    ...slateToReactConfig.dom,
-    markMap: {
-      ...slateToReactConfig.dom.markMap,
-      subScript: ['sub'],
-    },
-  },
-}
-
-const markMapHtmlConfig = {
-  ...slateToHtmlConfig,
-  markMap: {
-    ...slateToHtmlConfig.markMap,
-    subScript: ['sub'],
-  },
-}
-
-const elementMapDemoConfig = {
-  ...slateToReactConfig,
-  dom: {
-    ...slateToReactConfig.dom,
-    elementMap: {
-      ...slateToReactConfig.dom.elementMap,
-      ['heading-one']: 'h1',
-    },
-  },
-}
-
-const elementMapHtmlConfig = {
-  ...slateToHtmlConfig,
-  elementMap: {
-    ...slateToHtmlConfig.elementMap,
-    ['heading-one']: 'h1',
-  },
-}
-
-const markTransformsHtmlConfig = {
-  ...slateToHtmlConfig,
-  markTransforms: {
-    ...slateToHtmlConfig.markTransforms,
-    fontSize: ({ node }: { node?: any }) => {
-      return new Element('span', {
-        style: `font-size:${node.fontSize};`,
-      })
-    },
-  },
-}
-
-const elementTransformsDemoConfig = {
-  ...slateToReactConfig,
-  react: {
-    ...slateToReactConfig.react,
-    elementTransforms: {
-      ...slateToReactConfig.react.elementTransforms,
-      image: ({ node }: { node?: any }) =>
-        React.createElement('img', { src: node?.url ?? '', alt: '' }),
-    },
-  },
-}
-
-const elementTransformsHtmlConfig = {
-  ...slateToHtmlConfig,
-  elementTransforms: {
-    ...slateToHtmlConfig.elementTransforms,
-    image: ({ node }: { node?: any }) => {
-      return new Element('img', {
-        src: node?.url ?? '',
-      })
-    },
-  },
-}
 
 export default function Page() {
    

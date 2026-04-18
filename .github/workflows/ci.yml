@@ -36,6 +36,9 @@ jobs:
       - name: TypeScript
         run: npm run type-check
 
+      - name: Tests (docs parity)
+        run: npm run test
+
       - name: Production build
         run: npm run build
 

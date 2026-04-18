@@ -1,3 +1,6 @@
+import { slateToHtmlConfig } from '@slate-serializers/html'
+import { Element } from 'domhandler'
+
 export const markTransformsExampleSlate = [
   {
     type: 'p',
@@ -10,6 +13,18 @@ export const markTransformsExampleSlate = [
     ],
   },
 ]
+
+export const markTransformsHtmlConfig = {
+  ...slateToHtmlConfig,
+  markTransforms: {
+    ...slateToHtmlConfig.markTransforms,
+    fontSize: ({ node }: { node?: any }) => {
+      return new Element('span', {
+        style: `font-size:${node.fontSize};`,
+      })
+    },
+  },
+}
 
 export const markTransformsExample = `
 import { slateToHtml, slateToHtmlConfig } from '@slate-serializers/html'

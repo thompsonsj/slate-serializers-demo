@@ -1,3 +1,6 @@
+import { slateToHtmlConfig } from '@slate-serializers/html'
+import { Element } from 'domhandler'
+
 export const elementTransformsExampleSlate = [
   {
     type: 'p',
@@ -13,6 +16,18 @@ export const elementTransformsExampleSlate = [
   },
 ]
 
+export const elementTransformsHtmlConfig = {
+  ...slateToHtmlConfig,
+  elementTransforms: {
+    ...slateToHtmlConfig.elementTransforms,
+    image: ({ node }: { node?: any }) => {
+      return new Element('img', {
+        src: node?.url ?? '',
+      })
+    },
+  },
+}
+
 export const elementTransformsExample = `
 import React from 'react'
 import { SlateToReact, slateToReactConfig } from '@slate-serializers/react'
@@ -26,7 +41,7 @@ const config = {
     elementTransforms: {
       ...slateToReactConfig.react.elementTransforms,
       image: ({ node }) => {
-        return React.createElement('img', { src: node.url, alt: '' })
+        return React.createElement('img', { src: node?.url ?? '', alt: '' })
       },
     },
   },
