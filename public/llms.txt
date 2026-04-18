@@ -13,7 +13,7 @@
 |------|----------------------|-----------|
 | Slate ↔ HTML string | `slateToHtml`, `htmlToSlate` | `@slate-serializers/html` |
 | Slate → DOM (htmlparser2 model), then HTML or custom | `slateToDom` | `@slate-serializers/dom` |
-| Slate → React elements | `<SlateToReact />` | `@slate-serializers/react` |
+| Slate → React elements | `<SlateToReact />` (flat `config` like `slateToHtml` + `elementTransforms`) | `@slate-serializers/react` |
 | Slate → template chunks (HTML strings, JSX, custom) | `slateToTemplate` | `@slate-serializers/template` |
 | One dependency for HTML + DOM serializers | re-exports | `slate-serializers` (meta package) |
 
@@ -21,6 +21,8 @@
 
 - **slate-serializers-demo** — Next.js **documentation and interactive demos** for the library above.
 - **Library source** lives at: https://github.com/thompsonsj/slate-serializers
+
+**v2.5+:** `Element` and `Text` constructors (and `ChildNode` type) are re-exported from `@slate-serializers/html` / `slate-serializers` so apps do not depend on `domhandler` directly for those APIs.
 
 ## Site map & crawlers
 
