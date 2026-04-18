@@ -16,7 +16,7 @@ import { htmlUpdaterMapExample, htmlUpdaterMapExampleHtml } from "./fixtures/htm
 const DefaultConfigListItem = () => <li>Default: <a href={ghUrl("packages/html/src/lib/serializers/htmlToSlate/config/default.ts")}>packages/html/src/lib/serializers/htmlToSlate/config/default.ts</a>.</li>
 
 export default function Page() {
-  // eslint-disable-next-line react/no-unescaped-entities
+   
   return <div className="prose">
     <h1><code>htmlToSlate</code></h1>
 

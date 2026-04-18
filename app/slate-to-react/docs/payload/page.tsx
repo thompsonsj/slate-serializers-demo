@@ -6,7 +6,7 @@ import { comprehensiveExample, comprehensiveExampleSlate } from "./fixtures/comp
 import Link from "next/link"
 
 export default function Page() {
-  // eslint-disable-next-line react/no-unescaped-entities
+   
   return <div className="prose">
     <h1><code>SlateToReact</code>: Payload CMS configuration</h1>
 

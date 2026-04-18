@@ -6,28 +6,29 @@ interface BaseProps {
   className: string
   [key: string]: unknown
 }
-type OrNull<T> = T | null
 
-export const Button = React.forwardRef(
+type ButtonProps = PropsWithChildren<
+  {
+    active: boolean
+    reversed: boolean
+  } & BaseProps
+>
+
+export const Button = React.forwardRef<HTMLSpanElement, ButtonProps>(
   function Button(
     {
       className,
       active,
       reversed,
       ...props
-    }: PropsWithChildren<
-      {
-        active: boolean
-        reversed: boolean
-      } & BaseProps
-    >,
+    },
     ref: Ref<HTMLSpanElement>
   ) { return (
     <span
       {...props}
       ref={ref}
       className={cx(
-        className,
+        className as string,
         css`
           cursor: pointer;
           color: ${reversed
@@ -43,20 +44,22 @@ export const Button = React.forwardRef(
   )}
 )
 
-export const EditorValue = React.forwardRef(
+type EditorValueProps = PropsWithChildren<
+  {
+    value: any
+  } & BaseProps
+>
+
+export const EditorValue = React.forwardRef<HTMLDivElement, EditorValueProps>(
   function EditorValue (
     {
       className,
       value,
       ...props
-    }: PropsWithChildren<
-      {
-        value: any
-      } & BaseProps
-    >,
+    },
     ref: Ref<HTMLDivElement>
   ) {
-    const textLines = value.document.nodes
+    const textLines = (value as any).document.nodes
       .map((node: any) => node.text)
       .toArray()
       .join('\n')
@@ -65,7 +68,7 @@ export const EditorValue = React.forwardRef(
         ref={ref}
         {...props}
         className={cx(
-          className,
+          className as string,
           css`
             margin: 30px -20px 0;
           `
@@ -100,16 +103,16 @@ export const EditorValue = React.forwardRef(
   }
 )
 
-export const Instruction = React.forwardRef(
+export const Instruction = React.forwardRef<HTMLDivElement, PropsWithChildren<BaseProps>>(
   function Instruction(
-    { className, ...props }: PropsWithChildren<BaseProps>,
+    { className, ...props },
     ref: Ref<HTMLDivElement>
   ) { return (
     <div
       {...props}
       ref={ref}
       className={cx(
-        className,
+        className as string,
         css`
           white-space: pre-wrap;
           margin: 0 -20px 10px;
@@ -122,16 +125,16 @@ export const Instruction = React.forwardRef(
   )}
 )
 
-export const Menu = React.forwardRef(
+export const Menu = React.forwardRef<HTMLDivElement, PropsWithChildren<BaseProps>>(
   function Menu(
-    { className, ...props }: PropsWithChildren<BaseProps>,
+    { className, ...props },
     ref: Ref<HTMLDivElement>
   ) {return (
     <div
       {...props}
       ref={ref}
       className={cx(
-        className,
+        className as string,
         css`
           & > * {
             display: inline-block;
@@ -152,16 +155,16 @@ export const Portal = ({ children }: { children: ReactNode}) => {
     : null
 }
 
-export const Toolbar = React.forwardRef(
+export const Toolbar = React.forwardRef<HTMLDivElement, PropsWithChildren<BaseProps>>(
   function Toolbar(
-    { className, ...props }: PropsWithChildren<BaseProps>,
+    { className, ...props },
     ref: Ref<HTMLDivElement>
   ) { return (
     <Menu
       {...props}
       ref={ref}
       className={cx(
-        className,
+        className as string,
         'px-6',
         'pb-3',
         'relative'
