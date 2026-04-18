@@ -90,7 +90,7 @@ const elementTransformsHtmlConfig = {
 }
 
 export default function Page() {
-  // eslint-disable-next-line react/no-unescaped-entities
+   
   return <div className="prose">
     <h1><code>SlateToReact</code></h1>
 

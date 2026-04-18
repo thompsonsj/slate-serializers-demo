@@ -14,7 +14,7 @@ import { elementTransformsExample, elementTransformsExampleSlate } from "./fixtu
 const DefaultConfigListItem = () => <li>Default: <a href={ghUrl("packages/dom/src/lib/config/default.ts")}>packages/dom/src/lib/config/default.ts</a>.</li>
 
 export default function Page() {
-  // eslint-disable-next-line react/no-unescaped-entities
+   
   return <div className="prose">
     <h1><code>slateToHtml</code></h1>
 
