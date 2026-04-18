@@ -15,7 +15,7 @@ export const elementTransformsExampleSlate = [
 
 export const elementTransformsExample = `
 import { slateToHtml, slateToHtmlConfig } from '@slate-serializers/html'
-import { Element } from 'domhandler'
+import { Element } from '@slate-serializers/html'
 
 const slate = ${JSON.stringify(elementTransformsExampleSlate, undefined, 2)}
 

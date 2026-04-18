@@ -15,17 +15,18 @@ export function GettingStarted() {
         configs—useful if you want a single dependency for server-side HTML ↔ Slate workflows.
       </p>
 
-      <h3>TypeScript: DOM types in configs</h3>
+      <h3>DOM types and constructors</h3>
       <p>
-        Public APIs that mention domhandler types (for example <code>Element</code>, <code>ChildNode</code>,{' '}
-        <code>Text</code>) should be typed using re-exports from the library instead of importing those types from{' '}
-        <code>domhandler</code> directly:{' '}
-        <code>import type &#123; Element, ChildNode, Text &#125; from &apos;@slate-serializers/html&apos;</code> or{' '}
-        <code>slate-serializers</code> (see{' '}
-        <a href="https://github.com/thompsonsj/slate-serializers/pull/215">PR #215</a>
-        ). To <strong>construct</strong> nodes with <code>new Element(...)</code> in custom transforms, use the{' '}
-        <code>Element</code> class from <code>domhandler</code> (add it as a dependency). This site imports that
-        constructor from a small module (<code>@/app/lib/dom-element</code>) so feature code stays in one place.
+        Serializer configs use the same DOM model as <code>htmlparser2</code> / <code>domhandler</code>, but you should not add{' '}
+        <code>domhandler</code> as an app dependency for types or constructors. Import <strong>types</strong> such as{' '}
+        <code>ChildNode</code> with{' '}
+        <code>import type &#123; ChildNode &#125; from &apos;@slate-serializers/html&apos;</code> (or{' '}
+        <code>slate-serializers</code>; see{' '}
+        <a href="https://github.com/thompsonsj/slate-serializers/pull/215">PR #215</a>). Import the <code>Element</code>{' '}
+        and <code>Text</code> <strong>constructors</strong> from the same packages when you build nodes in{' '}
+        <code>markTransforms</code> / <code>elementTransforms</code> (see{' '}
+        <a href="https://github.com/thompsonsj/slate-serializers/pull/218">PR #218</a>), e.g.{' '}
+        <code>import &#123; Element, Text &#125; from &apos;@slate-serializers/html&apos;</code>.
       </p>
 
       <h3>Packages at a glance</h3>

@@ -6,7 +6,7 @@ import {
   HtmlToSlateConfig,
   htmlToSlateConfig,
 } from '@slate-serializers/html';
-import { Element } from '@/app/lib/dom-element'
+import { Element } from '@slate-serializers/html'
 import { findOne } from 'domutils';
 
 const html = ${htmlUpdaterMapExampleHtml}

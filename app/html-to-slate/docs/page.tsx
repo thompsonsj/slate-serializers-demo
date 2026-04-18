@@ -2,7 +2,7 @@ import { Code } from "bright"
 import { htmlToSlate, htmlToSlateConfig } from '@slate-serializers/html'
 import { ghUrl } from "@/app/utilities/docs"
 import Link from "next/link"
-import { Element } from '@/app/lib/dom-element'
+import { Element } from '@slate-serializers/html'
 import { findOne, getAttributeValue } from 'domutils';
 
 // fixtures
@@ -80,8 +80,10 @@ export default function Page() {
       <DefaultConfigListItem />
       <li>
         Receives <code>el</code> of type <code>Element</code>. For TypeScript, import that type from{' '}
-        <code>@slate-serializers/html</code> or <code>slate-serializers</code> rather than from <code>domhandler</code>{' '}
-        (see <a href="https://github.com/thompsonsj/slate-serializers/pull/215">PR #215</a>).
+        <code>@slate-serializers/html</code> or <code>slate-serializers</code> for the <code>Element</code> type (see{' '}
+        <a href="https://github.com/thompsonsj/slate-serializers/pull/215">PR #215</a>); use the <code>Element</code>{' '}
+        constructor from the same packages when building nodes (see{' '}
+        <a href="https://github.com/thompsonsj/slate-serializers/pull/218">PR #218</a>).
         <ul>
           <li>Combine with utilities from <a href="https://domutils.js.org/"><code>domutils</code></a> to perform further manipulation.</li>
         </ul>
@@ -116,8 +118,10 @@ export default function Page() {
       <DefaultConfigListItem />
       <li>
         Receives <code>el</code> of type <code>Element</code>. For TypeScript, import that type from{' '}
-        <code>@slate-serializers/html</code> or <code>slate-serializers</code> rather than from <code>domhandler</code>{' '}
-        (see <a href="https://github.com/thompsonsj/slate-serializers/pull/215">PR #215</a>).
+        <code>@slate-serializers/html</code> or <code>slate-serializers</code> for the <code>Element</code> type (see{' '}
+        <a href="https://github.com/thompsonsj/slate-serializers/pull/215">PR #215</a>); use the <code>Element</code>{' '}
+        constructor from the same packages when building nodes (see{' '}
+        <a href="https://github.com/thompsonsj/slate-serializers/pull/218">PR #218</a>).
         <ul>
           <li>Combine with utilities from <a href="https://domutils.js.org/"><code>domutils</code></a> to perform further manipulation.</li>
         </ul>

@@ -1,7 +1,7 @@
 import { Code } from "bright"
 import { slateToHtml, slateToHtmlConfig } from '@slate-serializers/html'
 import { ghUrl } from "@/app/utilities/docs"
-import { Element } from '@/app/lib/dom-element'
+import { Element } from '@slate-serializers/html'
 import Link from "next/link"
 
 // fixtures

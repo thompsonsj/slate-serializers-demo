@@ -1,5 +1,5 @@
 import { slateToHtmlConfig } from '@slate-serializers/html'
-import { Element } from '@/app/lib/dom-element'
+import { Element } from '@slate-serializers/html'
 
 export const markTransformsExampleSlate = [
   {
@@ -28,7 +28,7 @@ export const markTransformsHtmlConfig = {
 
 export const markTransformsExample = `
 import { slateToHtml, slateToHtmlConfig } from '@slate-serializers/html'
-import { Element } from "domhandler"
+import { Element } from '@slate-serializers/html'
 
 const slate = ${JSON.stringify(markTransformsExampleSlate, undefined, 2)}
 
