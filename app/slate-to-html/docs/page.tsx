@@ -91,7 +91,7 @@ export default function Page() {
       })}</Code>
     </div>
 
-    <h4 id ="elementmap"><code>elementMap</code></h4>
+    <h4 id="elementmap"><code>elementMap</code></h4>
 
     <p>Map Slate JSON <code>type</code> values to HTML element tags.</p>
     
@@ -114,7 +114,7 @@ export default function Page() {
       })}</Code>
     </div>
 
-    <h4 id ="marktransforms"><code>markTransforms</code></h4>
+    <h4 id="marktransforms"><code>markTransforms</code></h4>
 
     <p>Define transform functions for Slate JSON properties.</p>
 
@@ -138,7 +138,7 @@ export default function Page() {
       })}</Code>
     </div>
 
-    <h4 id ="elementtransforms"><code>elementTransforms</code></h4>
+    <h4 id="elementtransforms"><code>elementTransforms</code></h4>
 
     <p>Map Slate JSON <code>type</code> values to HTML element tags.</p>
 
@@ -173,7 +173,7 @@ export default function Page() {
       <li><a href="#elementtransforms"><code>elementTransforms</code></a> can also be used to transform attributes, but these functions are defined per element. <code>elementAttributeTransform</code> accepts a single function that applies to every element.</li>
     </ul>
 
-    <h4 id ="formatting">Formatting</h4>
+    <h4 id="formatting">Formatting</h4>
 
     <p>Control the way resulting HTML is encoded/formatted.</p>
 

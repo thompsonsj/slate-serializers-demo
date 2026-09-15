@@ -19,8 +19,14 @@ export const SITE_OG_TITLE =
 
 export const SITE_OG_SITE_NAME = 'slate-serializers demo' as const
 
-/** App-relative path (Next `basePath` prefixes this for Link/`next/link`). Absolute URL for crawlers/docs. */
+/** App-relative path for Next `Link` (basePath is applied automatically). */
 export const SITE_LLMS_PATH = '/llms.txt' as const
+/**
+ * Href for the static `public/llms.txt` file. Use a plain `<a>` (not `next/link`) —
+ * client-side routing treats this as a missing App Router page and shows 404.
+ * Include `basePath` because manual anchors do not get it automatically.
+ */
+export const SITE_LLMS_HREF = `${SITE_BASE_PATH}${SITE_LLMS_PATH}` as const
 export const SITE_LLMS_URL = `${SITE_URL}/llms.txt` as const
 export const SITE_SITEMAP_URL = `${SITE_URL}/sitemap.xml` as const
 export const SITE_ROBOTS_URL = `${SITE_ORIGIN}/robots.txt` as const

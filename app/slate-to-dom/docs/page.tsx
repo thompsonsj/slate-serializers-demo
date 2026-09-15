@@ -16,23 +16,10 @@ export default function Page() {
         DOM before serialization.
       </p>
 
-      <ul>
-        <li>
-          Implementation:{' '}
-          <a href={ghUrl('packages/dom/src/lib/serializers.ts')}>packages/dom/src/lib/serializers.ts</a>
-        </li>
-        <li>
-          Default config (shared shape with <code>slateToHtml</code>):{' '}
-          <a href={ghUrl('packages/dom/src/lib/config/default.ts')}>packages/dom/src/lib/config/default.ts</a>
-        </li>
-        <li>
-          Core conversion:{' '}
-          <a href={ghUrl('packages/dom/src/lib/utilities/convert-slate.ts')}>
-            packages/dom/src/lib/utilities/convert-slate.ts
-          </a>{' '}
-          (<code>convertSlate</code> is also exported for advanced use).
-        </li>
-      </ul>
+      <p>
+        Config uses the same shape as <code>slateToHtml</code>. Default:{' '}
+        <a href={ghUrl('packages/dom/src/lib/config/default.ts')}>packages/dom/src/lib/config/default.ts</a>.
+      </p>
 
       <h2>Usage</h2>
       <div className="not-prose">
@@ -40,20 +27,16 @@ export default function Page() {
 
 const slate = [{ type: 'p', children: [{ text: 'Hello' }] }]
 const dom = slateToDom(slate, slateToDomConfig)
-// Import types and Element/Text constructors from @slate-serializers/dom or @slate-serializers/html (PR #215, #218).
+// import { Element, Text } from '@slate-serializers/dom'
 // Pass nodes to dom-serializer or traverse with domutils.`}</Code>
       </div>
 
       <h2>Additional exports</h2>
       <p>
-        The package also exports helpers such as <code>extractCssFromStyle</code>, <code>styleMapToAttribs</code>, and{' '}
-        <code>isEmptyObject</code> for working with attributes and styles. It re-exports the <code>ChildNode</code>{' '}
-        <strong>type</strong> and the <code>Element</code> and <code>Text</code> <strong>constructors</strong> from
-        domhandler so you can import them from <code>@slate-serializers/dom</code> or <code>@slate-serializers/html</code>{' '}
-        without a direct <code>domhandler</code> dependency — see{' '}
-        <a href="https://github.com/thompsonsj/slate-serializers/pull/215">PR #215</a> and{' '}
-        <a href="https://github.com/thompsonsj/slate-serializers/pull/218">PR #218</a>. Index:{' '}
-        <a href={ghUrl('packages/dom/src/index.ts')}>packages/dom/src/index.ts</a>.
+        Helpers such as <code>extractCssFromStyle</code>, <code>styleMapToAttribs</code>, and <code>isEmptyObject</code>{' '}
+        are available for attribute and style work. You can also import the <code>ChildNode</code> type and the{' '}
+        <code>Element</code> / <code>Text</code> constructors from <code>@slate-serializers/dom</code> or{' '}
+        <code>@slate-serializers/html</code> (no separate <code>domhandler</code> dependency required).
       </p>
 
       <h2>
@@ -61,24 +44,15 @@ const dom = slateToDom(slate, slateToDomConfig)
       </h2>
       <p>
         A separate package with small shared helpers (nested property access, style object handling, etc.). Most apps
-        consume serializers through <code>@slate-serializers/html</code> or <code>dom</code> without importing
-        utilities directly; reach for it when you extend or debug serializers.
-      </p>
-      <p>
-        Source: <a href={ghUrl('packages/utilities/src/index.ts')}>packages/utilities/src/index.ts</a>.
+        only need <code>@slate-serializers/html</code> or <code>@slate-serializers/dom</code>; import utilities when you
+        extend serializers.
       </p>
 
       <h2>Further reading</h2>
       <ul>
         <li>
-          <a href="https://github.com/thompsonsj/slate-serializers/blob/main/docs/engineering.md">
-            Engineering decisions
-          </a>{' '}
-          — Slate compatibility, <code>htmlparser2</code>, whitespace.
-        </li>
-        <li>
           <Link href="/slate-to-html/docs">slateToHtml configuration</Link> — <code>markMap</code>,{' '}
-          <code>elementTransforms</code>, and encoding options apply to the same DOM config type.
+          <code>elementTransforms</code>, and encoding options use the same DOM config shape.
         </li>
       </ul>
     </div>

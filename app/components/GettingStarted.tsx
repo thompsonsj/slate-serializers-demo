@@ -1,9 +1,6 @@
 import { Code } from 'bright'
 import Link from 'next/link'
 
-const ENGINEERING =
-  'https://github.com/thompsonsj/slate-serializers/blob/main/docs/engineering.md'
-
 export function GettingStarted() {
   return (
     <div className="mt-10 max-w-prose mb-10">
@@ -23,16 +20,17 @@ export function GettingStarted() {
 
       <h3>DOM types and constructors</h3>
       <p>
-        Serializer configs use the same DOM model as <code>htmlparser2</code> / <code>domhandler</code>, but you should not add{' '}
-        <code>domhandler</code> as an app dependency for types or constructors. Import <strong>types</strong> such as{' '}
-        <code>ChildNode</code> with{' '}
-        <code>import type &#123; ChildNode &#125; from &apos;@slate-serializers/html&apos;</code> (or{' '}
-        <code>slate-serializers</code>; see{' '}
-        <a href="https://github.com/thompsonsj/slate-serializers/pull/215">PR #215</a>). Import the <code>Element</code>{' '}
-        and <code>Text</code> <strong>constructors</strong> from the same packages when you build nodes in{' '}
-        <code>markTransforms</code> / <code>elementTransforms</code> (see{' '}
-        <a href="https://github.com/thompsonsj/slate-serializers/pull/218">PR #218</a>), e.g.{' '}
-        <code>import &#123; Element, Text &#125; from &apos;@slate-serializers/html&apos;</code>.
+        When you write custom transforms, import DOM types and constructors from the serializers — not from{' '}
+        <code>domhandler</code> directly:
+      </p>
+      <div className="not-prose">
+        <Code lang="ts">{`import type { ChildNode } from '@slate-serializers/html'
+import { Element, Text } from '@slate-serializers/html'
+
+// Use Element / Text in markTransforms and elementTransforms`}</Code>
+      </div>
+      <p>
+        The same exports are available from <code>slate-serializers</code> and <code>@slate-serializers/dom</code>.
       </p>
 
       <h3>Packages at a glance</h3>
@@ -80,8 +78,8 @@ export function GettingStarted() {
             <tr>
               <td className="p-3 font-mono text-xs sm:text-sm">@slate-serializers/utilities</td>
               <td className="p-3">
-                Small helpers (e.g. style object handling) used across the monorepo; rarely needed directly unless you
-                extend serializers.
+                Small helpers (e.g. style object handling) used by the serializers; rarely needed directly unless you
+                extend them.
               </td>
             </tr>
             <tr>
@@ -122,13 +120,9 @@ export function RichText({ value }: { value: any[] }) {
 
       <h3>Slate version</h3>
       <p>
-        Serializers target Slate&apos;s modern data model (≥ 0.50). This demo is built with <strong>Slate ~0.101</strong>{' '}
-        and <strong>slate-react ~0.101</strong>. Published <code>@slate-serializers/*</code> packages here track{' '}
-        <strong>^2.5.0</strong> (flat <code>SlateToReact</code> config; <code>Element</code> / <code>Text</code> constructors
-        re-exported from <code>@slate-serializers/html</code> — see{' '}
-        <a href="https://github.com/thompsonsj/slate-serializers/pull/218">PR #218</a>). The library README notes historical
-        testing on older releases; for compatibility detail and parser choices, see{' '}
-        <a href={ENGINEERING}>Engineering decisions</a> in the monorepo.
+        These packages target Slate&apos;s modern document model (Slate ≥ 0.50). This site uses{' '}
+        <strong>Slate ~0.101</strong> and <strong>slate-react ~0.101</strong> with <code>@slate-serializers/*</code>{' '}
+        <strong>^2.6.0</strong>.
       </p>
       </div>
     </div>

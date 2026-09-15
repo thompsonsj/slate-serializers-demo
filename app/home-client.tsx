@@ -2,10 +2,9 @@
 
 import { ModalProvider, ModalContainer } from '@faceless-ui/modal'
 import type { ReactNode } from 'react'
-import Link from 'next/link'
 import { PageHeadingBasic } from './components/PageHeadingBasic'
 import { Grid } from './components/page-specific/grid'
-import { SITE_LLMS_PATH } from './site'
+import { SITE_LLMS_HREF } from './site'
 
 export function HomeClient({ children }: { children: ReactNode }) {
   return (
@@ -24,9 +23,9 @@ export function HomeClient({ children }: { children: ReactNode }) {
               </p>
               <p className="text-sm text-gray-600">
                 Machine-readable overview for AI tools:{' '}
-                <Link href={SITE_LLMS_PATH} className="font-mono">
+                <a href={SITE_LLMS_HREF} className="font-mono">
                   llms.txt
-                </Link>
+                </a>
                 .
               </p>
             </div>

@@ -42,8 +42,20 @@ npm run type-check
 ## Conventions
 
 - Match existing patterns for imports, styling (Tailwind + `prose`), and Bright code blocks.
-- Target **`@slate-serializers/*` ^2.5.0** in `package.json`. Serializer **configs** for `@slate-serializers/react` are **flat** (`markMap`, `elementMap`, `elementTransforms` on the root `config` object), not nested under `dom` / `react`.
-- Import **`Element` and `Text` constructors** (and `import type { ChildNode }`) from **`@slate-serializers/html`** or **`slate-serializers`** — not from `domhandler` directly (re-exports; see upstream PR #218).
+- Target **`@slate-serializers/*` ^2.6.0** in `package.json`. Serializer **configs** for `@slate-serializers/react` are **flat** (`markMap`, `elementMap`, `elementTransforms` on the root `config` object), not nested under `dom` / `react`.
+- Import **`Element` and `Text`** (and `import type { ChildNode }`) from **`@slate-serializers/html`** or **`slate-serializers`** — not from `domhandler` directly.
+- **User-facing docs** (Getting Started, serializer docs pages): plain English for implementers. Prefer examples over history, changelog, or PR links.
+
+## Dependency upgrade playbook
+
+Inferred from past PRs (`YYYYMMDD-upgrade-dependencies`, `upgrade-next`, `upgrade-tailwind-3-to-4`). There is no separate tooling script.
+
+1. **Branch** — `YYYYMMDD-upgrade-dependencies` for routine bumps; named topic branches for framework majors.
+2. **Routine bumps** — Prefer `package.json` + lockfile only. Keep `next` and `eslint-config-next` on the **same** version. Stay within current majors unless intentional (do not auto-jump `slate` 0.12x, TypeScript 7, ESLint 10, Vitest 5).
+3. **Framework majors** — Separate PRs; use official migrators when they exist (e.g. `npx @tailwindcss/upgrade`). Expect config/code follow-ups (ESLint flat config, React 19 types/`overrides`, Tailwind class renames).
+4. **`@slate-serializers/*`** — Bump all packages together. Treat as a **docs PR** when the release notes include API/config changes (fixtures, option docs, Getting Started version note).
+5. **Verify** — `npm run lint && npm run type-check && npm run test && npm run build` (CI also checks static export files under `out/`).
+6. **Known pitfall (2026-09)** — `vitest@4.1.11` can trip an npm Arborist `edgesOut` crash with the current Vite 8 peer graph; leave Vitest on `^4.1.4` until that clears, or bump Vitest in isolation after confirming `npm install` succeeds.
 
 ## Upstream
 
