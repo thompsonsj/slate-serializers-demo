@@ -2,8 +2,10 @@
 
 import { ModalProvider, ModalContainer } from '@faceless-ui/modal'
 import type { ReactNode } from 'react'
+import Link from 'next/link'
 import { PageHeadingBasic } from './components/PageHeadingBasic'
 import { Grid } from './components/page-specific/grid'
+import { SITE_LLMS_PATH } from './site'
 
 export function HomeClient({ children }: { children: ReactNode }) {
   return (
@@ -14,9 +16,18 @@ export function HomeClient({ children }: { children: ReactNode }) {
           <div className="max-w-prose">
             <div className="prose">
               <p>
-                A collection of serializers to convert{' '}
-                <a href="https://www.npmjs.com/package/slate">Slate</a> JSON objects to various formats and vice versa.
-                Designed to work in both Node.js and browser environments.
+                <strong>slate-serializers</strong> helps{' '}
+                <a href="https://www.npmjs.com/package/slate">Slate.js</a> apps turn editor content into{' '}
+                <strong>HTML</strong> and back, render it as <strong>React</strong> components, walk an intermediate{' '}
+                <strong>DOM</strong> tree, or emit <strong>template-style</strong> output (e.g. JSX or partial HTML). Works
+                in Node.js and the browser.
+              </p>
+              <p className="text-sm text-gray-600">
+                Machine-readable overview for AI tools:{' '}
+                <Link href={SITE_LLMS_PATH} className="font-mono">
+                  llms.txt
+                </Link>
+                .
               </p>
             </div>
           </div>

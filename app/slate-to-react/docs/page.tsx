@@ -54,7 +54,13 @@ export default function Page() {
     </ul>
 
     <p>
-      The <code>&lt;SlateToReact&gt;</code> configuration is a flat object: the same keys as <Link href="/slate-to-html/docs"><code>slateToHtml</code></Link> (<code>markMap</code>, <code>elementMap</code>, formatting options, and so on) plus <code>elementTransforms</code> for React output (each function returns a React node, for example JSX or <code>React.createElement</code>).
+      The <code>&lt;SlateToReact&gt;</code> <code>config</code> is a flat object with shared top-level keys such as{' '}
+      <Link href="/slate-to-html/docs"><code>slateToHtml</code></Link>&apos;s <code>markMap</code>, <code>elementMap</code>, and
+      formatting options. Use <code>elementTransforms</code> where an element type needs custom React output (each function
+      returns a React node, for example JSX or <code>React.createElement</code>). Note: <code>markTransforms</code> is{' '}
+      <strong>not</strong> applied by <code>&lt;SlateToReact&gt;</code> (marks go through <code>markMap</code> only); use{' '}
+      <Link href="/slate-to-html/docs"><code>slateToHtml</code></Link> for full mark-transform behavior — see{' '}
+      <a href="#marktransforms"><code>markTransforms</code></a> below.
     </p>
 
     <h2 id="default">Default</h2>
@@ -100,7 +106,7 @@ export default function Page() {
       <li>A Slate JSON node may have multiple attributes.</li>
       <li>Accepts an array of HTML element tag names.</li>
       <li>Configure these on <code>config.markMap</code>.</li>
-      <li>See <Link href="/slate-to-html/docs#markmap"><code>markMap</code> | <code>slateToHtml</code></Link>. The same keys apply as in <code>slateToHtml</code>.</li>
+      <li>See <Link href="/slate-to-html/docs#markmap"><code>markMap</code> | <code>slateToHtml</code></Link>. The same keys apply on <code>&lt;SlateToReact&gt;</code> as in <code>slateToHtml</code>.</li>
       <li>Test example: <a href={ghUrl("packages/html/src/lib/tests/slateToHtml/configuration/markMap.spec.ts")}>packages/html/src/lib/tests/slateToHtml/configuration/markMap.spec.ts</a>.</li>
     </ul>
 
@@ -195,7 +201,7 @@ export default function Page() {
 
     <ul>
       <DefaultConfigListItem />
-      <li>These options live on <code>config</code> at the top level (same keys as <code>slateToHtml</code>).</li>
+      <li>These options live on the top-level <code>config</code> object (same keys as <code>slateToHtml</code>).</li>
       <li>Test examples: <a href={ghUrl("packages/html/src/lib/tests/slateToHtml/configuration/formatting.spec.ts")}>packages/html/src/lib/tests/slateToHtml/configuration/formatting.spec.ts</a>.</li>
     </ul>
 

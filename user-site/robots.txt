@@ -1,0 +1,23 @@
+# https://www.robotstxt.org/robotstxt.html
+# Served at https://thompsonsj.github.io/robots.txt (user-site origin root).
+# Project sites live under /<repo>/ and publish their own sitemap.xml.
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Project sitemaps (add a line per docs site as you publish more)
+Sitemap: https://thompsonsj.github.io/slate-serializers-demo/sitemap.xml

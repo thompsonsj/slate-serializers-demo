@@ -67,6 +67,9 @@ jobs:
           test -f out/404.html
           test -d out/_next
           test -f out/.nojekyll
+          test -f out/robots.txt
+          test -f out/sitemap.xml
+          test -f out/llms.txt
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
