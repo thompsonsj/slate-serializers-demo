@@ -35,7 +35,6 @@ export const metadata: Metadata = {
     title: 'slate-serializers — Slate.js serialization (HTML, React, DOM, templates)',
     description: siteDescription,
     type: 'website',
-    url: '/slate-serializers-demo/',
     siteName: 'slate-serializers demo',
   },
   twitter: {

@@ -14,7 +14,7 @@ This repository is a **Next.js (App Router) documentation and demo site** for th
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000 — basePath is /slate-serializers-demo
+npm run dev      # http://localhost:3000/slate-serializers-demo (basePath)
 npm run build    # static export → out/
 npm run test
 npm run lint

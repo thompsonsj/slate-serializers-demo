@@ -1,10 +1,14 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import { sitePageUrl } from '@/app/site'
 
 export const metadata: Metadata = {
   title: 'slateToDom',
   description:
     'Serialize Slate.js to htmlparser2 DOM nodes with @slate-serializers/dom before HTML or custom processing.',
+  openGraph: {
+    url: sitePageUrl('/slate-to-dom/docs'),
+  },
 }
 
 export default function SlateToDomLayout({ children }: { children: ReactNode }) {
