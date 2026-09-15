@@ -26,7 +26,10 @@
 
 ## Site map & crawlers
 
-- Sitemap: `https://thompsonsj.github.io/slate-serializers-demo/sitemap.xml` (generated from `app/sitemap.ts` at build time)
+Canonical base: `https://thompsonsj.github.io/slate-serializers-demo` (`next.config.js` `basePath`).
+
+- This file: `https://thompsonsj.github.io/slate-serializers-demo/llms.txt`
+- Sitemap: `https://thompsonsj.github.io/slate-serializers-demo/sitemap.xml` (from `app/sitemap.ts` at build)
 - Robots: `https://thompsonsj.github.io/slate-serializers-demo/robots.txt`
 
 ## Keywords
