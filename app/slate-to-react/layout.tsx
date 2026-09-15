@@ -1,14 +1,12 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
-import { sitePageUrl } from '@/app/site'
+import { openGraphForPath } from '@/app/site'
 
 export const metadata: Metadata = {
   title: 'SlateToReact',
   description:
     'Render Slate.js values as React elements with @slate-serializers/react — configuration and examples.',
-  openGraph: {
-    url: sitePageUrl('/slate-to-react'),
-  },
+  openGraph: openGraphForPath('/slate-to-react'),
 }
 
 export default function SlateToReactLayout({ children }: { children: ReactNode }) {

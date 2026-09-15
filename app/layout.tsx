@@ -1,20 +1,21 @@
 import { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import { Sidebar } from './components/Sidebar'
-import { SITE_ORIGIN, SITE_URL } from './site'
+import {
+  SITE_DESCRIPTION,
+  SITE_OG_SITE_NAME,
+  SITE_OG_TITLE,
+  SITE_URL,
+} from './site'
 import './globals.css'
 
-
-const siteDescription =
-  'Documentation and interactive demos for slate-serializers: npm packages that serialize Slate.js editor content to HTML strings and parse HTML back to Slate nodes, render Slate to React components, produce DOM for custom pipelines, and emit template-style output (e.g. JSX or partial HTML).'
-
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_ORIGIN),
+  metadataBase: new URL(`${SITE_URL}/`),
   title: {
     default: 'slate-serializers — docs & demos',
     template: '%s | slate-serializers',
   },
-  description: siteDescription,
+  description: SITE_DESCRIPTION,
   keywords: [
     'Slate.js',
     'Slate editor',
@@ -32,15 +33,15 @@ export const metadata: Metadata = {
     'slateToTemplate',
   ],
   openGraph: {
-    title: 'slate-serializers — Slate.js serialization (HTML, React, DOM, templates)',
-    description: siteDescription,
+    title: SITE_OG_TITLE,
+    description: SITE_DESCRIPTION,
     type: 'website',
-    siteName: 'slate-serializers demo',
+    siteName: SITE_OG_SITE_NAME,
   },
   twitter: {
     card: 'summary_large_image',
     title: 'slate-serializers — Slate.js serialization docs & demos',
-    description: siteDescription,
+    description: SITE_DESCRIPTION,
   },
 }
 
@@ -52,7 +53,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     applicationCategory: 'DeveloperApplication',
     operatingSystem: 'Any',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-    description: siteDescription,
+    description: SITE_DESCRIPTION,
     url: `${SITE_URL}/`,
     isBasedOn: 'https://github.com/thompsonsj/slate-serializers',
     featureList: [

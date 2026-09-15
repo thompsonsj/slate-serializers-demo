@@ -1,12 +1,10 @@
 import type { Metadata } from 'next'
 import { GettingStarted } from './components/GettingStarted'
 import { HomeClient } from './home-client'
-import { sitePageUrl } from './site'
+import { openGraphForPath } from './site'
 
 export const metadata: Metadata = {
-  openGraph: {
-    url: sitePageUrl(''),
-  },
+  openGraph: openGraphForPath(''),
 }
 
 export default function Page() {
