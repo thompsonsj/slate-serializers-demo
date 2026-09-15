@@ -1,6 +1,6 @@
 # slate-serializers (this site)
 
-> Machine-oriented summary for tools and assistants. Human docs: https://thompsonsj.github.io/slate-serializers-demo/ — this file: https://thompsonsj.github.io/slate-serializers-demo/llms.txt
+> Machine-oriented summary for tools and assistants. Human docs: https://thompsonsj.github.io/ — this file: https://thompsonsj.github.io/llms.txt
 
 ## What this is
 
@@ -26,11 +26,13 @@
 
 ## Site map & crawlers
 
-Canonical base: `https://thompsonsj.github.io/slate-serializers-demo` (`next.config.js` `basePath`).
+Canonical base: `https://thompsonsj.github.io` (user GitHub Pages site; no project `basePath`).
 
-- This file: `https://thompsonsj.github.io/slate-serializers-demo/llms.txt`
-- Sitemap: `https://thompsonsj.github.io/slate-serializers-demo/sitemap.xml` (from `app/sitemap.ts` at build)
-- Robots: `https://thompsonsj.github.io/slate-serializers-demo/robots.txt`
+- This file: `https://thompsonsj.github.io/llms.txt`
+- Sitemap: `https://thompsonsj.github.io/sitemap.xml` (from `app/sitemap.ts` at build)
+- Robots: `https://thompsonsj.github.io/robots.txt` (origin root — valid for the robots protocol)
+
+Legacy project URLs under `/slate-serializers-demo/` redirect to the paths above.
 
 ## Keywords
 

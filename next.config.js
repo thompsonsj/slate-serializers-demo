@@ -8,17 +8,19 @@ const nextConfig = {
   output: "export",
 
   /**
-   * Set base path. This is usually the slug of your repository.
+   * Published at the user-site origin root (`https://thompsonsj.github.io/`) via
+   * `thompsonsj/thompsonsj.github.io`. Legacy `/slate-serializers-demo/*` URLs are
+   * handled by redirect stubs still deployed from this repo’s project Pages.
    *
    * @see https://nextjs.org/docs/app/api-reference/next-config-js/basePath
    */
-  basePath: "/slate-serializers-demo",
+  // no basePath — site lives at domain root
 
   /**
    * Disable server-based image optimization. Next.js does not support
    * dynamic features with static exports.
    *
-   * @see https://nextjs.org/docs/pages/api-reference/components/image#unoptimized
+   * @see https://nextjs.org/docs/app/api-reference/components/image#unoptimized
    */
   images: {
     unoptimized: true,

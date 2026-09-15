@@ -12,6 +12,7 @@
 # next.js
 /.next/
 /out/
+/out-legacy-redirects/
 
 # production
 /build

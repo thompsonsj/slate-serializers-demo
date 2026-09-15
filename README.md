@@ -2,11 +2,11 @@
 
 Interactive **documentation and demo site** for [**slate-serializers**](https://github.com/thompsonsj/slate-serializers): serializers that convert [Slate](https://www.npmjs.com/package/slate) JSON to and from HTML, DOM, React, and template-style output.
 
-**Live site:** [thompsonsj.github.io/slate-serializers-demo](https://thompsonsj.github.io/slate-serializers-demo)
+**Live site:** [thompsonsj.github.io](https://thompsonsj.github.io/) (user GitHub Pages origin). Legacy URLs under `/slate-serializers-demo/` redirect there.
 
-**LLM / tool summary:** [public/llms.txt](public/llms.txt) (also served at `/slate-serializers-demo/llms.txt` on the live site) — short, keyword-dense description of what slate-serializers does for Slate.js (HTML, React, DOM, templates).
+**LLM / tool summary:** [public/llms.txt](public/llms.txt) (served at `/llms.txt` on the live site) — short, keyword-dense description of what slate-serializers does for Slate.js (HTML, React, DOM, templates).
 
-**Crawlers:** [public/robots.txt](public/robots.txt) allows indexing and points to the sitemap. **`app/sitemap.ts`** generates `sitemap.xml` at build time (full URLs under `https://thompsonsj.github.io/slate-serializers-demo/`).
+**Crawlers:** [public/robots.txt](public/robots.txt) at the **origin root**, plus **`app/sitemap.ts`** → `sitemap.xml`. Deploy details: [DEPLOY.md](DEPLOY.md).
 
 **AI / editor agents:** see [AGENTS.md](AGENTS.md) for repo layout, commands, and conventions.
 

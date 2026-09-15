@@ -19,6 +19,6 @@ User-agent: Claude-Web
 Allow: /
 
 # Machine-readable overview for tools (see https://llmstxt.org/)
-# https://thompsonsj.github.io/slate-serializers-demo/llms.txt
+# https://thompsonsj.github.io/llms.txt
 
-Sitemap: https://thompsonsj.github.io/slate-serializers-demo/sitemap.xml
+Sitemap: https://thompsonsj.github.io/sitemap.xml

@@ -54,11 +54,13 @@ export default function Page() {
     </ul>
 
     <p>
-      The <code>&lt;SlateToReact&gt;</code> <code>config</code> is a flat object: the same top-level keys as{' '}
-      <Link href="/slate-to-html/docs"><code>slateToHtml</code></Link> (<code>markMap</code>, <code>elementMap</code>, formatting
-      options, and so on). Use <code>elementTransforms</code> where an element type needs custom React output (each function
-      returns a React node, for example JSX or <code>React.createElement</code>). See{' '}
-      <a href="#marktransforms"><code>markTransforms</code></a> below for how marks differ from <code>slateToHtml</code>.
+      The <code>&lt;SlateToReact&gt;</code> <code>config</code> is a flat object with shared top-level keys such as{' '}
+      <Link href="/slate-to-html/docs"><code>slateToHtml</code></Link>&apos;s <code>markMap</code>, <code>elementMap</code>, and
+      formatting options. Use <code>elementTransforms</code> where an element type needs custom React output (each function
+      returns a React node, for example JSX or <code>React.createElement</code>). Note: <code>markTransforms</code> is{' '}
+      <strong>not</strong> applied by <code>&lt;SlateToReact&gt;</code> (marks go through <code>markMap</code> only); use{' '}
+      <Link href="/slate-to-html/docs"><code>slateToHtml</code></Link> for full mark-transform behavior — see{' '}
+      <a href="#marktransforms"><code>markTransforms</code></a> below.
     </p>
 
     <h2 id="default">Default</h2>
