@@ -37,6 +37,7 @@ export default function Page() {
           <li><a href="#htmlpreprocessstring"><code>htmlPreProcessString</code></a></li>
           <li><a href="#filterwhitespacenodes"><code>filterWhitespaceNodes</code></a></li>
           <li><a href="#convertbrtolinebreak"><code>convertBrToLineBreak</code></a></li>
+          <li><a href="#brstrategy"><code>brStrategy</code></a></li>
           <li><a href="#trimwhitespace"><code>trimWhiteSpace</code></a></li>
         </ul>
       </li>
@@ -283,13 +284,58 @@ export default function Page() {
 
     <h4 id="convertbrtolinebreak"><code>convertBrToLineBreak</code></h4>
 
-    <p>Convert <code>&lt;br&gt;</code> HTML element tags to Slate nodes with empty content or <code>\n</code> as appropriate.</p>
+    <p>
+      When <code>true</code>, convert <code>&lt;br&gt;</code> tags according to{' '}
+      <a href="#brstrategy"><code>brStrategy</code></a>. Set to <code>false</code> to leave <code>&lt;br&gt;</code> for{' '}
+      <code>elementTags</code> (or drop them if unmapped).
+    </p>
 
     <p>Default: <code>true</code>.</p>
 
     <ul>
       <DefaultConfigListItem />
       <li>Test examples: <a href={ghUrl("packages/html/src/lib/tests/htmlToSlate/configuration/convertBrToLineBreak.spec.ts")}>packages/html/src/lib/tests/htmlToSlate/configuration/convertBrToLineBreak.spec.ts</a>.</li>
+    </ul>
+
+    <h4 id="brstrategy"><code>brStrategy</code></h4>
+
+    <p>
+      How <code>&lt;br&gt;</code> tags become Slate text when <a href="#convertbrtolinebreak"><code>convertBrToLineBreak</code></a> is{' '}
+      <code>true</code> (added in <code>@slate-serializers/html</code> 2.6.0 —{' '}
+      <a href="https://github.com/thompsonsj/slate-serializers/pull/244">PR #244</a>).
+    </p>
+
+    <p>Default: <code>&apos;block&apos;</code> (unchanged historical behavior — opt in to <code>&apos;newline&apos;</code> deliberately).</p>
+
+    <ul>
+      <li>
+        <code>&apos;block&apos;</code> — empty text (<code>&apos;&apos;</code>) outside a block context (often its own block);{' '}
+        <code>\n</code> inside one. Top-level <code>Line 1&lt;br&gt;Line 2</code> becomes three default blocks.
+      </li>
+      <li>
+        <code>&apos;newline&apos;</code> — always <code>\n</code>; merge adjacent plain-text leaves; collapse{' '}
+        <code>&lt;br&gt;&lt;br&gt;</code> before a following block to a single <code>\n</code>. Top-level{' '}
+        <code>Line 1&lt;br&gt;Line 2</code> becomes one default block with <code>Line 1\nLine 2</code>.
+      </li>
+    </ul>
+
+    <div className="not-prose">
+      <Code lang="ts">{`import { htmlToSlate, htmlToSlateConfig } from '@slate-serializers/html'
+
+htmlToSlate('Line 1<br />Line 2', {
+  ...htmlToSlateConfig,
+  brStrategy: 'newline',
+})`}</Code>
+    </div>
+
+    <ul>
+      <li>
+        Side-by-side fixtures:{' '}
+        <a href={ghUrl('packages/html/src/lib/tests/htmlToSlate/configuration/brStrategy.spec.ts')}>
+          packages/html/src/lib/tests/htmlToSlate/configuration/brStrategy.spec.ts
+        </a>
+        .
+      </li>
     </ul>
 
     <h4 id="trimwhitespace"><code>trimWhiteSpace</code></h4>

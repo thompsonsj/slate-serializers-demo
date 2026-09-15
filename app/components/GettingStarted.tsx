@@ -124,9 +124,11 @@ export function RichText({ value }: { value: any[] }) {
       <p>
         Serializers target Slate&apos;s modern data model (≥ 0.50). This demo is built with <strong>Slate ~0.101</strong>{' '}
         and <strong>slate-react ~0.101</strong>. Published <code>@slate-serializers/*</code> packages here track{' '}
-        <strong>^2.5.0</strong> (flat <code>SlateToReact</code> config; <code>Element</code> / <code>Text</code> constructors
+        <strong>^2.6.0</strong> (flat <code>SlateToReact</code> config; <code>Element</code> / <code>Text</code> constructors
         re-exported from <code>@slate-serializers/html</code> — see{' '}
-        <a href="https://github.com/thompsonsj/slate-serializers/pull/218">PR #218</a>). The library README notes historical
+        <a href="https://github.com/thompsonsj/slate-serializers/pull/218">PR #218</a>; opt-in{' '}
+        <code>brStrategy</code> on <code>htmlToSlate</code> — see{' '}
+        <a href="https://github.com/thompsonsj/slate-serializers/pull/244">PR #244</a>). The library README notes historical
         testing on older releases; for compatibility detail and parser choices, see{' '}
         <a href={ENGINEERING}>Engineering decisions</a> in the monorepo.
       </p>
