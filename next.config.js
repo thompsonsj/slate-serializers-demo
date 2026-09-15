@@ -8,13 +8,12 @@ const nextConfig = {
   output: "export",
 
   /**
-   * Published at the user-site origin root (`https://thompsonsj.github.io/`) via
-   * `thompsonsj/thompsonsj.github.io`. Legacy `/slate-serializers-demo/*` URLs are
-   * handled by redirect stubs still deployed from this repo’s project Pages.
+   * Project GitHub Pages URL: https://thompsonsj.github.io/slate-serializers-demo/
+   * Origin root (https://thompsonsj.github.io/) is the user-site hub — see user-site/ and DEPLOY.md.
    *
    * @see https://nextjs.org/docs/app/api-reference/next-config-js/basePath
    */
-  // no basePath — site lives at domain root
+  basePath: "/slate-serializers-demo",
 
   /**
    * Disable server-based image optimization. Next.js does not support

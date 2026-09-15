@@ -1,65 +1,45 @@
-# Deploying to https://thompsonsj.github.io/ (user site)
+# Deploying slate-serializers-demo + the user-site hub
 
-This app builds with **no `basePath`** and is published to the **user GitHub Pages**
-repo [`thompsonsj/thompsonsj.github.io`](https://github.com/thompsonsj/thompsonsj.github.io).
+## Architecture
 
-This repo (`slate-serializers-demo`) still uses **project Pages** only to serve
-**legacy redirects** from `/slate-serializers-demo/*` → `https://thompsonsj.github.io/*`
-(HTML meta refresh + JS; not HTTP 301).
+| URL | What serves it |
+|-----|----------------|
+| `https://thompsonsj.github.io/` | **User hub** — `thompsonsj/thompsonsj.github.io` (index of projects + origin `/robots.txt`) |
+| `https://thompsonsj.github.io/slate-serializers-demo/` | **This demo** — project Pages from `slate-serializers-demo` (`basePath`) |
+| `https://thompsonsj.github.io/payload-crowdin-sync/` | Other project Pages (same pattern) |
 
-## One-time GitHub setup (you)
+Crawlers look for **`/robots.txt` at the host origin**. That file lives on the **hub**, and lists each project’s `sitemap.xml`. Project sites keep their own `basePath` and do not need to own the domain root.
 
-### 1. Create the user-site repository
+## This repo (project site)
 
-If it does not exist yet:
+- `next.config.js` → `basePath: '/slate-serializers-demo'`
+- `.github/workflows/deploy.yml` → builds `out/` and deploys via GitHub Actions Pages
+- Settings → Pages → **Source: GitHub Actions** (unchanged)
 
-1. Create a **public** repo named exactly **`thompsonsj.github.io`** under your user.
-2. You can leave it empty (no README required). The deploy workflow will push a `gh-pages` branch.
+No special secrets required for the demo deploy.
 
-```bash
-gh repo create thompsonsj/thompsonsj.github.io --public --description "User GitHub Pages site (slate-serializers docs)"
-```
+## User hub (`user-site/` → `thompsonsj.github.io`)
 
-### 2. Enable Pages on `thompsonsj.github.io`
+Source files for the hub live in **`user-site/`** in this repo (convenient to edit alongside the demo). They are published to **`thompsonsj/thompsonsj.github.io`**.
 
-1. Open **Settings → Pages** on `thompsonsj.github.io`.
-2. Under **Build and deployment → Source**, choose **Deploy from a branch**.
-3. Branch: **`gh-pages`** / folder **`/`** (root).
-4. Save. The first successful deploy from this repo creates `gh-pages`.
+### One-time GitHub setup
 
-### 3. Add a deploy token secret on *this* repo
-
-The workflow pushes to another repository, so the default `GITHUB_TOKEN` is not enough.
-
-1. Create a token that can write to `thompsonsj.github.io`:
-   - **Fine-grained PAT**: Resource owner `thompsonsj` → only repo `thompsonsj.github.io` →
-     Permissions: **Contents: Read and write**, **Metadata: Read**.
-   - Or a classic PAT with the **`repo`** scope (broader).
-2. In **`slate-serializers-demo` → Settings → Secrets and variables → Actions**,
-   add secret name: **`USER_SITE_DEPLOY_TOKEN`**  
-   value: the token.
-
-### 4. Keep project Pages enabled on this repo
-
-1. **`slate-serializers-demo` → Settings → Pages**
-2. Source: **GitHub Actions** (unchanged).
-3. This continues to publish the **redirect stub** artifact under
-   `https://thompsonsj.github.io/slate-serializers-demo/`.
-
-### 5. Merge / run deploy
-
-After the secret and user repo exist, merge to `main` or run
-**Actions → Deploy Next.js site to Pages → Run workflow**.
-
-Verify:
-
-- New site: https://thompsonsj.github.io/
-- Origin robots: https://thompsonsj.github.io/robots.txt
-- Legacy redirect: https://thompsonsj.github.io/slate-serializers-demo/ → should jump to `/`
-
-## Local commands
+1. Repo **`thompsonsj/thompsonsj.github.io`** exists (already created).
+2. **Settings → Pages** on that repo: **Deploy from a branch** → **`main`** / **`/`** (or `gh-pages` if you push there instead).
+3. Push hub files (from this repo):
 
 ```bash
-npm run build
-node scripts/generate-legacy-redirects.mjs   # writes out-legacy-redirects/
+# from slate-serializers-demo
+git clone https://github.com/thompsonsj/thompsonsj.github.io.git /tmp/thompsonsj.github.io
+cp user-site/index.html user-site/robots.txt user-site/.nojekyll /tmp/thompsonsj.github.io/
+cd /tmp/thompsonsj.github.io
+git add -A && git commit -m "Add hub index and origin robots.txt" && git push
 ```
+
+Or use the GitHub UI to upload `user-site/*` to the hub repo’s default branch.
+
+### Keeping the hub updated
+
+When you add another docs site, edit **`user-site/index.html`** (new list item) and **`user-site/robots.txt`** (another `Sitemap:` line), then copy/push to `thompsonsj.github.io` again.
+
+You do **not** need `USER_SITE_DEPLOY_TOKEN` unless you later automate hub sync.

@@ -14,7 +14,7 @@ This repository is a **Next.js (App Router) documentation and demo site** for th
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000 (no basePath)
+npm run dev      # http://localhost:3000/slate-serializers-demo (basePath)
 npm run build    # static export → out/
 npm run test
 npm run lint
@@ -23,9 +23,9 @@ npm run type-check
 
 ## Important config
 
-- **`next.config.js`**: `output: 'export'`, **no `basePath`** — the live site is the user Pages origin `https://thompsonsj.github.io/`.
-- **Deploy**: see [DEPLOY.md](DEPLOY.md). Full site → `thompsonsj/thompsonsj.github.io`; legacy `/slate-serializers-demo/*` redirects stay on this repo’s project Pages.
-- **Canonical site URL**: see `app/site.ts` (`SITE_URL`, `SITEMAP_PATHS`).
+- **`next.config.js`**: `output: 'export'`, **`basePath: '/slate-serializers-demo'`** (project GitHub Pages).
+- **User hub** (origin `/` + `/robots.txt`): source in `user-site/`, published to `thompsonsj/thompsonsj.github.io` — see [DEPLOY.md](DEPLOY.md).
+- **Canonical project URL**: see `app/site.ts` (`SITE_URL`, `SITEMAP_PATHS`).
 
 ## Where things live
 
@@ -35,9 +35,9 @@ npm run type-check
 | Shared UI | `app/components/` |
 | Sidebar nav | `app/components/Sidebar/` |
 | Serializer docs fixtures | `app/*/docs/fixtures/` |
-| LLM-oriented summary | `public/llms.txt` (also linked from README) |
-| Crawlers | `public/robots.txt`, `app/sitemap.ts` → `sitemap.xml` at build |
-| Legacy redirects | `scripts/generate-legacy-redirects.mjs` → `out-legacy-redirects/` |
+| LLM-oriented summary | `public/llms.txt` |
+| Project crawlers | `public/robots.txt`, `app/sitemap.ts` |
+| Origin hub source | `user-site/` |
 
 ## Conventions
 
@@ -48,4 +48,5 @@ npm run type-check
 ## Upstream
 
 - **Library repo**: https://github.com/thompsonsj/slate-serializers  
-- **Live demo site**: https://thompsonsj.github.io/
+- **Live demo site**: https://thompsonsj.github.io/slate-serializers-demo/
+- **User hub**: https://thompsonsj.github.io/
