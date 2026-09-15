@@ -80,11 +80,8 @@ export default function Page() {
     <ul>
       <DefaultConfigListItem />
       <li>
-        Receives <code>el</code> of type <code>Element</code>. For TypeScript, import that type from{' '}
-        <code>@slate-serializers/html</code> or <code>slate-serializers</code> for the <code>Element</code> type (see{' '}
-        <a href="https://github.com/thompsonsj/slate-serializers/pull/215">PR #215</a>); use the <code>Element</code>{' '}
-        constructor from the same packages when building nodes (see{' '}
-        <a href="https://github.com/thompsonsj/slate-serializers/pull/218">PR #218</a>).
+        Receives <code>el</code> of type <code>Element</code>. Import <code>Element</code> from{' '}
+        <code>@slate-serializers/html</code> (or <code>slate-serializers</code>).
         <ul>
           <li>Combine with utilities from <a href="https://domutils.js.org/"><code>domutils</code></a> to perform further manipulation.</li>
         </ul>
@@ -111,18 +108,15 @@ export default function Page() {
       }), undefined, 2)}</Code>
     </div>
 
-    <h4 id ="elementtags"><code>elementTags</code></h4>
+    <h4 id="elementtags"><code>elementTags</code></h4>
 
     <p>Map HTML element tags to Slate JSON nodes.</p>
     
     <ul>
       <DefaultConfigListItem />
       <li>
-        Receives <code>el</code> of type <code>Element</code>. For TypeScript, import that type from{' '}
-        <code>@slate-serializers/html</code> or <code>slate-serializers</code> for the <code>Element</code> type (see{' '}
-        <a href="https://github.com/thompsonsj/slate-serializers/pull/215">PR #215</a>); use the <code>Element</code>{' '}
-        constructor from the same packages when building nodes (see{' '}
-        <a href="https://github.com/thompsonsj/slate-serializers/pull/218">PR #218</a>).
+        Receives <code>el</code> of type <code>Element</code>. Import <code>Element</code> from{' '}
+        <code>@slate-serializers/html</code> (or <code>slate-serializers</code>).
         <ul>
           <li>Combine with utilities from <a href="https://domutils.js.org/"><code>domutils</code></a> to perform further manipulation.</li>
         </ul>
@@ -146,7 +140,7 @@ export default function Page() {
       }), undefined, 2)}</Code>
     </div>
 
-    <h4 id ="texttagsvselementtags"><code>textTags</code> vs <code>elementTags</code></h4>
+    <h4 id="texttagsvselementtags"><code>textTags</code> vs <code>elementTags</code></h4>
 
     <ul>
       <li>Test example: <a href={ghUrl("packages/html/src/lib/tests/htmlToSlate/configuration/textTagsVselementTags.spec.ts")}>packages/html/src/lib/tests/htmlToSlate/configuration/textTagsVselementTags.spec.ts</a>.</li>
@@ -280,7 +274,7 @@ export default function Page() {
       <Code lang="js">{JSON.stringify({"children": []}, undefined, 2)}</Code>
     </div>
 
-    <p>These nodes may appear after <a href={ghUrl("docs/engineering.md#whitespace")}>processing whitespace</a>.</p>
+    <p>These nodes can appear when whitespace handling splits or empties content; enable this option to drop them.</p>
 
     <h4 id="convertbrtolinebreak"><code>convertBrToLineBreak</code></h4>
 
@@ -301,11 +295,10 @@ export default function Page() {
 
     <p>
       How <code>&lt;br&gt;</code> tags become Slate text when <a href="#convertbrtolinebreak"><code>convertBrToLineBreak</code></a> is{' '}
-      <code>true</code> (added in <code>@slate-serializers/html</code> 2.6.0 —{' '}
-      <a href="https://github.com/thompsonsj/slate-serializers/pull/244">PR #244</a>).
+      <code>true</code>.
     </p>
 
-    <p>Default: <code>&apos;block&apos;</code> (unchanged historical behavior — opt in to <code>&apos;newline&apos;</code> deliberately).</p>
+    <p>Default: <code>&apos;block&apos;</code>. Use <code>&apos;newline&apos;</code> when you want line breaks as <code>\n</code> inside a single block instead of separate blocks.</p>
 
     <ul>
       <li>
@@ -330,7 +323,7 @@ htmlToSlate('Line 1<br />Line 2', {
 
     <ul>
       <li>
-        Side-by-side fixtures:{' '}
+        Test examples:{' '}
         <a href={ghUrl('packages/html/src/lib/tests/htmlToSlate/configuration/brStrategy.spec.ts')}>
           packages/html/src/lib/tests/htmlToSlate/configuration/brStrategy.spec.ts
         </a>
@@ -347,7 +340,6 @@ htmlToSlate('Line 1<br />Line 2', {
     <ul>
       <DefaultConfigListItem />
       <li>Test examples: <a href={ghUrl("packages/html/src/lib/tests/htmlToSlate/configuration/whitespace.spec.ts")}>packages/html/src/lib/tests/htmlToSlate/configuration/whitespace.spec.ts</a>.</li>
-      <li>See rationale in <a href={ghUrl("docs/engineering.md#whitespace")}>processing whitespace</a>.</li>
     </ul>
 
   </div>

@@ -7,7 +7,7 @@ import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import cx from 'classnames'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { SITE_LLMS_PATH } from '@/app/site'
+import { SITE_LLMS_HREF } from '@/app/site'
 
 type NavChild = { name: string; href: string }
 
@@ -156,9 +156,9 @@ export default function Header() {
             <div className="space-y-2 border-t border-gray-100 p-4">
               <p className="text-xs leading-5 text-gray-500">
                 For AI tools:{' '}
-                <Link href={SITE_LLMS_PATH} className="font-mono text-indigo-600 hover:underline">
+                <a href={SITE_LLMS_HREF} className="font-mono text-indigo-600 hover:underline">
                   llms.txt
-                </Link>
+                </a>
               </p>
               <div className="flex items-center">
                 <div className="flex shrink-0">

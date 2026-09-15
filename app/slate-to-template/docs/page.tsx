@@ -24,14 +24,10 @@ export default function Page() {
           </a>
         </li>
         <li>
-          Payload:{' '}
+          Payload CMS:{' '}
           <a href={ghUrl('packages/template/src/lib/config/payload.ts')}>
             packages/template/src/lib/config/payload.ts
           </a>
-        </li>
-        <li>
-          Serializer implementation:{' '}
-          <a href={ghUrl('packages/template/src/lib/serializers.ts')}>packages/template/src/lib/serializers.ts</a>
         </li>
       </ul>
 
@@ -71,8 +67,8 @@ const config: SlateToTemplateConfig = {
 }`}</Code>
       </div>
       <p>
-        The library README shows returning a function in some examples—your custom serializer may return a string,
-        JSX, or another renderable depending on how you consume the resulting array.
+        Custom serializers may return a string, JSX, or another value your app knows how to render from the resulting
+        array.
       </p>
 
       <h2>Relationship to other packages</h2>

@@ -22,7 +22,7 @@
 - **slate-serializers-demo** — Next.js **documentation and interactive demos** for the library above.
 - **Library source** lives at: https://github.com/thompsonsj/slate-serializers
 
-**v2.6+:** `Element` and `Text` constructors (and `ChildNode` type) are re-exported from `@slate-serializers/html` / `slate-serializers`. `htmlToSlate` supports opt-in `brStrategy: 'newline'` (default remains `'block'`).
+**Imports:** Prefer `Element` / `Text` (and `import type { ChildNode }`) from `@slate-serializers/html` or `slate-serializers`. `htmlToSlate` supports `brStrategy: 'block' | 'newline'` (default `'block'`).
 
 ## Site map & crawlers
 

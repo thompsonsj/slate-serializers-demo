@@ -16,7 +16,7 @@ export default function Page() {
       <Code lang="html" title="output.html">{slateToHtml(payloadExampleSlate, payloadSlateToHtmlConfig)}</Code>
     </div>
 
-    <p>The following example demonstrates the conversion of a Slate JSON object taken from the API of a Payload CMS document. The default Slate Rich Text editor configuration was used in a Payload CMS v2.30.0 installation.</p>
+    <p>This example converts Slate JSON from a Payload CMS document that used the default Slate rich text editor.</p>
 
     <p>Note that the <code>relationship</code> field is not converted to HTML. To support relationships, add <Link href="/slate-to-html/docs#elementtransforms"><code>elementTransforms</code></Link> to your configuration.</p>
     
