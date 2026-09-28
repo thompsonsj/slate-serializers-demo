@@ -22,7 +22,7 @@
 - **slate-serializers-demo** — Next.js **documentation and interactive demos** for the library above.
 - **Library source** lives at: https://github.com/thompsonsj/slate-serializers
 
-**Imports:** Prefer `Element` / `Text` (and `import type { ChildNode }`) from `@slate-serializers/html` or `slate-serializers`. `htmlToSlate` supports `brStrategy: 'block' | 'newline'` (default `'block'`).
+**Imports:** Prefer `Element` / `Text` (and `import type { ChildNode }`) from `@slate-serializers/html` or `slate-serializers`. `htmlToSlate` supports `brStrategy: 'block' | 'newline'` (default `'block'`) and `liftWrappedBlocks` (default `true`: block-level HTML inside an unmapped top-level wrapper such as `<div>` or `<body>` becomes top-level Slate elements).
 
 ## Site map & crawlers
 
