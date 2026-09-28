@@ -12,6 +12,7 @@ import { elementTagsExample, elementTagsExampleHtml } from "./fixtures/elementTa
 import { elementAttributeTransformExample, elementAttributeTransformExampleHtml } from "./fixtures/elementAttributeTransform"
 import { textTagsVsElementTagsExample, textTagsVsElementTagsExampleHtml } from "./fixtures/texttagsvselementtags"
 import { htmlUpdaterMapExample, htmlUpdaterMapExampleHtml } from "./fixtures/htmlUpdaterMap";
+import { liftWrappedBlocksExample, liftWrappedBlocksDisabledExample, liftWrappedBlocksExampleHtml } from "./fixtures/liftWrappedBlocks"
 
 const DefaultConfigListItem = () => <li>Default: <a href={ghUrl("packages/html/src/lib/serializers/htmlToSlate/config/default.ts")}>packages/html/src/lib/serializers/htmlToSlate/config/default.ts</a>.</li>
 
@@ -38,6 +39,7 @@ export default function Page() {
           <li><a href="#filterwhitespacenodes"><code>filterWhitespaceNodes</code></a></li>
           <li><a href="#convertbrtolinebreak"><code>convertBrToLineBreak</code></a></li>
           <li><a href="#brstrategy"><code>brStrategy</code></a></li>
+          <li><a href="#liftwrappedblocks"><code>liftWrappedBlocks</code></a></li>
           <li><a href="#trimwhitespace"><code>trimWhiteSpace</code></a></li>
         </ul>
       </li>
@@ -330,6 +332,49 @@ htmlToSlate('Line 1<br />Line 2', {
         .
       </li>
     </ul>
+
+    <h4 id="liftwrappedblocks"><code>liftWrappedBlocks</code></h4>
+
+    <p>
+      HTML often wraps its content in an element that has no mapping in <a href="#elementtags"><code>elementTags</code></a>,
+      such as <code>&lt;div&gt;</code>, <code>&lt;section&gt;</code>, or the <code>&lt;body&gt;</code> of a full HTML
+      document. When such a wrapper is at the top level and contains only block-level HTML elements (<code>&lt;p&gt;</code>,{' '}
+      <code>&lt;h1&gt;</code>, <code>&lt;ul&gt;</code>, …), their Slate elements are placed at the top level of the result.
+    </p>
+
+    <p>Default: <code>true</code>.</p>
+
+    <ul>
+      <DefaultConfigListItem />
+      <li>
+        Wrappers that contain text or inline elements (for example <code>&lt;div&gt;Text &lt;a&gt;link&lt;/a&gt;&lt;/div&gt;</code>)
+        become a single Slate element, as before.
+      </li>
+      <li>Wrappers mapped in <code>elementTags</code> are never lifted.</li>
+      <li>
+        The <code>&lt;head&gt;</code> of a full HTML document is ignored, so text such as the page{' '}
+        <code>&lt;title&gt;</code> is not added to the content.
+      </li>
+      <li>Test examples: <a href={ghUrl("packages/html/src/lib/serializers/htmlToSlate/wrappers.spec.ts")}>packages/html/src/lib/serializers/htmlToSlate/wrappers.spec.ts</a>.</li>
+    </ul>
+
+    <div className="not-prose">
+      <Code lang="js">{liftWrappedBlocksExample}</Code>
+      <Code lang="json" title="output.json">{JSON.stringify(htmlToSlate(liftWrappedBlocksExampleHtml), undefined, 2)}</Code>
+    </div>
+
+    <p>
+      Set <code>liftWrappedBlocks</code> to <code>false</code> to keep the Slate elements inside a single Slate element
+      with no <code>type</code>.
+    </p>
+
+    <div className="not-prose">
+      <Code lang="js">{liftWrappedBlocksDisabledExample}</Code>
+      <Code lang="json" title="output.json">{JSON.stringify(htmlToSlate(liftWrappedBlocksExampleHtml, {
+        ...htmlToSlateConfig,
+        liftWrappedBlocks: false,
+      }), undefined, 2)}</Code>
+    </div>
 
     <h4 id="trimwhitespace"><code>trimWhiteSpace</code></h4>
 

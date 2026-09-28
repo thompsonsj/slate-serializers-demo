@@ -42,7 +42,7 @@ npm run type-check
 ## Conventions
 
 - Match existing patterns for imports, styling (Tailwind + `prose`), and Bright code blocks.
-- Target **`@slate-serializers/*` ^2.6.0** in `package.json`. Serializer **configs** for `@slate-serializers/react` are **flat** (`markMap`, `elementMap`, `elementTransforms` on the root `config` object), not nested under `dom` / `react`.
+- Target **`@slate-serializers/*` ^2.7.0** in `package.json`. Serializer **configs** for `@slate-serializers/react` are **flat** (`markMap`, `elementMap`, `elementTransforms` on the root `config` object), not nested under `dom` / `react`.
 - Import **`Element` and `Text`** (and `import type { ChildNode }`) from **`@slate-serializers/html`** or **`slate-serializers`** — not from `domhandler` directly.
 - **User-facing docs** (Getting Started, serializer docs pages): plain English for implementers. Prefer examples over history, changelog, or PR links.
 
