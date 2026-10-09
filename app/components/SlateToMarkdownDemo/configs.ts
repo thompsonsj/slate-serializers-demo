@@ -2,8 +2,8 @@ import { slateToMarkdownConfig, payloadSlateToMarkdownConfig } from '@slate-seri
 import { markdownConfigUrl } from '@/app/utilities/slate-serializers-config-urls'
 
 import { initialValue } from './fixtures/default'
+import { payloadValue } from './fixtures/payload'
 import { slateValue } from '../SlateToHtmlDemo/fixtures/slate-demo'
-import { payloadValue } from '../SlateToHtmlDemo/fixtures/payload'
 
 export const publishingOptions = [
   {
