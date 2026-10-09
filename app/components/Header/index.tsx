@@ -8,6 +8,7 @@ import cx from 'classnames'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { SITE_LLMS_HREF } from '@/app/site'
+import { IconLink } from '../IconLink'
 
 type NavChild = { name: string; href: string }
 
@@ -170,20 +171,8 @@ export default function Header() {
                 </a>
               </p>
               <div className="-ml-1 flex items-center gap-2">
-                <a
-                  href="https://www.npmjs.com/package/slate-serializers"
-                  className="rounded-sm p-1 text-gray-400 hover:text-gray-600 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500"
-                >
-                  <span className="sr-only">View project on npm</span>
-                  <IoLogoNpm className="h-6 w-6" aria-hidden="true" />
-                </a>
-                <a
-                  href="https://github.com/thompsonsj/slate-serializers"
-                  className="rounded-sm p-1 text-gray-400 hover:text-gray-600 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500"
-                >
-                  <span className="sr-only">View project on GitHub</span>
-                  <BsGithub className="h-6 w-6" aria-hidden="true" />
-                </a>
+                <IconLink href="https://www.npmjs.com/package/slate-serializers" label="View project on npm" icon={IoLogoNpm} />
+                <IconLink href="https://github.com/thompsonsj/slate-serializers" label="View project on GitHub" icon={BsGithub} />
               </div>
             </div>
           </li>

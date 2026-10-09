@@ -6,6 +6,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import Header from '../Header'
+import { IconLink } from '../IconLink'
 import { BsGithub } from 'react-icons/bs'
 import { IoLogoNpm } from 'react-icons/io5'
 
@@ -75,20 +76,8 @@ export const Sidebar = () => {
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
           <div className="flex-1 font-mono text-sm font-semibold text-gray-900">slate-serializers</div>
-          <a
-            href="https://www.npmjs.com/package/slate-serializers"
-            className="rounded-sm p-1 text-gray-400 hover:text-gray-600 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500"
-          >
-            <span className="sr-only">View project on npm</span>
-            <IoLogoNpm className="h-6 w-6" aria-hidden="true" />
-          </a>
-          <a
-            href="https://github.com/thompsonsj/slate-serializers"
-            className="rounded-sm p-1 text-gray-400 hover:text-gray-600 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500"
-          >
-            <span className="sr-only">View project on GitHub</span>
-            <BsGithub className="h-6 w-6" aria-hidden="true" />
-          </a>
+          <IconLink href="https://www.npmjs.com/package/slate-serializers" label="View project on npm" icon={IoLogoNpm} />
+          <IconLink href="https://github.com/thompsonsj/slate-serializers" label="View project on GitHub" icon={BsGithub} />
         </div>
               </>
   )

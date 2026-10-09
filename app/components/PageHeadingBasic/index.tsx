@@ -16,7 +16,7 @@ export const PageHeadingBasic: FC<IPageHeadingBasic> = ({
   className
 }) => {
   return (
-    <div className={cx('rounded-lg bg-slate-100 p-6', className)}>
+    <div className={cx('rounded-lg bg-gray-100 p-6', className)}>
       <div className="gap-6 lg:flex lg:items-center lg:justify-between">
         <div className="min-w-0 flex-1">
           <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">

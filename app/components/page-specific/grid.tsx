@@ -2,6 +2,7 @@ import { DocumentTextIcon, WindowIcon } from '@heroicons/react/20/solid'
 import { BsGithub } from 'react-icons/bs'
 import { IoLogoNpm } from 'react-icons/io5'
 import Link from 'next/link'
+import { IconLink } from '../IconLink'
 
 const serializers = [
   {
@@ -77,9 +78,6 @@ const serializers = [
   },
 ]
 
-const iconLinkClassName =
-  'rounded-sm p-1 text-gray-400 hover:text-gray-600 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500'
-
 const footerLinkClassName =
   'flex flex-1 items-center justify-center gap-x-2 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-50'
 
@@ -95,14 +93,8 @@ export const Grid = () => {
                 <p className="mt-0.5 truncate font-mono text-xs text-gray-500">{s.package}</p>
               </div>
               <div className="-mr-1 -mt-1 flex shrink-0">
-                <a href={s.npm} className={iconLinkClassName}>
-                  <span className="sr-only">{s.package} on npm</span>
-                  <IoLogoNpm className="h-5 w-5" aria-hidden="true" />
-                </a>
-                <a href={s.github} className={iconLinkClassName}>
-                  <span className="sr-only">{s.package} on GitHub</span>
-                  <BsGithub className="h-5 w-5" aria-hidden="true" />
-                </a>
+                <IconLink href={s.npm} label={`${s.package} on npm`} icon={IoLogoNpm} />
+                <IconLink href={s.github} label={`${s.package} on GitHub`} icon={BsGithub} />
               </div>
             </div>
             <div className="mt-3 text-sm leading-6 text-gray-600">{s.content}</div>

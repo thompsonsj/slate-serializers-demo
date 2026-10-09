@@ -10,25 +10,16 @@ import SlateDemoRichTextEditor from '../RichTextEditor/slate-demo'
 
 import { SlateValueContext } from '../../contexts/SlateValueContext'
 import { IConfigContext, SlateConfigContext } from '../../contexts/SlateConfigContext'
-import { Select } from '../../components/PageHeading/Select';
-import { initialValue as startValue } from '../../components/PageHeading/Select'
+import { Select } from '../PageHeading/Select'
 
 import { htmlToSlate, slateToHtml } from "@slate-serializers/html"
-import { htmlToSlateConfig, slateToHtmlConfig } from "@slate-serializers/html"
 import { publishingOptions } from './configs'
 
 export const SlateToHtmlDemo: FC = () => {
-  const [slateConfig, setSlateConfig] = useState<IConfigContext>({
-    configName: "Default",
-    configSlug: "default",
-    configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/default.ts",
-    slateToHtmlConfig: slateToHtmlConfig,
-    htmlToSlateConfig: htmlToSlateConfig,
-    initialValue: startValue,
-  });
-  const [slateValue, setSlateValue] = useState(JSON.stringify(startValue))
-  const [ html, setHtml ] = useState(slateValue ? slateToHtml(JSON.parse(slateValue), slateToHtmlConfig): '')
-  const [ reserializedSlate, setReserializedSlate ] = useState(html ? htmlToSlate(html, htmlToSlateConfig): [])
+  const [slateConfig, setSlateConfig] = useState<IConfigContext>(publishingOptions[0].config)
+  const [slateValue, setSlateValue] = useState(JSON.stringify(slateConfig.initialValue))
+  const [ html, setHtml ] = useState(slateValue ? slateToHtml(JSON.parse(slateValue), slateConfig.slateToHtmlConfig): '')
+  const [ reserializedSlate, setReserializedSlate ] = useState(html ? htmlToSlate(html, slateConfig.htmlToSlateConfig): [])
 
   useEffect(() => {
     setHtml(slateValue ? slateToHtml(JSON.parse(slateValue), slateConfig.slateToHtmlConfig): '')

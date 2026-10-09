@@ -20,7 +20,7 @@ import {
 } from 'react-icons/ri'
 
 import { SlateValueContext } from '../../../contexts/SlateValueContext'
-import { cx } from '@emotion/css'
+import cx from 'classnames'
 import { CustomElement, GeneralElement } from '../types'
 
 const HOTKEYS = {

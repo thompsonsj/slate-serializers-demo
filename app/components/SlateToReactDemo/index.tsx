@@ -9,29 +9,19 @@ import SlateDemoRichTextEditor from '../RichTextEditor/slate-demo'
 
 import { SlateValueContext } from '../../contexts/SlateValueContext'
 import { IConfigContext, SlateToReactConfigContext } from '../../contexts/SlateToReactConfigContext'
-import { Select } from '../PageHeading/react/Select';
-import { initialValue as startValue } from '../PageHeading/react/Select'
+import { Select } from '../PageHeading/Select'
+import { publishingOptions } from './configs'
 
-
-import { SlateToReact, slateToReactConfig } from "@slate-serializers/react"
-import { slateToHtmlConfig } from '@slate-serializers/html'
+import { SlateToReact } from "@slate-serializers/react"
 
 export const SlateToReactDemo: FC = () => {
-  const [slateConfig, setSlateConfig] = useState<IConfigContext>({
-    configName: "Default",
-    configSlug: "default",
-    configUrlDom: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/default.ts",
-    configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToReact/default.tsx",
-    slateToHtmlConfig: slateToHtmlConfig,
-    slateToReactConfig: slateToReactConfig,
-    initialValue: startValue,
-  });
-  const [slateValue, setSlateValue] = useState(JSON.stringify(startValue))
+  const [slateConfig, setSlateConfig] = useState<IConfigContext>(publishingOptions[0].config)
+  const [slateValue, setSlateValue] = useState(JSON.stringify(slateConfig.initialValue))
   const [ jsx, setJsx ] = useState(slateValue ? <SlateToReact node={JSON.parse(slateValue)} config={slateConfig.slateToReactConfig} />: <></>)
 
   useEffect(() => {
     setJsx(slateValue ? <SlateToReact node={JSON.parse(slateValue)} config={slateConfig.slateToReactConfig} />: <></>)
-  }, [slateValue, slateToHtmlConfig, slateToReactConfig])
+  }, [slateValue, slateConfig])
 
   return (
     <>
@@ -42,7 +32,11 @@ export const SlateToReactDemo: FC = () => {
         <PageHeading
           title="Convert Slate JSON to React JSX"
           menu={<Select
-            setSlateConfig={setSlateConfig}
+            options={publishingOptions}
+            onChange={(option) => {
+              setSlateConfig(option.config)
+              setSlateValue(JSON.stringify(option.config.initialValue))
+            }}
           />}
         />
         <DemoGrid>

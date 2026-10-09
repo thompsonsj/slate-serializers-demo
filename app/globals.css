@@ -1,22 +1,7 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
-@theme {
-  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
-  --background-image-gradient-conic: conic-gradient(
-    from 180deg at 50% 50%,
-    var(--tw-gradient-stops)
-  );
-}
-
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
+/* Site-wide default border colour, so `border` and `divide-*` need no colour utility. Tailwind v4's default is `currentcolor`. */
 @layer base {
   *,
   ::after,
@@ -85,7 +70,7 @@ img {
 }
 
 blockquote {
-  border-left: 2px solid #ddd;
+  border-left: 2px solid var(--color-gray-300);
   margin-left: 0;
   margin-right: 0;
   padding-left: 10px;
@@ -97,7 +82,7 @@ blockquote[dir='rtl'] {
   border-left: none;
   padding-left: 0;
   padding-right: 10px;
-  border-right: 2px solid #ddd;
+  border-right: 2px solid var(--color-gray-300);
 }
 
 .editor-styles h2 {
