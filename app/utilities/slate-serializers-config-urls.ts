@@ -13,3 +13,9 @@ export const templateConfigUrl = {
   slateDemo: ghUrl('packages/template/src/lib/config/slateDemo.ts'),
   payload: ghUrl('packages/template/src/lib/config/payload.ts'),
 } as const
+
+/** GitHub links to @slate-serializers/markdown config sources. */
+export const markdownConfigUrl = {
+  default: ghUrl('packages/markdown/src/lib/config/default.ts'),
+  payload: ghUrl('packages/markdown/src/lib/config/payload.ts'),
+} as const

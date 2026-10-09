@@ -12,10 +12,10 @@ export const SITE_BASE_PATH = '/slate-serializers-demo' as const
 export const SITE_URL = `${SITE_ORIGIN}${SITE_BASE_PATH}` as const
 
 export const SITE_DESCRIPTION =
-  'Documentation and interactive demos for slate-serializers: npm packages that serialize Slate.js editor content to HTML strings and parse HTML back to Slate nodes, render Slate to React components, produce DOM for custom pipelines, and emit template-style output (e.g. JSX or partial HTML).'
+  'Documentation and interactive demos for slate-serializers: npm packages that serialize Slate.js editor content to HTML strings and parse HTML back to Slate nodes, render Slate to React components, produce DOM for custom pipelines, emit template-style output (e.g. JSX or partial HTML), and convert Slate to GitHub Flavored Markdown.'
 
 export const SITE_OG_TITLE =
-  'slate-serializers — Slate.js serialization (HTML, React, DOM, templates)' as const
+  'slate-serializers — Slate.js serialization (HTML, React, DOM, templates, Markdown)' as const
 
 export const SITE_OG_SITE_NAME = 'slate-serializers demo' as const
 
@@ -46,6 +46,8 @@ export const SITEMAP_PATHS: readonly string[] = [
   '/slate-to-react/docs/payload',
   '/slate-to-template',
   '/slate-to-template/docs',
+  '/slate-to-markdown',
+  '/slate-to-markdown/docs',
 ]
 
 export function sitePageUrl(path: string): string {

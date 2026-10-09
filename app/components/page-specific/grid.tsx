@@ -49,6 +49,17 @@ const serializers = [
     demoLink: '/slate-to-template',
   },
   {
+    title: 'slateToMarkdown',
+    package: '@slate-serializers/markdown',
+    npm: 'https://www.npmjs.com/package/@slate-serializers/markdown',
+    github: 'https://github.com/thompsonsj/slate-serializers/tree/main/packages/markdown',
+    content: <>
+      <p>Convert Slate JSON to GitHub Flavored Markdown.</p>
+    </>,
+    docsLink: '/slate-to-markdown/docs',
+    demoLink: '/slate-to-markdown',
+  },
+  {
     title: 'slateToDom',
     package: '@slate-serializers/dom',
     npm: 'https://www.npmjs.com/package/@slate-serializers/dom',

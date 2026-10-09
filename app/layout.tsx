@@ -31,6 +31,9 @@ export const metadata: Metadata = {
     '@slate-serializers/react',
     'slateToDom',
     'slateToTemplate',
+    'slateToMarkdown',
+    'Slate to Markdown',
+    '@slate-serializers/markdown',
   ],
   openGraph: {
     title: SITE_OG_TITLE,
@@ -61,6 +64,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       'Parse HTML to Slate.js nodes',
       'Render Slate content as React components',
       'Serialize Slate to DOM or template-style output',
+      'Serialize Slate.js document JSON to GitHub Flavored Markdown',
     ],
   }
 
