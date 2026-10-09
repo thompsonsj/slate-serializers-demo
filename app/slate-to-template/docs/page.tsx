@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Page() {
   return (
-    <div className="prose max-w-none">
+    <div className="prose">
       <h1>
         <code>slateToTemplate</code>
       </h1>
@@ -85,6 +85,12 @@ const config: SlateToTemplateConfig = {
           </strong>{' '}
           — React component output: flat <code>config</code> with the same keys as <code>slateToHtml</code>, plus{' '}
           <code>elementTransforms</code>.
+        </li>
+        <li>
+          <strong>
+            <Link href="/slate-to-markdown/docs">slateToMarkdown</Link>
+          </strong>{' '}
+          — produces a GitHub Flavored Markdown string for the whole document.
         </li>
         <li>
           <strong>slateToTemplate</strong> — one output slot per top-level node; mix HTML strings and custom outputs.

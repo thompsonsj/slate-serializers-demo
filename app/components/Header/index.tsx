@@ -89,7 +89,9 @@ export default function Header() {
   return (
     <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
       <div className="flex h-16 shrink-0 items-center">
-        <code className="p-2">slate-serializers</code>
+        <Link href="/" className="font-mono text-sm font-semibold text-gray-900">
+          slate-serializers
+        </Link>
       </div>
       <nav className="flex flex-1 flex-col" aria-label="Main">
         <ul className="flex flex-1 flex-col gap-y-7">
@@ -167,25 +169,21 @@ export default function Header() {
                   llms.txt
                 </a>
               </p>
-              <div className="flex items-center">
-                <div className="flex shrink-0">
-                  <a
-                    href="https://www.npmjs.com/package/slate-serializers"
-                    className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                  >
-                    <span className="sr-only">View project on npm</span>
-                    <IoLogoNpm className="h-6 w-6" aria-hidden="true" />
-                  </a>
-                </div>
-                <div className="hidden md:ml-4 md:flex md:shrink-0 md:items-center">
-                  <a
-                    href="https://github.com/thompsonsj/slate-serializers"
-                    className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                  >
-                    <span className="sr-only">View project on GitHub</span>
-                    <BsGithub className="h-6 w-6" aria-hidden="true" />
-                  </a>
-                </div>
+              <div className="-ml-1 flex items-center gap-2">
+                <a
+                  href="https://www.npmjs.com/package/slate-serializers"
+                  className="rounded-sm p-1 text-gray-400 hover:text-gray-600 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500"
+                >
+                  <span className="sr-only">View project on npm</span>
+                  <IoLogoNpm className="h-6 w-6" aria-hidden="true" />
+                </a>
+                <a
+                  href="https://github.com/thompsonsj/slate-serializers"
+                  className="rounded-sm p-1 text-gray-400 hover:text-gray-600 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500"
+                >
+                  <span className="sr-only">View project on GitHub</span>
+                  <BsGithub className="h-6 w-6" aria-hidden="true" />
+                </a>
               </div>
             </div>
           </li>

@@ -6,6 +6,8 @@ import { Descendant } from 'slate'
 import RichTextEditor from '../RichTextEditor/default'
 import PayloadRichTextEditor from '../RichTextEditor/payload'
 import { SlateValueContext } from '../../contexts/SlateValueContext'
+import { PageHeadingBasic } from '../PageHeadingBasic'
+import { DemoGrid, DemoPanel } from '../DemoLayout'
 
 import { htmlToSlate, slateToHtml } from "@slate-serializers/html"
 import type { HtmlToSlateConfig, SlateToHtmlConfig } from "@slate-serializers/html"
@@ -40,43 +42,31 @@ export const HtmlToSlateDemo: FC<IHtmlToSlateDemo> = ({
   return (
     <>
     <SlateValueContext.Provider value={{slateValue, setSlateValue}}>
-      <div className="grid grid-cols-12 gap-6 py-12">
-        <div className="col-span-6">
-         <label className="block font-bold text-gray-700 mb-6">
-            Edit HTML content
-          </label>
+      <PageHeadingBasic title="Convert HTML to Slate JSON" />
+      <DemoGrid>
+        <DemoPanel title={<label htmlFor="html-input">Edit HTML content</label>}>
           <textarea
-            className="block w-full h-[400px] rounded-md border-gray-300 shadow-xs focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            id="html-input"
+            className="block h-[400px] w-full rounded-md border border-gray-300 p-3 font-mono text-sm shadow-xs focus:border-indigo-500 focus:ring-indigo-500"
             defaultValue={initialValue}
             onChange={ev => setHtmlValue(ev.target.value)}
           ></textarea>
-        </div>
-        <div className="col-span-6">
-          <label className="block font-bold text-gray-700 mb-6">
-            htmlToSlate output
-          </label>
+        </DemoPanel>
+        <DemoPanel title="htmlToSlate output">
           {editorConfig === "slate" && (
           <RichTextEditor value={htmlToSlate(initialValue, htmlToSlateConfig) as any} dynamicValue={serializedSlateValue as any} />
           )}
           {editorConfig === "payload" && (
           <PayloadRichTextEditor value={htmlToSlate(initialValue, htmlToSlateConfig) as any} dynamicValue={serializedSlateValue as any} />
           )}
-        </div>
-      </div>
-      <div className="grid grid-cols-12 gap-6 py-12">
-        <div className="col-span-6">
-          <label className="block font-bold text-gray-700 mb-6">
-            Slate value
-          </label>
+        </DemoPanel>
+        <DemoPanel title="Slate value">
           <pre><code>{slateValue && JSON.parse(slateValue).map((node: any) => stringifyObject(node)).join('\n')}</code></pre>
-        </div>
-        <div className="col-span-6">
-          <label className="block font-bold text-gray-700 mb-6">
-            Reserialized with slateToHtml
-          </label>
+        </DemoPanel>
+        <DemoPanel title="Reserialized with slateToHtml">
           <pre><code>{reserializedHtml}</code></pre>
-        </div>
-      </div>
+        </DemoPanel>
+      </DemoGrid>
       </SlateValueContext.Provider>
     </>
   )

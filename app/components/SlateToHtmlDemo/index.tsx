@@ -3,6 +3,7 @@ import React, { FC, useEffect, useState } from 'react'
 import stringifyObject from 'stringify-object'
 
 import { PageHeading } from '../PageHeading'
+import { DemoGrid, DemoPanel } from '../DemoLayout'
 import RichTextEditor from '../RichTextEditor/default'
 import PayloadRichTextEditor from '../RichTextEditor/payload'
 import SlateDemoRichTextEditor from '../RichTextEditor/slate-demo'
@@ -45,7 +46,6 @@ export const SlateToHtmlDemo: FC = () => {
       }}>
         <PageHeading
           title="Convert Slate JSON to HTML"
-          config="slateToDom"
           menu={<Select
             options={publishingOptions}
             onChange={(event) => {
@@ -53,13 +53,9 @@ export const SlateToHtmlDemo: FC = () => {
               setSlateValue(JSON.stringify(event.config.initialValue))
             }}
           />}
-          className="p-6 bg-slate-200 rounded-sm"
         />
-        <div className="grid grid-cols-12 gap-6 py-12">
-          <div className="col-span-6">
-            <label className="block font-bold text-gray-700 mb-6">
-              Edit Slate content
-            </label>
+        <DemoGrid>
+          <DemoPanel title="Edit Slate content">
             {slateConfig.configSlug === "default" && (
             <RichTextEditor value={slateConfig.initialValue} />
             )}
@@ -69,28 +65,17 @@ export const SlateToHtmlDemo: FC = () => {
             {slateConfig.configSlug === "slate" && (
             <SlateDemoRichTextEditor value={slateConfig.initialValue} />
             )}
-          </div>
-          <div className="col-span-6">
-            <label className="block font-bold text-gray-700 mb-6">
-              slateToHtml output
-            </label>
+          </DemoPanel>
+          <DemoPanel title="slateToHtml output">
             <pre><code>{html}</code></pre>
-          </div>
-        </div>
-        <div className="grid grid-cols-12 gap-6 py-12">
-          <div className="col-span-6">
-            <label className="block font-bold text-gray-700 mb-6">
-              Slate value
-            </label>
+          </DemoPanel>
+          <DemoPanel title="Slate value">
             <pre><code>{slateValue && JSON.parse(slateValue).map((node: any) => stringifyObject(node)).join('\n')}</code></pre>
-          </div>
-          <div className="col-span-6">
-            <label className="block font-bold text-gray-700 mb-6">
-              Reserialized with htmlToSlate
-            </label>
+          </DemoPanel>
+          <DemoPanel title="Reserialized with htmlToSlate">
             <pre><code>{reserializedSlate && reserializedSlate.map(node => stringifyObject(node)).join('\n')}</code></pre>
-          </div>
-        </div>
+          </DemoPanel>
+        </DemoGrid>
       </SlateValueContext.Provider>
       </SlateConfigContext.Provider>
     </>
