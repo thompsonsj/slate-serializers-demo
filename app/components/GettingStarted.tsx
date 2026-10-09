@@ -122,7 +122,7 @@ export function RichText({ value }: { value: any[] }) {
       <p>
         These packages target Slate&apos;s modern document model (Slate ≥ 0.50). This site uses{' '}
         <strong>Slate ~0.101</strong> and <strong>slate-react ~0.101</strong> with <code>@slate-serializers/*</code>{' '}
-        <strong>^2.7.0</strong>.
+        <strong>^2.8.0</strong>.
       </p>
       </div>
     </div>
