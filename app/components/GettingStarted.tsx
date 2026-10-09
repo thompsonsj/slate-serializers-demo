@@ -9,8 +9,8 @@ export function GettingStarted() {
       <p>
         If you use <a href="https://www.npmjs.com/package/slate">Slate.js</a> and need to store or display rich text
         outside the editor, these packages cover the common paths: <strong>HTML</strong> round-trip,{' '}
-        <strong>React</strong> rendering, a <strong>DOM</strong> stage before HTML, and <strong>template</strong> /
-        custom serializers for non-HTML targets.
+        <strong>React</strong> rendering, a <strong>DOM</strong> stage before HTML, <strong>template</strong> /
+        custom serializers for non-HTML targets, and <strong>Markdown</strong> export.
       </p>
       <p>
         Install only the packages you need. Each serializer is published under <code>@slate-serializers/</code> on npm.
@@ -76,6 +76,15 @@ import { Element, Text } from '@slate-serializers/html'
               </td>
             </tr>
             <tr>
+              <td className="p-3 font-mono text-xs sm:text-sm">@slate-serializers/markdown</td>
+              <td className="p-3">
+                <code>slateToMarkdown</code> — Slate JSON to a GitHub Flavored Markdown string.{' '}
+                <Link href="/slate-to-markdown/docs" className="text-indigo-600 hover:underline">
+                  Docs
+                </Link>
+              </td>
+            </tr>
+            <tr>
               <td className="p-3 font-mono text-xs sm:text-sm">@slate-serializers/utilities</td>
               <td className="p-3">
                 Small helpers (e.g. style object handling) used by the serializers; rarely needed directly unless you
@@ -97,7 +106,9 @@ import { Element, Text } from '@slate-serializers/html'
       <div className="not-prose">
         <Code lang="bash">{`npm install @slate-serializers/html slate slate-react
 # or, for React output:
-npm install @slate-serializers/react slate slate-react`}</Code>
+npm install @slate-serializers/react slate slate-react
+# or, for Markdown output:
+npm install @slate-serializers/markdown`}</Code>
       </div>
 
       <h3>Minimal examples</h3>
@@ -117,12 +128,19 @@ export function RichText({ value }: { value: any[] }) {
   return <SlateToReact node={value} />
 }`}</Code>
       </div>
+      <p>Markdown output:</p>
+      <div className="not-prose">
+        <Code lang="ts">{`import { slateToMarkdown } from '@slate-serializers/markdown'
+
+const slate = [{ type: 'p', children: [{ text: 'Hello ' }, { text: 'world', bold: true }] }]
+const markdown = slateToMarkdown(slate) // 'Hello **world**'`}</Code>
+      </div>
 
       <h3>Slate version</h3>
       <p>
         These packages target Slate&apos;s modern document model (Slate ≥ 0.50). This site uses{' '}
         <strong>Slate ~0.101</strong> and <strong>slate-react ~0.101</strong> with <code>@slate-serializers/*</code>{' '}
-        <strong>^2.7.0</strong>.
+        <strong>^2.8.1</strong>.
       </p>
       </div>
     </div>

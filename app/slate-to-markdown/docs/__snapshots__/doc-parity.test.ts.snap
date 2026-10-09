@@ -1,0 +1,70 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`slate-to-markdown docs: slateToMarkdown output > constructs 1`] = `
+"3. Third
+4. Fourth, with a nested list
+   - Nested
+
+- [x] Done
+- [ ] To do
+
+\`\`\`ts
+const greeting = 'Hello'
+console.log(greeting)
+\`\`\`
+
+| Package | Version |
+| --- | ---: |
+| @slate-serializers/markdown | 2.8.1 |
+
+![Diagram](https://example.com/diagram.png)
+
+---
+
+Line one\\
+Line two"
+`;
+
+exports[`slate-to-markdown docs: slateToMarkdown output > default 1`] = `
+"# Heading 1
+
+A paragraph with **bold**, *italic* and \`inline code\`, plus a [link](https://docs.slatejs.org).
+
+- One
+- Two
+
+> A quote."
+`;
+
+exports[`slate-to-markdown docs: slateToMarkdown output > elementMap 1`] = `
+"# Release notes
+
+A custom title element becomes a level 1 heading."
+`;
+
+exports[`slate-to-markdown docs: slateToMarkdown output > elementTransforms 1`] = `
+"Thanks @thompsonsj for the review.
+
+> **Note:** Callouts become block quotes."
+`;
+
+exports[`slate-to-markdown docs: slateToMarkdown output > escape 1`] = `"Text that already contains **Markdown**."`;
+
+exports[`slate-to-markdown docs: slateToMarkdown output > escape: default escapes Markdown syntax in text 1`] = `"Text that already contains \\*\\*Markdown\\*\\*."`;
+
+exports[`slate-to-markdown docs: slateToMarkdown output > formatting 1`] = `
+"Some _emphasis_ and a literal \\*asterisk\\*.
+
+* One
+* Two"
+`;
+
+exports[`slate-to-markdown docs: slateToMarkdown output > markMap 1`] = `"Markdown has no syntax for <mark>highlighted</mark> or <u>underlined</u> text, so HTML tags are used."`;
+
+exports[`slate-to-markdown docs: slateToMarkdown output > payload 1`] = `
+"## Uploads
+
+![Architecture diagram](/media/diagram.png)
+
+[report.pdf](/media/report.pdf)"
+`;

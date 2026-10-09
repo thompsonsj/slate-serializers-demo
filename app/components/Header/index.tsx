@@ -46,6 +46,13 @@ const navigation: NavItem[] = [
     ],
   },
   {
+    name: 'slateToMarkdown',
+    children: [
+      { name: 'Docs', href: '/slate-to-markdown/docs' },
+      { name: 'Demo', href: '/slate-to-markdown' },
+    ],
+  },
+  {
     name: 'slateToDom',
     children: [{ name: 'Docs', href: '/slate-to-dom/docs' }],
   },
