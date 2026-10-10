@@ -43,7 +43,7 @@ npm run type-check
 ## Conventions
 
 - Match existing patterns for imports, styling (Tailwind + `prose`), and Bright code blocks.
-- Target **`@slate-serializers/*` ^2.8.1** in `package.json`. Serializer **configs** for `@slate-serializers/react` are **flat** (`markMap`, `elementMap`, `elementTransforms` on the root `config` object), not nested under `dom` / `react`.
+- Target **`@slate-serializers/*` ^2.8.2** in `package.json`. Serializer **configs** for `@slate-serializers/react` are **flat** (`markMap`, `elementMap`, `elementTransforms` on the root `config` object), not nested under `dom` / `react`.
 - Import **`Element` and `Text`** (and `import type { ChildNode }`) from **`@slate-serializers/html`** or **`slate-serializers`** — not from `domhandler` directly.
 - **User-facing docs** (Getting Started, serializer docs pages): plain English for implementers. Prefer examples over history, changelog, or PR links.
 
@@ -63,3 +63,13 @@ Inferred from past PRs (`YYYYMMDD-upgrade-dependencies`, `upgrade-next`, `upgrad
 - **Library repo**: https://github.com/thompsonsj/slate-serializers  
 - **Live demo site**: https://thompsonsj.github.io/slate-serializers-demo/
 - **User hub**: https://thompsonsj.github.io/
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+## This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
