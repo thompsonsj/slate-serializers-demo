@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Page() {
   return (
-    <div className="prose max-w-none">
+    <div className="prose">
       <h1>
         <code>slateToDom</code>
       </h1>

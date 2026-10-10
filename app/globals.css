@@ -1,22 +1,7 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
-@theme {
-  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
-  --background-image-gradient-conic: conic-gradient(
-    from 180deg at 50% 50%,
-    var(--tw-gradient-stops)
-  );
-}
-
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
+/* Site-wide default border colour, so `border` and `divide-*` need no colour utility. Tailwind v4's default is `currentcolor`. */
 @layer base {
   *,
   ::after,
@@ -43,15 +28,40 @@ code {
 
 /* Do not style all `pre` tags globally — it breaks Bright/Tailwind code blocks (e.g. light bg + light text). */
 pre:not([class]) {
-  padding: 10px;
-  background-color: #eee;
+  padding: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  color: var(--color-gray-900);
+  background-color: var(--color-gray-50);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 0.375rem;
   white-space: pre-wrap;
+  overflow-x: auto;
 }
 
 :not(pre) > code {
-  font-family: monospace;
-  background-color: #eee;
-  padding: 3px;
+  font-size: 0.875em;
+  background-color: var(--color-gray-100);
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.3rem;
+}
+
+/* Typography plugin wraps inline code in literal backticks; the background chip already marks it as code. */
+.prose code::before,
+.prose code::after {
+  content: none;
+}
+
+.prose code {
+  font-weight: 500;
+}
+
+:is(h1, h2, h3, h4) > code,
+.prose :is(h1, h2, h3, h4) > code {
+  font-size: inherit;
+  font-weight: inherit;
+  background-color: transparent;
+  padding: 0;
 }
 
 img {
@@ -60,11 +70,11 @@ img {
 }
 
 blockquote {
-  border-left: 2px solid #ddd;
+  border-left: 2px solid var(--color-gray-300);
   margin-left: 0;
   margin-right: 0;
   padding-left: 10px;
-  color: #aaa;
+  color: var(--color-gray-600);
   font-style: italic;
 }
 
@@ -72,7 +82,7 @@ blockquote[dir='rtl'] {
   border-left: none;
   padding-left: 0;
   padding-right: 10px;
-  border-right: 2px solid #ddd;
+  border-right: 2px solid var(--color-gray-300);
 }
 
 .editor-styles h2 {

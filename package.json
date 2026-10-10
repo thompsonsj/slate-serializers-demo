@@ -11,7 +11,6 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@emotion/css": "^11.13.5",
     "@faceless-ui/modal": "^3.0.2",
     "@headlessui/react": "^2.2.10",
     "@heroicons/react": "^2.2.0",

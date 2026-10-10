@@ -6,6 +6,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import Header from '../Header'
+import { IconLink } from '../IconLink'
 import { BsGithub } from 'react-icons/bs'
 import { IoLogoNpm } from 'react-icons/io5'
 
@@ -69,27 +70,15 @@ export const Sidebar = () => {
           <Header />
         </div>
 
-        <div className="sticky top-0 z-40 flex items-center gap-x-6 bg-indigo-600 px-4 py-4 shadow-xs sm:px-6 lg:hidden">
-          <button type="button" className="-m-2.5 p-2.5 text-indigo-200 lg:hidden" onClick={() => setSidebarOpen(true)}>
+        <div className="sticky top-0 z-40 flex items-center gap-x-4 border-b border-gray-200 bg-white px-4 py-3 sm:px-6 lg:hidden">
+          <button type="button" className="-m-2.5 p-2.5 text-gray-500 lg:hidden" onClick={() => setSidebarOpen(true)}>
             <span className="sr-only">Open sidebar</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
-          <div className="flex-1 text-sm font-semibold leading-6 text-white">slate-serializers</div>
-          <a
-                  href="https://www.npmjs.com/package/slate-serializers"
-                  className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                  <span className="sr-only">View project on npm</span>
-                  <IoLogoNpm className="h-6 w-6" aria-hidden="true" />
-                </a>
-                <a
-                  href="https://github.com/thompsonsj/slate-serializers"
-                  className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                  <span className="sr-only">View project on GitHub</span>
-                  <BsGithub className="h-6 w-6" aria-hidden="true" />
-                </a>
-              </div>
+          <div className="min-w-0 flex-1 font-mono text-sm font-semibold text-gray-900">slate-serializers</div>
+          <IconLink href="https://www.npmjs.com/package/slate-serializers" label="View project on npm" icon={IoLogoNpm} />
+          <IconLink href="https://github.com/thompsonsj/slate-serializers" label="View project on GitHub" icon={BsGithub} />
+        </div>
               </>
   )
 }

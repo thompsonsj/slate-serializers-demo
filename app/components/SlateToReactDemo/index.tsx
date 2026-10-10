@@ -2,35 +2,26 @@ import React, { FC, useEffect, useState } from 'react'
 import stringifyObject from 'stringify-object'
 
 import { PageHeading } from '../PageHeading/react'
+import { DemoGrid, DemoPanel, RenderedOutput } from '../DemoLayout'
 import RichTextEditor from '../RichTextEditor/default'
 import PayloadRichTextEditor from '../RichTextEditor/payload'
 import SlateDemoRichTextEditor from '../RichTextEditor/slate-demo'
 
 import { SlateValueContext } from '../../contexts/SlateValueContext'
 import { IConfigContext, SlateToReactConfigContext } from '../../contexts/SlateToReactConfigContext'
-import { Select } from '../PageHeading/react/Select';
-import { initialValue as startValue } from '../PageHeading/react/Select'
+import { Select } from '../PageHeading/Select'
+import { publishingOptions } from './configs'
 
-
-import { SlateToReact, slateToReactConfig } from "@slate-serializers/react"
-import { slateToHtmlConfig } from '@slate-serializers/html'
+import { SlateToReact } from "@slate-serializers/react"
 
 export const SlateToReactDemo: FC = () => {
-  const [slateConfig, setSlateConfig] = useState<IConfigContext>({
-    configName: "Default",
-    configSlug: "default",
-    configUrlDom: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToDom/default.ts",
-    configUrl: "https://github.com/thompsonsj/slate-serializers/blob/main/src/config/slateToReact/default.tsx",
-    slateToHtmlConfig: slateToHtmlConfig,
-    slateToReactConfig: slateToReactConfig,
-    initialValue: startValue,
-  });
-  const [slateValue, setSlateValue] = useState(JSON.stringify(startValue))
+  const [slateConfig, setSlateConfig] = useState<IConfigContext>(publishingOptions[0].config)
+  const [slateValue, setSlateValue] = useState(JSON.stringify(slateConfig.initialValue))
   const [ jsx, setJsx ] = useState(slateValue ? <SlateToReact node={JSON.parse(slateValue)} config={slateConfig.slateToReactConfig} />: <></>)
 
   useEffect(() => {
     setJsx(slateValue ? <SlateToReact node={JSON.parse(slateValue)} config={slateConfig.slateToReactConfig} />: <></>)
-  }, [slateValue, slateToHtmlConfig, slateToReactConfig])
+  }, [slateValue, slateConfig])
 
   return (
     <>
@@ -40,17 +31,16 @@ export const SlateToReactDemo: FC = () => {
       }}>
         <PageHeading
           title="Convert Slate JSON to React JSX"
-          config="slateToDom"
           menu={<Select
-            setSlateConfig={setSlateConfig}
+            options={publishingOptions}
+            onChange={(option) => {
+              setSlateConfig(option.config)
+              setSlateValue(JSON.stringify(option.config.initialValue))
+            }}
           />}
-          className="p-6 bg-slate-200 rounded-sm"
         />
-        <div className="grid grid-cols-12 gap-6 py-12">
-          <div className="col-span-6">
-            <label className="block font-bold text-gray-700 mb-6">
-              Edit Slate content
-            </label>
+        <DemoGrid>
+          <DemoPanel title="Edit Slate content">
             {slateConfig.configSlug === "default" && (
             <RichTextEditor value={slateConfig.initialValue} />
             )}
@@ -60,22 +50,14 @@ export const SlateToReactDemo: FC = () => {
             {slateConfig.configSlug === "slate" && (
             <SlateDemoRichTextEditor value={slateConfig.initialValue} />
             )}
-          </div>
-          <div className="col-span-6">
-            <label className="block font-bold text-gray-700 mb-6">
-              slateToReact output
-            </label>
-            <div className="prose p-6 bg-slate-100">{jsx}</div>
-          </div>
-        </div>
-        <div className="grid grid-cols-12 gap-6 py-12">
-          <div className="col-span-6">
-            <label className="block font-bold text-gray-700 mb-6">
-              Slate value
-            </label>
+          </DemoPanel>
+          <DemoPanel title="SlateToReact output">
+            <RenderedOutput>{jsx}</RenderedOutput>
+          </DemoPanel>
+          <DemoPanel title="Slate value">
             <pre><code>{slateValue && JSON.parse(slateValue).map((node: any) => stringifyObject(node)).join('\n')}</code></pre>
-          </div>
-        </div>
+          </DemoPanel>
+        </DemoGrid>
       </SlateValueContext.Provider>
       </SlateToReactConfigContext.Provider>
     </>

@@ -24,6 +24,11 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+
+  /**
+   * Stop `next dev` from appending its generic agent block to AGENTS.md, which is maintained by hand.
+   */
+  agentRules: false,
 };
 
 module.exports = nextConfig

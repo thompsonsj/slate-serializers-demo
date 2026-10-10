@@ -3,8 +3,8 @@ import Link from 'next/link'
 
 export function GettingStarted() {
   return (
-    <div className="mt-10 max-w-prose mb-10">
-      <div className="prose">
+    <div className="mt-12">
+      <div className="prose max-w-none">
       <h2>Getting started</h2>
       <p>
         If you use <a href="https://www.npmjs.com/package/slate">Slate.js</a> and need to store or display rich text

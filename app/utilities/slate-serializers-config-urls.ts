@@ -7,6 +7,13 @@ export const domConfigUrl = {
   payload: ghUrl('packages/dom/src/lib/config/payload.ts'),
 } as const
 
+/** GitHub links to @slate-serializers/react config sources. */
+export const reactConfigUrl = {
+  default: ghUrl('packages/react/src/lib/config/default.tsx'),
+  slateDemo: ghUrl('packages/react/src/lib/config/slateDemo.tsx'),
+  payload: ghUrl('packages/react/src/lib/config/payload.tsx'),
+} as const
+
 /** GitHub links to @slate-serializers/template config sources. */
 export const templateConfigUrl = {
   default: ghUrl('packages/template/src/lib/config/default.ts'),

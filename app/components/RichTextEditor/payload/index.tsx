@@ -21,7 +21,7 @@ import {
 } from 'react-icons/ri'
 
 import { SlateValueContext } from '../../../contexts/SlateValueContext'
-import { cx } from '@emotion/css'
+import cx from 'classnames'
 import { GeneralElement } from '../types'
 
 const HOTKEYS = {
@@ -31,6 +31,8 @@ const HOTKEYS = {
   'mod+`': 'code',
 }
 
+const noDynamicValue: Descendant[] = []
+
 interface IRichTextEditor {
   value: Descendant[]
   dynamicValue?: Descendant[]
@@ -38,7 +40,7 @@ interface IRichTextEditor {
 
 const RichTextEditor = ({
   value = [],
-  dynamicValue = []
+  dynamicValue = noDynamicValue
 }: IRichTextEditor) => {
   const renderElement = useCallback((props: any) => <Element {...props} />, [])
   const renderLeaf = useCallback((props: any) => <Leaf {...props} />, [])
@@ -47,19 +49,14 @@ const RichTextEditor = ({
     []
   )
   const { setSlateValue } = useContext(SlateValueContext)
-  useEffect(() => {
-    setSlateValue(JSON.stringify(value))
-  }, [])
 
   if (dynamicValue.length > 0) {
     editor.children = dynamicValue
   }
 
   useEffect(() => {
-    const content = JSON.stringify(editor.children)
-    localStorage.setItem('content', content)
-    setSlateValue(content)
-  }, [dynamicValue])
+    setSlateValue(JSON.stringify(editor.children))
+  }, [editor, dynamicValue, setSlateValue])
 
   return (
     <Slate
@@ -70,9 +67,7 @@ const RichTextEditor = ({
           op => 'set_selection' !== op.type
         )
         if (isAstChange) {
-          // Save the value to Local Storage.
           const content = JSON.stringify(value)
-          localStorage.setItem('content', content)
           setSlateValue(content)
         }
       }}
