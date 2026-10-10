@@ -1,5 +1,5 @@
 "use client"
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useMemo, useState } from 'react'
 import stringifyObject from 'stringify-object'
 import { Descendant } from 'slate'
 
@@ -28,16 +28,19 @@ export const HtmlToSlateDemo: FC<IHtmlToSlateDemo> = ({
 }) => {
   const [ htmlValue, setHtmlValue ] = useState(initialValue)
   const [ slateValue, setSlateValue ] = useState<string>('')
-  const [ serializedSlateValue, setSerializedSlateValue ] = useState<unknown[]>([])
-  const [ reserializedHtml, setReserializedHtml ] = useState('')
 
-  useEffect(() => {
-    setSerializedSlateValue(htmlValue ? htmlToSlate(htmlValue, htmlToSlateConfig): [])
-  }, [htmlValue])
-
-  useEffect(() => {
-    setReserializedHtml(slateValue ? slateToHtml(JSON.parse(slateValue), slateToDomConfig): '')
-  }, [slateValue])
+  const serializedSlateValue = useMemo(
+    () => (htmlValue ? htmlToSlate(htmlValue, htmlToSlateConfig) : []),
+    [htmlValue, htmlToSlateConfig],
+  )
+  const reserializedHtml = useMemo(
+    () => (slateValue ? slateToHtml(JSON.parse(slateValue), slateToDomConfig) : ''),
+    [slateValue, slateToDomConfig],
+  )
+  const initialSlateValue = useMemo(
+    () => htmlToSlate(initialValue, htmlToSlateConfig),
+    [initialValue, htmlToSlateConfig],
+  )
 
   return (
     <>
@@ -54,10 +57,10 @@ export const HtmlToSlateDemo: FC<IHtmlToSlateDemo> = ({
         </DemoPanel>
         <DemoPanel title="htmlToSlate output">
           {editorConfig === "slate" && (
-          <RichTextEditor value={htmlToSlate(initialValue, htmlToSlateConfig) as any} dynamicValue={serializedSlateValue as any} />
+          <RichTextEditor value={initialSlateValue as any} dynamicValue={serializedSlateValue as any} />
           )}
           {editorConfig === "payload" && (
-          <PayloadRichTextEditor value={htmlToSlate(initialValue, htmlToSlateConfig) as any} dynamicValue={serializedSlateValue as any} />
+          <PayloadRichTextEditor value={initialSlateValue as any} dynamicValue={serializedSlateValue as any} />
           )}
         </DemoPanel>
         <DemoPanel title="Slate value">
