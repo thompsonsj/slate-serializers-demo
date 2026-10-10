@@ -75,7 +75,7 @@ export const Sidebar = () => {
             <span className="sr-only">Open sidebar</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
-          <div className="flex-1 font-mono text-sm font-semibold text-gray-900">slate-serializers</div>
+          <div className="min-w-0 flex-1 font-mono text-sm font-semibold text-gray-900">slate-serializers</div>
           <IconLink href="https://www.npmjs.com/package/slate-serializers" label="View project on npm" icon={IoLogoNpm} />
           <IconLink href="https://github.com/thompsonsj/slate-serializers" label="View project on GitHub" icon={BsGithub} />
         </div>

@@ -49,7 +49,8 @@ Reuse these components instead of copying their class strings:
 
 - **Body text** uses the system font stack; code uses the mono stack in `globals.css`.
 - **Colour:**
-  - Text is `gray-900`, secondary text `gray-600`, and tertiary text and icons `gray-400`/`gray-500`.
+  - Text is `gray-900` and secondary text is `gray-600`.
+  - An icon that is the only label for a link (`IconLink`) is `gray-500` or darker, to meet the 3:1 contrast minimum for non-text elements. Decorative icons next to a text label can be `gray-400`.
   - Gray is the only neutral colour family. Don't mix in slate, zinc or neutral.
   - Indigo is the only accent colour, used for primary controls such as the config select.
 - **Inline code** is a small grey chip without backticks (see `globals.css`). Inside headings it inherits the heading's size and weight.

@@ -90,7 +90,9 @@ export const Grid = () => {
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <h3 className="font-mono text-base font-semibold text-gray-900">{s.title}</h3>
-                <p className="mt-0.5 truncate font-mono text-xs text-gray-500">{s.package}</p>
+                <p className="mt-0.5 font-mono text-xs text-gray-500 wrap-anywhere">
+                  {s.package.split('/').map((part, i) => (i === 0 ? part : <span key={part}>/<wbr />{part}</span>))}
+                </p>
               </div>
               <div className="-mr-1 -mt-1 flex shrink-0">
                 <IconLink href={s.npm} label={`${s.package} on npm`} icon={IoLogoNpm} />
