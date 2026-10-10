@@ -1,17 +1,15 @@
 import {
-  htmlToSlateConfig,
-  payloadHtmlToSlateConfig,
-  slateDemoHtmlToSlateConfig,
   slateToHtmlConfig,
   payloadSlateToHtmlConfig,
   slateDemoSlateToHtmlConfig,
 } from '@slate-serializers/html'
-import { domConfigUrl } from '@/app/utilities/slate-serializers-config-urls'
-import type { IConfigContext } from '@/app/contexts/SlateConfigContext'
+import { slateToReactConfig, payloadSlateToReactConfig, slateDemoSlateToReactConfig } from '@slate-serializers/react'
+import { domConfigUrl, reactConfigUrl } from '@/app/utilities/slate-serializers-config-urls'
+import type { IConfigContext } from '@/app/contexts/SlateToReactConfigContext'
 
 import { initialValue } from './fixtures/default'
-import { slateValue } from './fixtures/slate-demo'
-import { payloadValue } from './fixtures/payload'
+import { slateValue } from '../SlateToHtmlDemo/fixtures/slate-demo'
+import { payloadValue } from '../SlateToHtmlDemo/fixtures/payload'
 
 export const publishingOptions: { title: string; description: string; config: IConfigContext }[] = [
   {
@@ -20,9 +18,10 @@ export const publishingOptions: { title: string; description: string; config: IC
     config: {
       configName: "Default",
       configSlug: "default",
-      configUrl: domConfigUrl.default,
+      configUrlDom: domConfigUrl.default,
+      configUrl: reactConfigUrl.default,
       slateToHtmlConfig: slateToHtmlConfig,
-      htmlToSlateConfig: htmlToSlateConfig,
+      slateToReactConfig: slateToReactConfig,
       initialValue,
     }
   },
@@ -32,9 +31,10 @@ export const publishingOptions: { title: string; description: string; config: IC
     config: {
       configName: "Slate demo",
       configSlug: "slate",
-      configUrl: domConfigUrl.slateDemo,
+      configUrlDom: domConfigUrl.slateDemo,
+      configUrl: reactConfigUrl.slateDemo,
       slateToHtmlConfig: slateDemoSlateToHtmlConfig,
-      htmlToSlateConfig: slateDemoHtmlToSlateConfig,
+      slateToReactConfig: slateDemoSlateToReactConfig,
       initialValue: slateValue,
     }
   },
@@ -44,9 +44,10 @@ export const publishingOptions: { title: string; description: string; config: IC
     config: {
       configName: "Payload CMS",
       configSlug: "payload",
-      configUrl: domConfigUrl.payload,
+      configUrlDom: domConfigUrl.payload,
+      configUrl: reactConfigUrl.payload,
       slateToHtmlConfig: payloadSlateToHtmlConfig,
-      htmlToSlateConfig: payloadHtmlToSlateConfig,
+      slateToReactConfig: payloadSlateToReactConfig,
       initialValue: payloadValue,
     }
   },

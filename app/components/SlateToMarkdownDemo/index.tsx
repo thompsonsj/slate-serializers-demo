@@ -1,10 +1,10 @@
 "use client"
 import React, { FC, useMemo, useState } from 'react'
 import stringifyObject from 'stringify-object'
-import { CogIcon } from '@heroicons/react/20/solid'
 import { slateToMarkdown } from '@slate-serializers/markdown'
 
-import { PageHeadingBasic } from '../PageHeadingBasic'
+import { ConfigLinks, PageHeadingBasic } from '../PageHeadingBasic'
+import { DemoGrid, DemoPanel } from '../DemoLayout'
 import { Select } from '../PageHeading/Select'
 import RichTextEditor from '../RichTextEditor/default'
 import PayloadRichTextEditor from '../RichTextEditor/payload'
@@ -25,13 +25,7 @@ export const SlateToMarkdownDemo: FC = () => {
     <SlateValueContext.Provider value={{ slateValue, setSlateValue }}>
       <PageHeadingBasic
         title="Convert Slate JSON to Markdown"
-        description={
-          <div className="mt-2 flex items-center text-sm text-gray-500">
-            <CogIcon className="mr-1.5 h-5 w-5 shrink-0 text-gray-400" aria-hidden="true" />
-            <strong>Config:&nbsp;&nbsp;</strong>
-            <a target="_blank" className="underline" href={slateConfig.configUrl}>{slateConfig.configName}</a>.
-          </div>
-        }
+        description={<ConfigLinks links={[{ label: slateConfig.configName, href: slateConfig.configUrl }]} />}
         rightContent={
           <Select
             options={publishingOptions}
@@ -42,11 +36,8 @@ export const SlateToMarkdownDemo: FC = () => {
           />
         }
       />
-      <div className="grid grid-cols-12 gap-6 py-12">
-        <div className="col-span-6">
-          <label className="block font-bold text-gray-700 mb-6">
-            Edit Slate content
-          </label>
+      <DemoGrid>
+        <DemoPanel title="Edit Slate content">
           {slateConfig.configSlug === "default" && (
           <RichTextEditor value={slateConfig.initialValue} />
           )}
@@ -56,22 +47,14 @@ export const SlateToMarkdownDemo: FC = () => {
           {slateConfig.configSlug === "slate" && (
           <SlateDemoRichTextEditor value={slateConfig.initialValue} />
           )}
-        </div>
-        <div className="col-span-6">
-          <label className="block font-bold text-gray-700 mb-6">
-            slateToMarkdown output
-          </label>
-          <pre className="whitespace-pre-wrap"><code>{markdown}</code></pre>
-        </div>
-      </div>
-      <div className="grid grid-cols-12 gap-6 py-12">
-        <div className="col-span-6">
-          <label className="block font-bold text-gray-700 mb-6">
-            Slate value
-          </label>
+        </DemoPanel>
+        <DemoPanel title="slateToMarkdown output">
+          <pre><code>{markdown}</code></pre>
+        </DemoPanel>
+        <DemoPanel title="Slate value">
           <pre><code>{slateValue && JSON.parse(slateValue).map((node: any) => stringifyObject(node)).join('\n')}</code></pre>
-        </div>
-      </div>
+        </DemoPanel>
+      </DemoGrid>
     </SlateValueContext.Provider>
   )
 }

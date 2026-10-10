@@ -9,7 +9,7 @@ Interactive **documentation and demo site** for [**slate-serializers**](https://
 
 **Crawlers:** project `sitemap.xml` from `app/sitemap.ts`; origin **`robots.txt`** on the user hub (`user-site/`). See [DEPLOY.md](DEPLOY.md).
 
-**AI / editor agents:** see [AGENTS.md](AGENTS.md) for repo layout, commands, and conventions.
+**AI / editor agents:** see [AGENTS.md](AGENTS.md) for repo layout, commands, and conventions, and [DESIGN.md](DESIGN.md) for design principles.
 
 The library source lives in a separate repository; this app consumes the published `@slate-serializers/*` packages from npm.
 
