@@ -140,7 +140,7 @@ const markdown = slateToMarkdown(slate) // 'Hello **world**'`}</Code>
       <p>
         These packages target Slate&apos;s modern document model (Slate ≥ 0.50). This site uses{' '}
         <strong>Slate ~0.101</strong> and <strong>slate-react ~0.101</strong> with <code>@slate-serializers/*</code>{' '}
-        <strong>^2.8.1</strong>.
+        <strong>^2.8.2</strong>.
       </p>
       </div>
     </div>
