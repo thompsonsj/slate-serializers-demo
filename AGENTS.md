@@ -56,7 +56,8 @@ Inferred from past PRs (`YYYYMMDD-upgrade-dependencies`, `upgrade-next`, `upgrad
 3. **Framework majors** — Separate PRs; use official migrators when they exist (e.g. `npx @tailwindcss/upgrade`). Expect config/code follow-ups (ESLint flat config, React 19 types/`overrides`, Tailwind class renames).
 4. **`@slate-serializers/*`** — Bump all packages together. Treat as a **docs PR** when the release notes include API/config changes (fixtures, option docs, Getting Started version note).
 5. **Verify** — `npm run lint && npm run type-check && npm run test && npm run build` (CI also checks static export files under `out/`).
-6. **Known pitfall (2026-09)** — `vitest@4.1.11` can trip an npm Arborist `edgesOut` crash with the current Vite 8 peer graph; leave Vitest on `^4.1.4` until that clears, or bump Vitest in isolation after confirming `npm install` succeeds.
+6. **Node and npm** — The Node version is pinned once, in `package.json` under `volta`; CI reads it with `node-version-file: package.json`. Use the npm that ships with that Node (npm 11+). npm 10 crashes with `Cannot read properties of null (reading 'edgesOut')` on the Vite 8 optional-peer graph.
+7. **Overrides** — `postcss-selector-parser` is overridden because `@tailwindcss/typography` pins a vulnerable 6.x; drop the override once typography ships a fix. `allowScripts` denies `fsevents` and `unrs-resolver` install scripts, which aren't needed (prebuilt binaries).
 
 ## Upstream
 
